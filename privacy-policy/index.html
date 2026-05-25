@@ -1,0 +1,691 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Privacy Policy | Crackface</title>
+    <style>
+      :root {
+        --bg: #f7f7f9;
+        --card: #ffffff;
+        --text: #1d1d1f;
+        --muted: #5f6368;
+        --line: #e3e5e8;
+        --accent: #0b57d0;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial,
+          sans-serif;
+        color: var(--text);
+        background: var(--bg);
+        line-height: 1.55;
+      }
+      .wrap {
+        max-width: 900px;
+        margin: 32px auto;
+        padding: 0 16px 48px;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 22px;
+        margin-bottom: 16px;
+      }
+      h1, h2, h3 {
+        margin: 0 0 12px;
+        line-height: 1.3;
+      }
+      h1 { font-size: 28px; }
+      h2 { font-size: 22px; margin-top: 22px; }
+      h3 { font-size: 18px; margin-top: 14px; }
+      p, li { margin: 0 0 10px; }
+      ul { margin: 0 0 12px 20px; padding: 0; }
+      .meta { color: var(--muted); }
+      .lang {
+        display: inline-flex;
+        gap: 8px;
+        margin-bottom: 16px;
+      }
+      .lang a {
+        text-decoration: none;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 6px 12px;
+        color: var(--text);
+        background: #fff;
+      }
+      .lang a:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+      a { color: var(--accent); }
+      .small { color: var(--muted); font-size: 14px; }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <div class="lang">
+        <a href="#ru">RU</a>
+        <a href="#en">EN</a>
+      </div>
+
+      <section class="card" id="ru">
+        <h1>Политика конфиденциальности</h1>
+        <p class="meta">
+          Приложение: <strong>Crackface</strong><br />
+          Дата вступления в силу: <strong>25 мая 2026</strong><br />
+          Последнее обновление: <strong>25 мая 2026</strong>
+        </p>
+        <p>
+          Настоящая Политика конфиденциальности описывает, как
+          <strong>Artem Podrushniak</strong> ("мы", "нас", "наше")
+          обрабатывает данные при использовании мобильного приложения
+          <strong>Crackface</strong> для Android и iOS.
+        </p>
+        <p>
+          Связанный документ:
+          <a href="../terms-of-use/">Пользовательское соглашение</a>.
+        </p>
+
+        <h2>1. Контакты</h2>
+        <p>
+          Email для обращений по вопросам данных и приватности:
+          <strong>artem.podrushnyak@gmail.com</strong><br />
+          Страна/адрес: <strong>Индонезия</strong>
+        </p>
+
+        <h2>2. Какие данные обрабатываются</h2>
+
+        <h3>2.1. Данные, хранимые локально на устройстве</h3>
+        <p>
+          Приложение сохраняет следующие данные в системном локальном
+          хранилище устройства:
+        </p>
+        <ul>
+          <li>имена игроков, введённые пользователем;</li>
+          <li>настройки языка, звука, размера карточек;</li>
+          <li>
+            пользовательские наборы персонажей (UGC-паки): метаданные пака,
+            имена персонажей и изображения, добавленные пользователем;
+          </li>
+          <li>статистика сыгранных партий (счётчики игр, время, паки);</li>
+          <li>
+            локальные флаги монетизации (например, признак активированной
+            покупки «все паки»);
+          </li>
+          <li>
+            локальные служебные счётчики для логики показа рекламы, подсказок
+            и запроса оценки приложения.
+          </li>
+        </ul>
+        <p>
+          Эти данные используются только для работы функций приложения и не
+          отправляются на наш собственный сервер (с исключениями для
+          онлайн-режима — см. 2.3 и 2.4).
+        </p>
+
+        <h3>2.2. Сторонние сервисы</h3>
+        <p>Приложение использует сторонние SDK / сервисы:</p>
+        <ul>
+          <li>
+            <strong>Google Mobile Ads (AdMob)</strong> — для показа рекламы
+            (межстраничной и за вознаграждение);
+          </li>
+          <li>
+            <strong>Google Firebase Analytics</strong> — для агрегированной
+            анонимной аналитики использования приложения (запуски партий,
+            популярность встроенных паков, распределение игровых режимов);
+          </li>
+          <li>
+            <strong>Google Firebase Crashlytics</strong> — для сбора отчётов
+            об ошибках и крашах приложения с целью повышения стабильности;
+          </li>
+          <li>
+            <strong>Google Play Billing</strong> и
+            <strong>Apple In-App Purchase</strong> — для обработки покупок
+            в приложении;
+          </li>
+          <li>
+            <strong>Cloudflare</strong> (Workers, Durable Objects, KV, R2) —
+            хостинг и инфраструктура нашего бэкенда (онлайн-комнаты, обмен
+            пользовательскими паками между игроками одной комнаты, раздача
+            встроенных изображений). Cloudflare обрабатывает технические
+            данные соединения (IP-адрес, заголовки запросов) для маршрутизации
+            трафика.
+          </li>
+        </ul>
+        <p>
+          Эти сервисы могут обрабатывать технические данные устройства и
+          данные взаимодействия (например, рекламный идентификатор, IP-адрес,
+          идентификаторы приложения и устройства, события в приложении,
+          диагностические данные и данные транзакций) в соответствии со своими
+          политиками. Ссылки на их политики — в разделе 11.
+        </p>
+
+        <h3>2.3. Онлайн-режим (опционально)</h3>
+        <p>
+          При использовании онлайн-режима игры (несколько устройств, комната
+          по коду) на наш бэкенд (хостинг Cloudflare) временно передаётся:
+        </p>
+        <ul>
+          <li>
+            введённый игроком ник — он будет виден другим участникам той же
+            игровой комнаты;
+          </li>
+          <li>
+            игровые действия в течение партии (выбор персонажа, отметки
+            вычеркивания, попытки угадывания) — они раскрываются другим
+            участникам комнаты только в той мере, которую требует игровая
+            механика (публичные ходы, итоговый результат);
+          </li>
+          <li>
+            идентификатор выбранного пака и, при необходимости, копия
+            пользовательского пака (см. 2.4);
+          </li>
+          <li>
+            случайно сгенерированный токен для повторного подключения после
+            разрыва сети.
+          </li>
+        </ul>
+        <p>
+          Серверное состояние комнаты автоматически удаляется через 24 часа
+          с момента создания. Между разными комнатами и партиями данные не
+          пересекаются. Чат / переписка между игроками в онлайн-режиме не
+          предусмотрены.
+        </p>
+
+        <h3>2.4. Пользовательские паки (UGC) в онлайн-режиме</h3>
+        <p>
+          Если хост комнаты выбрал пользовательский пак (созданный им
+          самостоятельно в редакторе UGC), копия этого пака (метаданные +
+          изображения персонажей) временно загружается в наше эфемерное R2
+          хранилище для передачи остальным игрокам комнаты. Эта копия
+          автоматически удаляется не позднее, чем через 24 часа после создания
+          комнаты.
+        </p>
+        <p>
+          За пределами активной онлайн-комнаты пользовательские паки
+          <strong>не хранятся на наших серверах</strong> и остаются только в
+          локальном хранилище устройства создателя.
+        </p>
+        <p>
+          Мы не модерируем содержимое пользовательских паков. Если вы видите
+          материал, нарушающий нашу
+          <a href="../terms-of-use/#ru">политику UGC</a> (раздел 5), пожалуйста,
+          сообщите об этом — см. раздел 6 ниже.
+        </p>
+
+        <h3>2.5. Доступ к камере</h3>
+        <p>
+          В онлайн-режиме приложение может предложить отсканировать QR-код с
+          кодом игровой комнаты. Камера запускается только по явному действию
+          пользователя (нажатие кнопки сканера) и используется исключительно
+          для этого сканирования. Изображения с камеры не сохраняются и никуда
+          не передаются — распознавание происходит локально на устройстве, а
+          на наш бэкенд уходит только получившийся текстовый код комнаты.
+        </p>
+        <p>
+          В редакторе пользовательских паков камера используется для съёмки
+          изображений персонажей. Сделанные фото попадают только в локальный
+          UGC-пак на вашем устройстве. На наш сервер они не отправляются (за
+          исключением случая 2.4 — если вы используете созданный пак в
+          онлайн-режиме).
+        </p>
+
+        <h3>2.6. Доступ к фотографиям</h3>
+        <p>
+          В редакторе пользовательских паков можно выбрать изображения
+          персонажей из фотогалереи устройства. Доступ к фотогалерее
+          запрашивается только по явному действию пользователя (нажатие
+          кнопки выбора). Выбранные фото копируются в локальный UGC-пак;
+          оригиналы в галерее не изменяются.
+        </p>
+
+        <h3>2.7. Прозрачность трекинга на iOS</h3>
+        <p>
+          На iOS приложение использует Apple App Tracking Transparency (ATT).
+          При первом запуске iOS показывает системный запрос на разрешение
+          отслеживания вашей активности в приложениях и на сайтах других
+          компаний. Если вы выберете «Попросить не отслеживать», приложение
+          не получит доступ к вашему рекламному идентификатору (IDFA), и
+          реклама будет неперсонализированной. Приложение продолжает работать
+          в полном объёме независимо от вашего выбора. Изменить выбор можно
+          в любой момент: <strong>Настройки → Конфиденциальность и
+          безопасность → Отслеживание → Crackface</strong>.
+        </p>
+
+        <h2>3. Цели обработки</h2>
+        <ul>
+          <li>обеспечение работы игрового функционала;</li>
+          <li>сохранение пользовательских настроек и паков;</li>
+          <li>показ рекламы в бесплатной версии;</li>
+          <li>аналитика использования и улучшение стабильности приложения;</li>
+          <li>обработка и восстановление покупок;</li>
+          <li>работа онлайн-режима и обмен пользовательскими паками;</li>
+          <li>соблюдение требований магазинов приложений и закона.</li>
+        </ul>
+
+        <h2>4. Передача данных</h2>
+        <p>
+          Мы не продаём персональные данные пользователей. Передача возможна
+          только:
+        </p>
+        <ul>
+          <li>поставщикам рекламы, аналитики и платежной инфраструктуры;</li>
+          <li>
+            провайдеру хостинга нашего бэкенда (Cloudflare) — для работы
+            серверной части онлайн-режима;
+          </li>
+          <li>
+            другим игрокам, находящимся с вами в одной онлайн-комнате — в
+            объёме, необходимом для игрового процесса (см. п. 2.3 и 2.4);
+          </li>
+          <li>в случаях, предусмотренных применимым законодательством.</li>
+        </ul>
+
+        <h2>5. Срок хранения</h2>
+        <ul>
+          <li>
+            Локальные данные (включая пользовательские паки) хранятся на
+            устройстве до удаления приложения или очистки данных приложения
+            пользователем.
+          </li>
+          <li>
+            Состояние онлайн-комнаты и временные копии UGC-паков хранятся на
+            нашем бэкенде не более 24 часов с момента создания и автоматически
+            удаляются по истечении этого срока.
+          </li>
+          <li>
+            Локальные учётные данные онлайн-комнаты (код, токен сессии)
+            хранятся на устройстве до 2 часов после последнего использования
+            и затем стираются автоматически.
+          </li>
+          <li>
+            Данные, обрабатываемые сторонними провайдерами (реклама,
+            аналитика, краши, платежи), хранятся по их собственным правилам.
+          </li>
+        </ul>
+
+        <h2>6. Права пользователя</h2>
+        <p>
+          В зависимости от вашей юрисдикции вы можете иметь право на доступ,
+          исправление, удаление или ограничение обработки данных, а также на
+          отзыв согласия. По вопросам реализации прав, а также для жалоб на
+          UGC-контент обратитесь на
+          <strong>artem.podrushnyak@gmail.com</strong>. Для жалоб на UGC
+          рекомендуем указывать тему «[Crackface UGC Report]» — это ускоряет
+          обработку.
+        </p>
+        <p>
+          Для удаления локальных данных можно удалить приложение или очистить
+          данные приложения в настройках ОС.
+        </p>
+        <p>
+          Аналитику и crash-репорты Firebase можно отключить на уровне
+          операционной системы (iOS: Настройки → Конфиденциальность →
+          Отслеживание; Android: Настройки → Google → Реклама).
+        </p>
+
+        <h2>7. Дети</h2>
+        <p>
+          Приложение не предназначено для детей младше 13 лет (или иного
+          возраста, установленного местным законодательством). Мы не собираем
+          персональные данные детей намеренно. Если вы родитель / опекун и
+          считаете, что мы обработали данные ребёнка, напишите на указанный
+          email — мы удалим эти данные.
+        </p>
+
+        <h2>8. Международная передача данных</h2>
+        <p>
+          Сторонние провайдеры могут обрабатывать данные на серверах за
+          пределами вашей страны в соответствии с применимыми правовыми
+          механизмами и своими политиками.
+        </p>
+
+        <h2>9. Безопасность</h2>
+        <p>
+          Мы применяем разумные организационные и технические меры для защиты
+          данных. Однако ни один способ хранения или передачи данных не
+          гарантирует абсолютную безопасность.
+        </p>
+
+        <h2>10. Изменения политики</h2>
+        <p>
+          Мы можем обновлять эту Политику конфиденциальности. Новая редакция
+          вступает в силу с даты, указанной в начале страницы. О существенных
+          изменениях мы сообщим внутри приложения при следующем запуске.
+        </p>
+
+        <h2>11. Политики третьих лиц</h2>
+        <ul>
+          <li>
+            Google Privacy Policy:
+            <a href="https://policies.google.com/privacy">https://policies.google.com/privacy</a>
+          </li>
+          <li>
+            AdMob:
+            <a href="https://support.google.com/admob/answer/6128543">https://support.google.com/admob/answer/6128543</a>
+          </li>
+          <li>
+            Firebase (Analytics + Crashlytics):
+            <a href="https://firebase.google.com/support/privacy">https://firebase.google.com/support/privacy</a>
+          </li>
+          <li>
+            Apple Privacy Policy:
+            <a href="https://www.apple.com/legal/privacy/">https://www.apple.com/legal/privacy/</a>
+          </li>
+          <li>
+            Cloudflare Privacy Policy:
+            <a href="https://www.cloudflare.com/privacypolicy/">https://www.cloudflare.com/privacypolicy/</a>
+          </li>
+        </ul>
+      </section>
+
+      <section class="card" id="en">
+        <h1>Privacy Policy</h1>
+        <p class="meta">
+          App: <strong>Crackface</strong><br />
+          Effective date: <strong>May 25, 2026</strong><br />
+          Last updated: <strong>May 25, 2026</strong>
+        </p>
+        <p>
+          This Privacy Policy explains how
+          <strong>Artem Podrushniak</strong> ("we", "us", "our") handles
+          data when you use the <strong>Crackface</strong> mobile application
+          for Android and iOS.
+        </p>
+        <p>
+          Related document:
+          <a href="../terms-of-use/">Terms of Use</a>.
+        </p>
+
+        <h2>1. Contact</h2>
+        <p>
+          Data / privacy contact email:
+          <strong>artem.podrushnyak@gmail.com</strong><br />
+          Country / address: <strong>Indonesia</strong>
+        </p>
+
+        <h2>2. What data is processed</h2>
+
+        <h3>2.1. Data stored locally on your device</h3>
+        <p>
+          The app stores the following information in your device's local
+          storage:
+        </p>
+        <ul>
+          <li>player names entered by the user;</li>
+          <li>language, sound, and board-card-size preferences;</li>
+          <li>
+            user-created character packs (UGC packs): pack metadata,
+            character names, and images added by the user;
+          </li>
+          <li>game statistics (match counts, durations, packs played);</li>
+          <li>local monetization flags (e.g. purchase entitlement);</li>
+          <li>
+            local counters used for ad pacing, tutorial hints, and the
+            review-prompt logic.
+          </li>
+        </ul>
+        <p>
+          This information is used only to run app features and is not sent
+          to our own backend server (with exceptions for online mode — see
+          2.3 and 2.4).
+        </p>
+
+        <h3>2.2. Third-party services</h3>
+        <p>The app uses the following third-party SDKs / services:</p>
+        <ul>
+          <li>
+            <strong>Google Mobile Ads (AdMob)</strong> — for advertising
+            (interstitial and rewarded);
+          </li>
+          <li>
+            <strong>Google Firebase Analytics</strong> — for aggregated,
+            anonymous app-usage analytics (matches started, built-in pack
+            popularity, mode distribution);
+          </li>
+          <li>
+            <strong>Google Firebase Crashlytics</strong> — for crash reports
+            used to improve app stability;
+          </li>
+          <li>
+            <strong>Google Play Billing</strong> and
+            <strong>Apple In-App Purchase</strong> — for in-app purchases;
+          </li>
+          <li>
+            <strong>Cloudflare</strong> (Workers, Durable Objects, KV, R2)
+            — hosting and infrastructure for our backend (online rooms,
+            sharing user-created packs between players in the same room,
+            built-in image delivery). Cloudflare processes connection-level
+            technical data (IP address, request headers) to route traffic.
+          </li>
+        </ul>
+        <p>
+          These providers may process technical and interaction data (for
+          example advertising identifier, IP address, app and device
+          identifiers, in-app events, diagnostic data, and transaction data)
+          under their own privacy policies. Links to those policies are in
+          section 11.
+        </p>
+
+        <h3>2.3. Online mode (optional)</h3>
+        <p>
+          When you use the online room mode (each player on their own
+          device, joining by code), our backend (hosted on Cloudflare)
+          temporarily receives:
+        </p>
+        <ul>
+          <li>
+            the nickname you entered — it is visible to other participants
+            of the same room;
+          </li>
+          <li>
+            in-game actions during a match (character selection, elimination
+            marks, guess attempts) — they are revealed to other participants
+            of the room only to the extent required by gameplay (public
+            turns, final result);
+          </li>
+          <li>
+            the chosen pack id and, if applicable, a copy of the user-created
+            pack (see 2.4);
+          </li>
+          <li>
+            a randomly generated token used to reconnect after a network
+            interruption.
+          </li>
+        </ul>
+        <p>
+          Server-side room state is automatically deleted 24 hours after
+          creation. Data does not carry over between different rooms or
+          matches. The online mode does not include any chat or messaging
+          between players.
+        </p>
+
+        <h3>2.4. User-created packs (UGC) in online mode</h3>
+        <p>
+          If the room host chose a user-created pack (made by them in the
+          UGC editor), a copy of that pack (metadata + character images) is
+          temporarily uploaded to our ephemeral R2 storage so it can be
+          delivered to the other players in the room. That copy is
+          automatically deleted no later than 24 hours after room creation.
+        </p>
+        <p>
+          Outside an active online room, user-created packs are
+          <strong>not stored on our servers</strong> and remain only in the
+          local storage of the device that created them.
+        </p>
+        <p>
+          We do not moderate user-pack content. If you see material that
+          violates our
+          <a href="../terms-of-use/#en">UGC policy</a> (section 5), please
+          report it — see section 6 below.
+        </p>
+
+        <h3>2.5. Camera access</h3>
+        <p>
+          In online mode, the app may offer to scan a QR code containing a
+          game-room join code. The camera is launched only on an explicit
+          user action (tapping the scanner button) and is used solely for
+          this scan. Camera frames are neither saved nor transmitted —
+          recognition happens locally on the device, and only the resulting
+          text room code is sent to our backend.
+        </p>
+        <p>
+          In the UGC pack editor, the camera is used to capture character
+          images. Captured photos go only into the local UGC pack on your
+          device. They are not sent to our server (except via case 2.4 — if
+          you use the resulting pack in an online match).
+        </p>
+
+        <h3>2.6. Photo library access</h3>
+        <p>
+          In the UGC pack editor, you can pick character images from your
+          device's photo library. Library access is requested only on an
+          explicit user action (tapping a pick button). Selected photos are
+          copied into the local UGC pack; the originals in your library are
+          not modified.
+        </p>
+
+        <h3>2.7. Tracking transparency on iOS</h3>
+        <p>
+          On iOS, the app uses Apple's App Tracking Transparency (ATT)
+          framework. The first time you open the app, iOS displays a system
+          prompt asking whether you allow the app to track your activity
+          across other companies' apps and websites. If you tap "Ask App
+          Not to Track", the app will not access your advertising
+          identifier (IDFA), and you will see only non-personalized ads.
+          The app continues to work in full regardless of your choice. You
+          can change this preference at any time in <strong>Settings →
+          Privacy &amp; Security → Tracking → Crackface</strong>.
+        </p>
+
+        <h2>3. Why data is used</h2>
+        <ul>
+          <li>to provide core game functionality;</li>
+          <li>to save user preferences and UGC packs;</li>
+          <li>to show ads in the free version;</li>
+          <li>to analyze app usage and improve stability;</li>
+          <li>to process and restore purchases;</li>
+          <li>to run online mode and share UGC packs between players;</li>
+          <li>to comply with store and legal requirements.</li>
+        </ul>
+
+        <h2>4. Data sharing</h2>
+        <p>We do not sell users' personal data. Data may be shared only:</p>
+        <ul>
+          <li>with advertising, analytics, and payment infrastructure providers;</li>
+          <li>
+            with our backend hosting provider (Cloudflare) — to operate the
+            server side of online mode;
+          </li>
+          <li>
+            with other players in the same online room — in the scope
+            necessary for the game (see sections 2.3 and 2.4);
+          </li>
+          <li>when required by applicable law.</li>
+        </ul>
+
+        <h2>5. Retention</h2>
+        <ul>
+          <li>
+            Local data (including user-created packs) remains on the device
+            until the app is removed or app data is cleared by the user.
+          </li>
+          <li>
+            Online room state and temporary UGC-pack copies are retained on
+            our backend for up to 24 hours from creation and are
+            automatically deleted after that period.
+          </li>
+          <li>
+            Local online-room credentials (code, session token) are retained
+            on the device for up to 2 hours after last use and then erased
+            automatically.
+          </li>
+          <li>
+            Data processed by third parties (ads, analytics, crashes,
+            payments) is retained under their own retention policies.
+          </li>
+        </ul>
+
+        <h2>6. Your rights</h2>
+        <p>
+          Depending on your jurisdiction, you may have rights to access,
+          correct, delete, or restrict processing of your data, and to
+          withdraw consent. For these requests, or to report UGC content,
+          contact us at <strong>artem.podrushnyak@gmail.com</strong>. For
+          UGC reports, please use the subject "[Crackface UGC Report]" —
+          it speeds up triage.
+        </p>
+        <p>
+          To remove local app data, you can uninstall the app or clear app
+          data in your OS settings.
+        </p>
+        <p>
+          Firebase Analytics and Crashlytics collection can be disabled at
+          the OS level (iOS: Settings → Privacy → Tracking; Android:
+          Settings → Google → Ads).
+        </p>
+
+        <h2>7. Children</h2>
+        <p>
+          The app is not intended for children under 13 (or the equivalent
+          age in your jurisdiction). We do not knowingly collect personal
+          data from children. If you are a parent / guardian and believe we
+          have processed a child's data, please email the address above —
+          we will delete it.
+        </p>
+
+        <h2>8. International transfers</h2>
+        <p>
+          Third-party providers may process data on servers outside your
+          country under applicable legal transfer mechanisms and their own
+          policies.
+        </p>
+
+        <h2>9. Security</h2>
+        <p>
+          We apply reasonable technical and organizational measures to
+          protect data. No method of storage or transmission can be
+          guaranteed fully secure.
+        </p>
+
+        <h2>10. Policy changes</h2>
+        <p>
+          We may update this Privacy Policy from time to time. The latest
+          version takes effect on the date shown at the top of this page.
+          Material changes will be surfaced inside the app on next launch.
+        </p>
+
+        <h2>11. Third-party privacy resources</h2>
+        <ul>
+          <li>
+            Google Privacy Policy:
+            <a href="https://policies.google.com/privacy">https://policies.google.com/privacy</a>
+          </li>
+          <li>
+            AdMob:
+            <a href="https://support.google.com/admob/answer/6128543">https://support.google.com/admob/answer/6128543</a>
+          </li>
+          <li>
+            Firebase (Analytics + Crashlytics):
+            <a href="https://firebase.google.com/support/privacy">https://firebase.google.com/support/privacy</a>
+          </li>
+          <li>
+            Apple Privacy Policy:
+            <a href="https://www.apple.com/legal/privacy/">https://www.apple.com/legal/privacy/</a>
+          </li>
+          <li>
+            Cloudflare Privacy Policy:
+            <a href="https://www.cloudflare.com/privacypolicy/">https://www.cloudflare.com/privacypolicy/</a>
+          </li>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>
