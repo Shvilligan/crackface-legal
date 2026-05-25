@@ -1,0 +1,45 @@
+name: Deploy to Cloudflare Pages
+
+# Auto-deploys every push to main to the `crackface-legal` Pages
+# project. Same effect as the dashboard's native Git integration, but
+# scripted in-repo so the config is reviewable + versioned.
+#
+# Secrets (configure once via `gh secret set` or repo Settings → Secrets):
+#   CLOUDFLARE_API_TOKEN   — token with Account:Pages:Edit scope
+#   CLOUDFLARE_ACCOUNT_ID  — Cloudflare account id
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: # manual trigger from the Actions tab if needed
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Deploy static legal site
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Deploy via wrangler pages
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        # `--commit-hash` stamps the Pages dashboard deployment with
+        # the source commit so traceability matches the native Git
+        # integration. `--branch=main` lands in the production
+        # environment (Pages treats any branch != production-branch
+        # as a preview).
+        run: |
+          npx --yes wrangler@4 pages deploy . \
+            --project-name=crackface-legal \
+            --branch=main \
+            --commit-hash=${{ github.sha }}
