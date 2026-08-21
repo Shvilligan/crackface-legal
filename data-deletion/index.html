@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Data deletion | Crackface</title>
+    <style>
+      :root {
+        --bg: #f7f7f9;
+        --card: #ffffff;
+        --text: #1d1d1f;
+        --muted: #5f6368;
+        --line: #e3e5e8;
+        --accent: #0b57d0;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial,
+          sans-serif;
+        color: var(--text);
+        background: var(--bg);
+        line-height: 1.55;
+      }
+      .wrap {
+        max-width: 900px;
+        margin: 32px auto;
+        padding: 0 16px 48px;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 22px;
+        margin-bottom: 16px;
+      }
+      h1, h2, h3 { margin: 0 0 12px; line-height: 1.3; }
+      h1 { font-size: 28px; }
+      h2 { font-size: 22px; margin-top: 22px; }
+      h3 { font-size: 18px; margin-top: 14px; }
+      p, li { margin: 0 0 10px; }
+      ul, ol { margin: 0 0 12px 20px; padding: 0; }
+      .meta { color: var(--muted); }
+      .lang {
+        display: inline-flex;
+        gap: 8px;
+        margin-bottom: 16px;
+      }
+      .lang a {
+        text-decoration: none;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 6px 12px;
+        color: var(--text);
+        background: #fff;
+      }
+      .lang a:hover { border-color: var(--accent); color: var(--accent); }
+      .contact-box {
+        background: #f0f4ff;
+        border: 1px solid #c8d4ff;
+        border-radius: 10px;
+        padding: 16px;
+        margin: 12px 0;
+      }
+      .contact-box a {
+        color: var(--accent);
+        font-weight: 600;
+        font-size: 18px;
+      }
+      a { color: var(--accent); }
+      .table-wrap { overflow-x: auto; }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 0 0 12px;
+        font-size: 15px;
+      }
+      th, td {
+        border: 1px solid var(--line);
+        padding: 8px 10px;
+        text-align: left;
+        vertical-align: top;
+      }
+      th { background: #f2f4f7; }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <div class="lang">
+        <a href="#en">EN</a>
+        <a href="#ru">RU</a>
+      </div>
+
+      <section class="card" id="en">
+        <h1>Deleting your Crackface data</h1>
+        <p class="meta">
+          App: <strong>Crackface</strong><br />
+          Developer: <strong>Artem Podrushniak</strong><br />
+          Contact: <strong>artem.podrushnyak@gmail.com</strong>
+        </p>
+        <p>
+          Crackface has no accounts: there is nothing to sign in to and no
+          profile to close. What follows is every place your data can be,
+          and how each of them is emptied.
+        </p>
+
+        <h2>1. What you can delete yourself, right now</h2>
+        <ol>
+          <li>
+            <strong>A pack you shared as a link.</strong> Open the pack in
+            the catalogue, tap the share icon, then <strong>"Remove
+            link"</strong>. The copy on our servers is deleted immediately
+            and the link stops working for everyone who has it.
+          </li>
+          <li>
+            <strong>Everything the app keeps on your device</strong> — your
+            packs, the player roster with its photos, game statistics,
+            settings. Delete the app, or clear its data in your system
+            settings (Android: Settings → Apps → Crackface → Storage →
+            Clear data; iOS: delete the app). None of this is on our
+            servers.
+          </li>
+        </ol>
+
+        <h2>2. What to ask us to delete</h2>
+        <div class="contact-box">
+          <p style="margin: 0;">
+            Write to
+            <a href="mailto:artem.podrushnyak@gmail.com?subject=[Crackface%20data%20deletion]">artem.podrushnyak@gmail.com</a><br />
+            Subject: <strong>[Crackface data deletion]</strong>
+          </p>
+        </div>
+        <p>Include whichever applies:</p>
+        <ul>
+          <li>
+            the <strong>8-character pack code</strong> (the tail of a
+            <code>crackface.app/p/CODE</code> link) — use this when the
+            device that created the link is lost or the app was
+            reinstalled, so "Remove link" is no longer available to you;
+          </li>
+          <li>
+            the approximate date and the wording of a message you sent
+            through the in-app feedback form, if you want it removed from
+            our internal chat;
+          </li>
+          <li>
+            an <strong>online room code</strong>, if your pack was uploaded
+            for a match and you want that copy removed before it expires on
+            its own.
+          </li>
+        </ul>
+        <p>
+          We reply within 1-3 business days. Reports about pack content
+          (subject <strong>[Crackface UGC Report]</strong>) are acted on
+          within 24 hours.
+        </p>
+
+        <h2>3. What is deleted, what is kept, and for how long</h2>
+        <div class="table-wrap">
+          <table>
+            <tr>
+              <th>Data</th>
+              <th>Where it lives</th>
+              <th>When it goes</th>
+            </tr>
+            <tr>
+              <td>Your packs, player roster and its photos, statistics,
+                settings, purchase flag</td>
+              <td>Your device only</td>
+              <td>When you delete the app or clear its data</td>
+            </tr>
+            <tr>
+              <td>The pack behind a share link (metadata, character names
+                and images)</td>
+              <td>Our storage (Cloudflare R2 + KV)</td>
+              <td>Immediately on "Remove link" or on request; otherwise
+                automatically 90 days after the link was published or last
+                updated, and the file no later than 100 days</td>
+            </tr>
+            <tr>
+              <td>A revocation marker for a used code — the fact and the
+                date, none of the pack's content</td>
+              <td>Our storage (KV)</td>
+              <td>Kept up to 180 days so the code can never be handed to
+                another pack; not deleted on request</td>
+            </tr>
+            <tr>
+              <td>The pack copy served to the players of an online room</td>
+              <td>Our storage (Cloudflare R2)</td>
+              <td>With the room — 24 hours after the last activity in it; a
+                copy that outlives the room is removed by a storage rule
+                within 7 days</td>
+            </tr>
+            <tr>
+              <td>Nickname and in-game actions in an online room</td>
+              <td>Room state on our backend</td>
+              <td>With the room — 24 hours after the last activity</td>
+            </tr>
+            <tr>
+              <td>The text of a message sent from the feedback form</td>
+              <td>Our internal Telegram chat</td>
+              <td>Manually — on your request, or when we clear the thread;
+                nothing is stored on our backend</td>
+            </tr>
+            <tr>
+              <td>Analytics events and crash reports (Firebase)</td>
+              <td>Google, on our behalf</td>
+              <td>De-identified and not tied to a person, so they cannot be
+                deleted for one user on request; collection stops when you
+                delete the app, and Google applies its own retention</td>
+            </tr>
+            <tr>
+              <td>Advertising identifier (AdMob)</td>
+              <td>Your device / Google</td>
+              <td>Reset or delete it in the system settings (Android:
+                Settings → Google → Ads; iOS: Settings → Privacy &amp;
+                Security → Tracking)</td>
+            </tr>
+          </table>
+        </div>
+
+        <h2>4. Related documents</h2>
+        <ul>
+          <li><a href="../privacy-policy/#en">Privacy Policy</a> — what is
+            collected and why</li>
+          <li><a href="../terms-of-use/#en">Terms of Use</a></li>
+          <li><a href="../support/#en">Support</a></li>
+        </ul>
+      </section>
+
+      <section class="card" id="ru">
+        <h1>Удаление данных Crackface</h1>
+        <p class="meta">
+          Приложение: <strong>Crackface</strong><br />
+          Разработчик: <strong>Artem Podrushniak</strong><br />
+          Контакт: <strong>artem.podrushnyak@gmail.com</strong>
+        </p>
+        <p>
+          В Crackface нет аккаунтов: входить некуда и закрывать нечего.
+          Ниже — все места, где могут быть ваши данные, и как каждое из них
+          очищается.
+        </p>
+
+        <h2>1. Что можно удалить самому, прямо сейчас</h2>
+        <ol>
+          <li>
+            <strong>Пак, которым вы поделились по ссылке.</strong> Откройте
+            пак в каталоге, нажмите значок «Поделиться», затем
+            <strong>«Отозвать ссылку»</strong>. Копия на наших серверах
+            удаляется сразу, и ссылка перестаёт работать у всех, у кого
+            она есть.
+          </li>
+          <li>
+            <strong>Всё, что приложение хранит на устройстве</strong> — ваши
+            паки, картотека игроков с фотографиями, статистика партий,
+            настройки. Удалите приложение или очистите его данные в
+            настройках системы (Android: Настройки → Приложения → Crackface
+            → Хранилище → Очистить данные; iOS: удалить приложение). На
+            наших серверах этого нет.
+          </li>
+        </ol>
+
+        <h2>2. О чём написать нам</h2>
+        <div class="contact-box">
+          <p style="margin: 0;">
+            Пишите на
+            <a href="mailto:artem.podrushnyak@gmail.com?subject=[Crackface%20data%20deletion]">artem.podrushnyak@gmail.com</a><br />
+            Тема: <strong>[Crackface data deletion]</strong>
+          </p>
+        </div>
+        <p>Укажите то, что подходит:</p>
+        <ul>
+          <li>
+            <strong>код пака из 8 символов</strong> (хвост ссылки
+            <code>crackface.app/p/КОД</code>) — если устройство, где
+            ссылка была создана, утеряно или приложение переустановлено и
+            кнопка «Отозвать ссылку» вам больше недоступна;
+          </li>
+          <li>
+            примерную дату и текст сообщения, отправленного через форму
+            обратной связи, если хотите убрать его из нашего служебного
+            чата;
+          </li>
+          <li>
+            <strong>код онлайн-комнаты</strong>, если ваш пак загружался
+            для партии и вы хотите удалить эту копию раньше, чем она
+            исчезнет сама.
+          </li>
+        </ul>
+        <p>
+          Отвечаем в течение 1-3 рабочих дней. Жалобы на содержимое паков
+          (тема <strong>[Crackface UGC Report]</strong>) рассматриваем в
+          течение 24 часов.
+        </p>
+
+        <h2>3. Что удаляется, что остаётся и на какой срок</h2>
+        <div class="table-wrap">
+          <table>
+            <tr>
+              <th>Данные</th>
+              <th>Где хранятся</th>
+              <th>Когда исчезают</th>
+            </tr>
+            <tr>
+              <td>Ваши паки, картотека игроков с фотографиями, статистика,
+                настройки, признак покупки</td>
+              <td>Только на вашем устройстве</td>
+              <td>Когда вы удаляете приложение или очищаете его данные</td>
+            </tr>
+            <tr>
+              <td>Пак, стоящий за ссылкой (метаданные, имена и изображения
+                персонажей)</td>
+              <td>Наше хранилище (Cloudflare R2 и KV)</td>
+              <td>Сразу по кнопке «Отозвать ссылку» или по вашему
+                обращению; иначе автоматически через 90 дней после
+                публикации или последнего обновления ссылки, а файл — не
+                позднее 100 дней</td>
+            </tr>
+            <tr>
+              <td>Отметка об отозванном коде — только факт и дата, без
+                содержимого пака</td>
+              <td>Наше хранилище (KV)</td>
+              <td>До 180 дней, чтобы код никогда не достался другому паку;
+                по обращению не удаляется</td>
+            </tr>
+            <tr>
+              <td>Копия пака, переданная участникам онлайн-комнаты</td>
+              <td>Наше хранилище (Cloudflare R2)</td>
+              <td>Вместе с комнатой — через 24 часа после последней
+                активности в ней; копию, пережившую комнату, стирает
+                правило хранилища в течение 7 дней</td>
+            </tr>
+            <tr>
+              <td>Ник и игровые действия в онлайн-комнате</td>
+              <td>Состояние комнаты на нашем бэкенде</td>
+              <td>Вместе с комнатой — через 24 часа после последней
+                активности</td>
+            </tr>
+            <tr>
+              <td>Текст сообщения из формы обратной связи</td>
+              <td>Наш служебный чат в Telegram</td>
+              <td>Вручную — по вашему обращению или когда мы разбираем
+                чат; на бэкенде сообщение не сохраняется</td>
+            </tr>
+            <tr>
+              <td>События аналитики и отчёты о сбоях (Firebase)</td>
+              <td>Google, по нашему поручению</td>
+              <td>Обезличены и не связаны с личностью, поэтому удалить их
+                для одного человека по обращению нельзя; сбор прекращается
+                с удалением приложения, сроки хранения — на стороне
+                Google</td>
+            </tr>
+            <tr>
+              <td>Рекламный идентификатор (AdMob)</td>
+              <td>Ваше устройство / Google</td>
+              <td>Сбросить или удалить в настройках системы (Android:
+                Настройки → Google → Реклама; iOS: Настройки →
+                Конфиденциальность и безопасность → Отслеживание)</td>
+            </tr>
+          </table>
+        </div>
+
+        <h2>4. Связанные документы</h2>
+        <ul>
+          <li><a href="../privacy-policy/#ru">Политика
+            конфиденциальности</a> — что собирается и зачем</li>
+          <li><a href="../terms-of-use/#ru">Пользовательское
+            соглашение</a></li>
+          <li><a href="../support/#ru">Поддержка</a></li>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>
