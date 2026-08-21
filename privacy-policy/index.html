@@ -150,7 +150,7 @@
           </li>
           <li>
             <strong>Google Firebase Analytics</strong> — for aggregated,
-            anonymous app-usage analytics (matches started and finished,
+            de-identified app-usage analytics (matches started and finished,
             mode distribution, pack popularity, packs installed from the
             catalogue or from a link, notifications opened);
           </li>
@@ -341,8 +341,9 @@
           Cloudflare) and immediately forwarded to a private internal chat in
           the <strong>Telegram</strong> messenger that only we can access. It
           is not stored on our backend. The sender's IP address is used only
-          to rate-limit submissions (spam protection) and is not stored
-          alongside the text.
+          to rate-limit submissions (spam protection): it forms part of the
+          key of a service counter, which is swept within hours, and it is
+          never stored alongside the text.
         </p>
         <p>
           Please do not put personal data — yours or anyone else's — into the
@@ -510,9 +511,18 @@
           notification settings.
         </p>
         <p>
-          Firebase Analytics and Crashlytics collection can be disabled at
-          the OS level (iOS: Settings → Privacy → Tracking; Android:
-          Settings → Google → Ads).
+          Advertising. Your choice about personalised ads is changed in the
+          app: <strong>Settings → Privacy choices</strong>. On iOS the
+          system tracking prompt applies as well (Settings → Privacy &amp;
+          Security → Tracking → Crackface); on Android the advertising
+          identifier can be reset or deleted in the Google settings.
+        </p>
+        <p>
+          Analytics and crash reports. The app has no separate switch for
+          Firebase Analytics and Crashlytics. What they collect is
+          de-identified and listed in 2.2; it is not tied to your identity,
+          so we cannot delete it for one person on request. Collection stops
+          when you remove the app.
         </p>
 
         <h2>7. Children</h2>
@@ -656,7 +666,7 @@
           </li>
           <li>
             <strong>Google Firebase Analytics</strong> — для агрегированной
-            анонимной аналитики использования приложения (запуски и
+            обезличенной аналитики использования приложения (запуски и
             завершения партий, распределение игровых режимов, популярность
             паков, установки паков из каталога и по ссылке, открытия
             уведомлений);
@@ -851,8 +861,9 @@
           сразу пересылается в закрытый служебный чат в мессенджере
           <strong>Telegram</strong>, доступный только нам. На нашем бэкенде
           сообщение не сохраняется. IP-адрес отправителя используется только
-          для ограничения частоты отправки (защита от спама) и не сохраняется
-          вместе с текстом.
+          для ограничения частоты отправки (защита от спама): он входит в
+          ключ служебного счётчика, который стирается в пределах нескольких
+          часов, и с текстом сообщения не хранится.
         </p>
         <p>
           Пожалуйста, не указывайте в тексте персональные данные — свои или
@@ -1025,9 +1036,19 @@
           операционной системы.
         </p>
         <p>
-          Аналитику и crash-репорты Firebase можно отключить на уровне
-          операционной системы (iOS: Настройки → Конфиденциальность →
-          Отслеживание; Android: Настройки → Google → Реклама).
+          Реклама. Выбор по персонализированной рекламе меняется в
+          приложении: <strong>Настройки → Настройки приватности</strong>.
+          На iOS дополнительно действует системный запрос отслеживания
+          (Настройки → Конфиденциальность и безопасность → Отслеживание →
+          Crackface), на Android рекламный идентификатор можно сбросить или
+          удалить в настройках Google.
+        </p>
+        <p>
+          Аналитика и отчёты о сбоях. Отдельного переключателя для Firebase
+          Analytics и Crashlytics в приложении нет. Собираемые ими данные
+          обезличены и перечислены в 2.2; с вашей личностью они не связаны,
+          поэтому удалить их по обращению для одного человека мы не можем.
+          Сбор прекращается, когда вы удаляете приложение.
         </p>
 
         <h2>7. Дети</h2>
