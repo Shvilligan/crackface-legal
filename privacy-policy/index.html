@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -70,16 +70,516 @@
   <body>
     <main class="wrap">
       <div class="lang">
-        <a href="#ru">RU</a>
         <a href="#en">EN</a>
+        <a href="#ru">RU</a>
       </div>
+
+      <section class="card" id="en">
+        <h1>Privacy Policy</h1>
+        <p class="meta">
+          App: <strong>Crackface</strong><br />
+          Effective date: <strong>May 25, 2026</strong><br />
+          Last updated: <strong>August 21, 2026</strong>
+        </p>
+        <p>
+          This Privacy Policy explains how
+          <strong>Artem Podrushniak</strong> ("we", "us", "our") handles
+          data when you use the <strong>Crackface</strong> mobile application
+          for Android and iOS.
+        </p>
+        <p>
+          Related document:
+          <a href="../terms-of-use/">Terms of Use</a>.
+        </p>
+
+        <h2>1. Contact</h2>
+        <p>
+          Data / privacy contact email:
+          <strong>artem.podrushnyak@gmail.com</strong><br />
+          Country / address: <strong>Indonesia</strong>
+        </p>
+
+        <h2>2. What data is processed</h2>
+
+        <h3>2.1. Data stored locally on your device</h3>
+        <p>
+          The app stores the following information in your device's local
+          storage:
+        </p>
+        <ul>
+          <li>player names entered by the user;</li>
+          <li>language, sound, and board-card-size preferences;</li>
+          <li>
+            user-created character packs (UGC packs): pack metadata,
+            character names, and images added by the user;
+          </li>
+          <li>game statistics (match counts, durations, packs played);</li>
+          <li>
+            the player roster: names, photos, and game statistics of the
+            people you added yourself to the list of players at your table;
+          </li>
+          <li>local monetization flags (e.g. purchase entitlement);</li>
+          <li>
+            favourite packs, daily-assignment progress, and markers for
+            catalogue items you have already seen;
+          </li>
+          <li>
+            local counters used for ad pacing, tutorial hints, and the
+            review- and notification-prompt logic;
+          </li>
+          <li>
+            a random device secret that proves your right to manage the pack
+            links you created (see 2.9). It is generated on the device, is
+            tied neither to you nor to any account, and only a value derived
+            from it — one the secret cannot be recovered from — is ever sent
+            to the server.
+          </li>
+        </ul>
+        <p>
+          This information is used only to run app features and is not sent
+          to our own backend server (with the exceptions described in 2.3,
+          2.4, and 2.9).
+        </p>
+
+        <h3>2.2. Third-party services</h3>
+        <p>The app uses the following third-party SDKs / services:</p>
+        <ul>
+          <li>
+            <strong>Google Mobile Ads (AdMob)</strong> — for advertising
+            (interstitial and rewarded);
+          </li>
+          <li>
+            <strong>Google Firebase Analytics</strong> — for aggregated,
+            anonymous app-usage analytics (matches started and finished,
+            mode distribution, pack popularity, packs installed from the
+            catalogue or from a link, notifications opened);
+          </li>
+          <li>
+            <strong>Google Firebase Crashlytics</strong> — for crash reports
+            used to improve app stability;
+          </li>
+          <li>
+            <strong>Google Firebase Cloud Messaging</strong> — delivery of
+            push notifications about new character packs. They arrive only
+            where the operating system permits notifications: on iOS and on
+            Android 13+ the app asks for that permission first (the prompt
+            comes after a few finished games, never at launch), while older
+            Android versions permit them by default. The device receives a
+            technical delivery token from Google. We send such campaigns by
+            hand and never address them to an individual player — only by
+            interface language. You can turn notifications off in your
+            operating system's settings.
+          </li>
+          <li>
+            <strong>Google Play Billing</strong> and
+            <strong>Apple In-App Purchase</strong> — for in-app purchases;
+          </li>
+          <li>
+            <strong>Cloudflare</strong> (Workers, Durable Objects, KV, R2)
+            — hosting and infrastructure for our backend (online rooms,
+            sharing user-created packs between players in the same room,
+            storing packs you published a link for, delivery of built-in
+            images and of the new-pack catalogue). Cloudflare processes
+            connection-level technical data (IP address, request headers) to
+            route traffic.
+          </li>
+          <li>
+            <strong>Telegram</strong> — the messenger whose private internal
+            chat receives messages sent from the in-app feedback form (see
+            2.8). Telegram processes the contents of such a message as an
+            ordinary chat message.
+          </li>
+          <li>
+            <strong>Fallback relay servers</strong> — on networks where a
+            direct connection to our primary infrastructure is unavailable,
+            app traffic (including online-mode data and image loading) may
+            be routed through fallback relay servers that we operate on
+            third-party hosting providers, including outside your region.
+            These servers process data in transit only (pass-through
+            proxying and a temporary cache of the public character images)
+            and keep no request logs.
+          </li>
+        </ul>
+        <p>
+          These providers may process technical and interaction data (for
+          example advertising identifier, IP address, app and device
+          identifiers, in-app events, diagnostic data, and transaction data)
+          under their own privacy policies. Links to those policies are in
+          section 11.
+        </p>
+
+        <h3>2.3. Online mode (optional)</h3>
+        <p>
+          When you use the online room mode (each player on their own
+          device, joining by code), our backend (hosted on Cloudflare)
+          temporarily receives:
+        </p>
+        <ul>
+          <li>
+            the nickname you entered — it is visible to other participants
+            of the same room;
+          </li>
+          <li>
+            in-game actions during a match (character selection, elimination
+            marks, guess attempts, and in "Find the Mole" also votes, public
+            notes, and the speaking order) — they are revealed to other
+            participants of the room only to the extent required by gameplay
+            (public turns, final result);
+          </li>
+          <li>
+            the avatar you picked from a fixed set — only the identifier of
+            the picture in that set is sent; none of your own images are
+            used for it;
+          </li>
+          <li>
+            the chosen pack id and, if applicable, a copy of the user-created
+            pack (see 2.4);
+          </li>
+          <li>
+            a randomly generated token used to reconnect after a network
+            interruption.
+          </li>
+        </ul>
+        <p>
+          Server-side room state is automatically deleted 24 hours after the
+          last activity in the room. Data does not carry over between
+          different rooms or matches. The online mode does not include any
+          chat or messaging between players: in "Find the Mole", where a
+          table can seat up to 20, players describe their character out
+          loud — no voice or text is carried by the app.
+        </p>
+
+        <h3>2.4. User-created packs (UGC) in online mode</h3>
+        <p>
+          If the room host chose a user-created pack (made by them in the
+          UGC editor), a copy of that pack (metadata + character images) is
+          temporarily uploaded to our ephemeral R2 storage so it can be
+          delivered to the other players in the room. That copy is deleted
+          together with the room — 24 hours after the last activity in it;
+          a copy that outlives the room is removed by a storage rule no
+          later than 7 days.
+        </p>
+        <p>
+          Outside an online room, a user-created pack is stored on our
+          servers in one case only — if you published a link for it yourself
+          (see 2.9). In every other case the pack stays solely in the local
+          storage of the device that created it.
+        </p>
+        <p>
+          We do not moderate user-pack content. If you see material that
+          violates our
+          <a href="../terms-of-use/#en">UGC policy</a> (section 5), please
+          report it — see section 6 below.
+        </p>
+
+        <h3>2.5. Camera access</h3>
+        <p>
+          In online mode, the app may offer to scan a QR code containing a
+          game-room join code. The camera is launched only on an explicit
+          user action (tapping the scanner button) and is used solely for
+          this scan. Camera frames are neither saved nor transmitted —
+          recognition happens locally on the device, and only the resulting
+          text room code is sent to our backend.
+        </p>
+        <p>
+          In the UGC pack editor, the camera is used to capture character
+          images. Captured photos go only into the local UGC pack on your
+          device. They are not sent to our server — except via case 2.4 (you
+          play that pack in an online room) and case 2.9 (you published a
+          link for it yourself).
+        </p>
+
+        <h3>2.6. Photo library access</h3>
+        <p>
+          In the UGC pack editor, you can pick character images from your
+          device's photo library. Library access is requested only on an
+          explicit user action (tapping a pick button). Selected photos are
+          copied into the local UGC pack; the originals in your library are
+          not modified.
+        </p>
+
+        <h3>2.7. Tracking transparency on iOS</h3>
+        <p>
+          On iOS, the app uses Apple's App Tracking Transparency (ATT)
+          framework. The first time you open the app, iOS displays a system
+          prompt asking whether you allow the app to track your activity
+          across other companies' apps and websites. If you tap "Ask App
+          Not to Track", the app will not access your advertising
+          identifier (IDFA), and you will see only non-personalized ads.
+          The app continues to work in full regardless of your choice. You
+          can change this preference at any time in <strong>Settings →
+          Privacy &amp; Security → Tracking → Crackface</strong>.
+        </p>
+
+
+        <h3>2.8. Feedback (problem reports and ideas)</h3>
+        <p>
+          The app includes a "Report a problem" / "Suggest an idea" form. It
+          is sent only when you explicitly tap "Send". Along with the text
+          you write, the following is attached:
+        </p>
+        <ul>
+          <li>the app version and build number;</li>
+          <li>
+            the name and version of the operating system (e.g. "android 14");
+          </li>
+          <li>the interface language;</li>
+          <li>
+            which of our games the message is about — the same form is used
+            by several of our apps.
+          </li>
+        </ul>
+        <p>
+          No device identifier, device name, advertising identifier, e-mail
+          address or account credentials are sent. The message is anonymous:
+          we cannot link it to you, to your purchases or to your game
+          sessions, and <strong>we cannot reply to it</strong> — if you want
+          an answer, write to the address in section 1.
+        </p>
+        <p>
+          Technically the message is posted to our backend (hosted on
+          Cloudflare) and immediately forwarded to a private internal chat in
+          the <strong>Telegram</strong> messenger that only we can access. It
+          is not stored on our backend. The sender's IP address is used only
+          to rate-limit submissions (spam protection) and is not stored
+          alongside the text.
+        </p>
+        <p>
+          Please do not put personal data — yours or anyone else's — into the
+          message: the form is meant for describing a technical problem or a
+          suggestion.
+        </p>
+
+        <h3>2.9. A link to a user-created pack</h3>
+        <p>
+          You can share a pack of yours as a link. This happens only on your
+          explicit action ("Create a link") and only for the pack you picked
+          for it.
+        </p>
+        <p>
+          Creating a link sends the following to our backend (Cloudflare):
+        </p>
+        <ul>
+          <li>
+            a full copy of the pack — metadata, character names, and
+            character images, including your photos if you added any;
+          </li>
+          <li>the pack's name, character count, and version number;</li>
+          <li>
+            a value computed from your device secret and the pack id (see
+            2.1) — it is what proves the link is yours to manage.
+          </li>
+        </ul>
+        <p>
+          In return you get an 8-character code and a link of the form
+          <strong>https://crackface.app/p/CODE</strong>.
+          <strong>Anyone holding that link can download the pack</strong> —
+          there is no password and no invitation on it. We publish no links
+          ourselves and keep no catalogue of them, and the page behind a
+          link shows nothing of the pack's content: it carries the install
+          buttons only. But whatever you sent by link travels onward as
+          freely as the link itself — keep that in mind when a pack holds
+          images of people.
+        </p>
+        <p>
+          A link lives 90 days from creation or from its last update;
+          publishing the same pack again extends that period instead of
+          minting a second link. After it expires the link stops working and
+          the file is deleted by a storage rule no later than 100 days.
+        </p>
+        <p>
+          You can take a link down at any time — "Remove link", in the same
+          screen of the app. The file is deleted immediately and the code
+          becomes permanently invalid: so that it is never handed to another
+          pack later, we keep a revocation marker — the fact and the date
+          only, none of the pack's content — for up to 180 days.
+        </p>
+        <p>
+          We do not moderate pack content and do not review it in advance.
+          If someone sent you a link to a pack with unacceptable material,
+          tell us that pack's code — see section 6 below and section 5.4 of
+          the <a href="../terms-of-use/#en">Terms of Use</a>. Given the code
+          we delete the file and make the link dead.
+        </p>
+
+        <h2>3. Why data is used</h2>
+        <ul>
+          <li>to provide core game functionality;</li>
+          <li>to save user preferences and UGC packs;</li>
+          <li>to show ads in the free version;</li>
+          <li>to analyze app usage and improve stability;</li>
+          <li>to process and restore purchases;</li>
+          <li>to run online mode and share UGC packs between players;</li>
+          <li>
+            to deliver your pack to the people you sent its link to
+            (see 2.9);
+          </li>
+          <li>
+            to deliver new character packs and notifications about them
+            (see 2.2);
+          </li>
+          <li>to handle problem reports and suggestions (see 2.8);</li>
+          <li>to comply with store and legal requirements.</li>
+        </ul>
+
+        <h2>4. Data sharing</h2>
+        <p>We do not sell users' personal data. Data may be shared only:</p>
+        <ul>
+          <li>with advertising, analytics, and payment infrastructure providers;</li>
+          <li>
+            with our backend hosting provider (Cloudflare) — to operate the
+            server side of online mode;
+          </li>
+          <li>
+            with other players in the same online room — in the scope
+            necessary for the game (see sections 2.3 and 2.4);
+          </li>
+          <li>
+            with anyone you sent a pack link or code to yourself — in the
+            scope of that pack's content (see 2.9);
+          </li>
+          <li>
+            with Google — to deliver push notifications to your device, if
+            you allowed them (see 2.2);
+          </li>
+          <li>
+            with Telegram — only the text you wrote in the feedback form
+            and the technical details attached to it (see 2.8);
+          </li>
+          <li>when required by applicable law.</li>
+        </ul>
+
+        <h2>5. Retention</h2>
+        <ul>
+          <li>
+            Local data (including user-created packs) remains on the device
+            until the app is removed or app data is cleared by the user.
+          </li>
+          <li>
+            Online room state and temporary UGC-pack copies are retained on
+            our backend for up to 24 hours from the last activity in the
+            room; a pack copy that outlives the room is removed by a storage
+            rule no later than 7 days.
+          </li>
+          <li>
+            Local online-room credentials (code, session token) are retained
+            on the device for up to 24 hours after last use and then erased
+            automatically.
+          </li>
+          <li>
+            A pack you published a link for is stored for 90 days from that
+            publication or from the link's last update; the file is deleted
+            by a storage rule no later than 100 days. If you take the link
+            down yourself, the file is deleted immediately and a marker that
+            the code is invalid (holding none of the pack's content) is kept
+            for up to 180 days.
+          </li>
+          <li>
+            Messages sent from the feedback form stay in our internal
+            Telegram chat until we delete them manually. They are not deleted
+            automatically, as they serve as the history of what has been
+            reported.
+          </li>
+          <li>
+            Data processed by third parties (ads, analytics, crashes,
+            payments) is retained under their own retention policies.
+          </li>
+        </ul>
+
+        <h2>6. Your rights</h2>
+        <p>
+          Depending on your jurisdiction, you may have rights to access,
+          correct, delete, or restrict processing of your data, and to
+          withdraw consent. For these requests, or to report UGC content,
+          contact us at <strong>artem.podrushnyak@gmail.com</strong>. For
+          UGC reports, please use the subject "[Crackface UGC Report]" —
+          it speeds up triage.
+        </p>
+        <p>
+          To remove local app data, you can uninstall the app or clear app
+          data in your OS settings.
+        </p>
+        <p>
+          A pack you shared by link is deleted with the "Remove link" button
+          on the device the link was created on. If that device is lost or
+          the app was reinstalled, write to the address in section 1 with
+          the pack's code and we will delete the file by hand.
+        </p>
+        <p>
+          Push notifications are turned off in your operating system's
+          notification settings.
+        </p>
+        <p>
+          Firebase Analytics and Crashlytics collection can be disabled at
+          the OS level (iOS: Settings → Privacy → Tracking; Android:
+          Settings → Google → Ads).
+        </p>
+
+        <h2>7. Children</h2>
+        <p>
+          The app is not intended for children under 13 (or the equivalent
+          age in your jurisdiction). We do not knowingly collect personal
+          data from children. If you are a parent / guardian and believe we
+          have processed a child's data, please email the address above —
+          we will delete it.
+        </p>
+
+        <h2>8. International transfers</h2>
+        <p>
+          Third-party providers may process data on servers outside your
+          country under applicable legal transfer mechanisms and their own
+          policies.
+        </p>
+
+        <h2>9. Security</h2>
+        <p>
+          We apply reasonable technical and organizational measures to
+          protect data. No method of storage or transmission can be
+          guaranteed fully secure.
+        </p>
+
+        <h2>10. Policy changes</h2>
+        <p>
+          We may update this Privacy Policy from time to time. The latest
+          version takes effect on the date shown at the top of this page.
+          Material changes will be surfaced inside the app on next launch.
+        </p>
+
+        <h2>11. Third-party privacy resources</h2>
+        <ul>
+          <li>
+            Google Privacy Policy:
+            <a href="https://policies.google.com/privacy">https://policies.google.com/privacy</a>
+          </li>
+          <li>
+            AdMob:
+            <a href="https://support.google.com/admob/answer/6128543">https://support.google.com/admob/answer/6128543</a>
+          </li>
+          <li>
+            Firebase (Analytics + Crashlytics):
+            <a href="https://firebase.google.com/support/privacy">https://firebase.google.com/support/privacy</a>
+          </li>
+          <li>
+            Apple Privacy Policy:
+            <a href="https://www.apple.com/legal/privacy/">https://www.apple.com/legal/privacy/</a>
+          </li>
+          <li>
+            Cloudflare Privacy Policy:
+            <a href="https://www.cloudflare.com/privacypolicy/">https://www.cloudflare.com/privacypolicy/</a>
+          </li>
+          <li>
+            Telegram Privacy Policy:
+            <a href="https://telegram.org/privacy">https://telegram.org/privacy</a>
+          </li>
+        </ul>
+      </section>
 
       <section class="card" id="ru">
         <h1>Политика конфиденциальности</h1>
         <p class="meta">
           Приложение: <strong>Crackface</strong><br />
           Дата вступления в силу: <strong>25 мая 2026</strong><br />
-          Последнее обновление: <strong>8 августа 2026</strong>
+          Последнее обновление: <strong>21 августа 2026</strong>
         </p>
         <p>
           Настоящая Политика конфиденциальности описывает, как
@@ -115,18 +615,33 @@
           </li>
           <li>статистика сыгранных партий (счётчики игр, время, паки);</li>
           <li>
+            картотека игроков: имена, фотографии и игровая статистика людей,
+            которых вы сами добавили в список для игры за одним столом;
+          </li>
+          <li>
             локальные флаги монетизации (например, признак активированной
             покупки «все паки»);
           </li>
           <li>
-            локальные служебные счётчики для логики показа рекламы, подсказок
-            и запроса оценки приложения.
+            избранные паки, прогресс спецзаданий и отметки о просмотренных
+            новинках каталога;
+          </li>
+          <li>
+            локальные служебные счётчики для логики показа рекламы, подсказок,
+            запроса оценки приложения и предложения включить уведомления;
+          </li>
+          <li>
+            случайный секрет устройства, которым подтверждается право
+            распоряжаться созданными вами ссылками на паки (см. 2.9). Он
+            создаётся на устройстве, не связан ни с вами, ни с каким-либо
+            аккаунтом, а на сервер уходит только вычисленное из него
+            значение, по которому сам секрет восстановить нельзя.
           </li>
         </ul>
         <p>
           Эти данные используются только для работы функций приложения и не
-          отправляются на наш собственный сервер (с исключениями для
-          онлайн-режима — см. 2.3 и 2.4).
+          отправляются на наш собственный сервер (с исключениями, описанными
+          в 2.3, 2.4 и 2.9).
         </p>
 
         <h3>2.2. Сторонние сервисы</h3>
@@ -138,12 +653,26 @@
           </li>
           <li>
             <strong>Google Firebase Analytics</strong> — для агрегированной
-            анонимной аналитики использования приложения (запуски партий,
-            популярность встроенных паков, распределение игровых режимов);
+            анонимной аналитики использования приложения (запуски и
+            завершения партий, распределение игровых режимов, популярность
+            паков, установки паков из каталога и по ссылке, открытия
+            уведомлений);
           </li>
           <li>
             <strong>Google Firebase Crashlytics</strong> — для сбора отчётов
             об ошибках и крашах приложения с целью повышения стабильности;
+          </li>
+          <li>
+            <strong>Google Firebase Cloud Messaging</strong> — доставка
+            push-уведомлений о новых наборах персонажей. Они приходят
+            только там, где уведомления разрешены операционной системой: на
+            iOS и на Android 13+ приложение сначала спрашивает разрешение
+            (запрос показывается не при запуске, а после нескольких
+            сыгранных партий), на более старых версиях Android они разрешены
+            по умолчанию. Устройство получает от Google технический токен
+            доставки. Рассылки мы отправляем вручную и не адресуем их
+            конкретному игроку — только по языку интерфейса. Отключить
+            уведомления можно в настройках операционной системы.
           </li>
           <li>
             <strong>Google Play Billing</strong> и
@@ -153,8 +682,9 @@
           <li>
             <strong>Cloudflare</strong> (Workers, Durable Objects, KV, R2) —
             хостинг и инфраструктура нашего бэкенда (онлайн-комнаты, обмен
-            пользовательскими паками между игроками одной комнаты, раздача
-            встроенных изображений). Cloudflare обрабатывает технические
+            пользовательскими паками между игроками одной комнаты, хранение
+            паков, для которых вы создали ссылку, раздача встроенных
+            изображений и каталога новых паков). Cloudflare обрабатывает технические
             данные соединения (IP-адрес, заголовки запросов) для маршрутизации
             трафика.
           </li>
@@ -196,9 +726,16 @@
           </li>
           <li>
             игровые действия в течение партии (выбор персонажа, отметки
-            вычеркивания, попытки угадывания) — они раскрываются другим
-            участникам комнаты только в той мере, которую требует игровая
-            механика (публичные ходы, итоговый результат);
+            вычеркивания, попытки угадывания, а в режиме «Найди крота» —
+            голоса, публичные пометки и порядок выступлений) — они
+            раскрываются другим участникам комнаты только в той мере,
+            которую требует игровая механика (публичные ходы, итоговый
+            результат);
+          </li>
+          <li>
+            выбранный вами аватар из готового набора — передаётся только
+            идентификатор картинки из набора, ваши собственные изображения
+            для этого не используются;
           </li>
           <li>
             идентификатор выбранного пака и, при необходимости, копия
@@ -211,9 +748,11 @@
         </ul>
         <p>
           Серверное состояние комнаты автоматически удаляется через 24 часа
-          с момента создания. Между разными комнатами и партиями данные не
-          пересекаются. Чат / переписка между игроками в онлайн-режиме не
-          предусмотрены.
+          после последней активности в ней. Между разными комнатами и
+          партиями данные не пересекаются. Чат / переписка между игроками в
+          онлайн-режиме не предусмотрены: в режиме «Найди крота», где за
+          столом бывает до 20 человек, игроки описывают персонажа вслух —
+          голос и текст через приложение не передаются.
         </p>
 
         <h3>2.4. Пользовательские паки (UGC) в онлайн-режиме</h3>
@@ -222,12 +761,14 @@
           самостоятельно в редакторе UGC), копия этого пака (метаданные +
           изображения персонажей) временно загружается в наше эфемерное R2
           хранилище для передачи остальным игрокам комнаты. Эта копия
-          автоматически удаляется не позднее, чем через 24 часа после создания
-          комнаты.
+          удаляется вместе с комнатой — через 24 часа после последней
+          активности в ней; копию, пережившую удаление комнаты, стирает
+          правило хранилища не позднее чем через 7 дней.
         </p>
         <p>
-          За пределами активной онлайн-комнаты пользовательские паки
-          <strong>не хранятся на наших серверах</strong> и остаются только в
+          За пределами онлайн-комнаты пользовательский пак хранится на наших
+          серверах только в одном случае — если вы сами создали для него
+          ссылку (см. 2.9). Во всех остальных случаях пак остаётся только в
           локальном хранилище устройства создателя.
         </p>
         <p>
@@ -249,9 +790,9 @@
         <p>
           В редакторе пользовательских паков камера используется для съёмки
           изображений персонажей. Сделанные фото попадают только в локальный
-          UGC-пак на вашем устройстве. На наш сервер они не отправляются (за
-          исключением случая 2.4 — если вы используете созданный пак в
-          онлайн-режиме).
+          UGC-пак на вашем устройстве. На наш сервер они не отправляются — за
+          исключением случаев 2.4 (вы играете этим паком в онлайн-комнате) и
+          2.9 (вы сами создали для пака ссылку).
         </p>
 
         <h3>2.6. Доступ к фотографиям</h3>
@@ -316,6 +857,59 @@
           пожелания.
         </p>
 
+        <h3>2.9. Ссылка на пользовательский пак</h3>
+        <p>
+          Своим паком можно поделиться ссылкой. Это происходит только по
+          вашему явному действию («Создать ссылку») и только с тем паком,
+          который вы для этого выбрали.
+        </p>
+        <p>
+          При создании ссылки на наш бэкенд (Cloudflare) передаются:
+        </p>
+        <ul>
+          <li>
+            копия пака целиком — метаданные, имена и изображения персонажей,
+            включая ваши фотографии, если вы их добавили;
+          </li>
+          <li>название пака, количество персонажей и номер его версии;</li>
+          <li>
+            значение, вычисленное из секрета вашего устройства и
+            идентификатора пака (см. 2.1) — им подтверждается, что ссылкой
+            распоряжаетесь вы.
+          </li>
+        </ul>
+        <p>
+          В ответ выдаётся код из 8 символов и ссылка вида
+          <strong>https://crackface.app/p/КОД</strong>.
+          <strong>Пак по такой ссылке может скачать любой, у кого она
+          есть</strong> — ни пароля, ни приглашения на ней нет. Сами мы
+          ссылки нигде не публикуем и не ведём их каталога, а страница по
+          ссылке не показывает содержимое пака: на ней только кнопки
+          установки игры. Но всё, что вы отправили ссылкой, дальше
+          расходится так же свободно, как и сама ссылка, — учитывайте это,
+          добавляя в пак изображения людей.
+        </p>
+        <p>
+          Ссылка живёт 90 дней с момента создания или последнего обновления;
+          повторная публикация того же пака продлевает этот срок и не
+          создаёт вторую ссылку. После истечения срока ссылка перестаёт
+          работать, а файл удаляется правилом хранилища не позднее 100 дней.
+        </p>
+        <p>
+          Убрать ссылку можно в любой момент — «Отозвать ссылку» в том же окне
+          приложения. Файл при этом удаляется сразу, а код становится
+          недействительным навсегда: чтобы он не достался потом другому
+          паку, мы храним отметку об отзыве — только факт и дату, без
+          содержимого пака — до 180 дней.
+        </p>
+        <p>
+          Содержимое паков мы не модерируем и заранее не просматриваем. Если
+          вам прислали ссылку на пак с недопустимым материалом, сообщите нам
+          код этого пака — см. раздел 6 ниже и раздел 5.4
+          <a href="../terms-of-use/#ru">Пользовательского соглашения</a>. По
+          коду мы удаляем файл и делаем ссылку нерабочей.
+        </p>
+
         <h2>3. Цели обработки</h2>
         <ul>
           <li>обеспечение работы игрового функционала;</li>
@@ -324,6 +918,13 @@
           <li>аналитика использования и улучшение стабильности приложения;</li>
           <li>обработка и восстановление покупок;</li>
           <li>работа онлайн-режима и обмен пользовательскими паками;</li>
+          <li>
+            передача вашего пака тем, кому вы отправили ссылку на него
+            (см. 2.9);
+          </li>
+          <li>
+            доставка новых наборов персонажей и уведомлений о них (см. 2.2);
+          </li>
           <li>обработка сообщений об ошибках и пожеланий (см. 2.8);</li>
           <li>соблюдение требований магазинов приложений и закона.</li>
         </ul>
@@ -344,6 +945,14 @@
             объёме, необходимом для игрового процесса (см. п. 2.3 и 2.4);
           </li>
           <li>
+            любому, кому вы сами отправили ссылку или код пака, — в объёме
+            содержимого этого пака (см. 2.9);
+          </li>
+          <li>
+            сервису Google — для доставки push-уведомлений на ваше
+            устройство, если вы их разрешили (см. 2.2);
+          </li>
+          <li>
             сервису Telegram — только текст, который вы сами написали в
             форме обратной связи, и приложенные к нему технические
             сведения (см. 2.8);
@@ -360,13 +969,21 @@
           </li>
           <li>
             Состояние онлайн-комнаты и временные копии UGC-паков хранятся на
-            нашем бэкенде не более 24 часов с момента создания и автоматически
-            удаляются по истечении этого срока.
+            нашем бэкенде до 24 часов с момента последней активности в
+            комнате; копию пака, пережившую удаление комнаты, стирает правило
+            хранилища не позднее 7 дней.
           </li>
           <li>
             Локальные учётные данные онлайн-комнаты (код, токен сессии)
-            хранятся на устройстве до 2 часов после последнего использования
+            хранятся на устройстве до 24 часов после последнего использования
             и затем стираются автоматически.
+          </li>
+          <li>
+            Пак, для которого вы создали ссылку, хранится 90 дней с момента
+            публикации или последнего обновления ссылки; файл удаляется
+            правилом хранилища не позднее 100 дней. Если вы отозвали ссылку
+            сами, файл удаляется сразу, а отметка о недействительности кода
+            (без содержимого пака) хранится до 180 дней.
           </li>
           <li>
             Сообщения из формы обратной связи хранятся в нашем служебном чате
@@ -392,6 +1009,17 @@
         <p>
           Для удаления локальных данных можно удалить приложение или очистить
           данные приложения в настройках ОС.
+        </p>
+        <p>
+          Пак, которым вы поделились по ссылке, удаляется кнопкой «Отозвать
+          ссылку» на том устройстве, где ссылка была создана. Если это
+          устройство утеряно или приложение было переустановлено, напишите
+          нам на адрес из раздела 1 и укажите код пака — мы удалим файл
+          вручную.
+        </p>
+        <p>
+          Push-уведомления отключаются в настройках уведомлений вашей
+          операционной системы.
         </p>
         <p>
           Аналитику и crash-репорты Firebase можно отключить на уровне
@@ -430,377 +1058,6 @@
         </p>
 
         <h2>11. Политики третьих лиц</h2>
-        <ul>
-          <li>
-            Google Privacy Policy:
-            <a href="https://policies.google.com/privacy">https://policies.google.com/privacy</a>
-          </li>
-          <li>
-            AdMob:
-            <a href="https://support.google.com/admob/answer/6128543">https://support.google.com/admob/answer/6128543</a>
-          </li>
-          <li>
-            Firebase (Analytics + Crashlytics):
-            <a href="https://firebase.google.com/support/privacy">https://firebase.google.com/support/privacy</a>
-          </li>
-          <li>
-            Apple Privacy Policy:
-            <a href="https://www.apple.com/legal/privacy/">https://www.apple.com/legal/privacy/</a>
-          </li>
-          <li>
-            Cloudflare Privacy Policy:
-            <a href="https://www.cloudflare.com/privacypolicy/">https://www.cloudflare.com/privacypolicy/</a>
-          </li>
-          <li>
-            Telegram Privacy Policy:
-            <a href="https://telegram.org/privacy">https://telegram.org/privacy</a>
-          </li>
-        </ul>
-      </section>
-
-      <section class="card" id="en">
-        <h1>Privacy Policy</h1>
-        <p class="meta">
-          App: <strong>Crackface</strong><br />
-          Effective date: <strong>May 25, 2026</strong><br />
-          Last updated: <strong>August 8, 2026</strong>
-        </p>
-        <p>
-          This Privacy Policy explains how
-          <strong>Artem Podrushniak</strong> ("we", "us", "our") handles
-          data when you use the <strong>Crackface</strong> mobile application
-          for Android and iOS.
-        </p>
-        <p>
-          Related document:
-          <a href="../terms-of-use/">Terms of Use</a>.
-        </p>
-
-        <h2>1. Contact</h2>
-        <p>
-          Data / privacy contact email:
-          <strong>artem.podrushnyak@gmail.com</strong><br />
-          Country / address: <strong>Indonesia</strong>
-        </p>
-
-        <h2>2. What data is processed</h2>
-
-        <h3>2.1. Data stored locally on your device</h3>
-        <p>
-          The app stores the following information in your device's local
-          storage:
-        </p>
-        <ul>
-          <li>player names entered by the user;</li>
-          <li>language, sound, and board-card-size preferences;</li>
-          <li>
-            user-created character packs (UGC packs): pack metadata,
-            character names, and images added by the user;
-          </li>
-          <li>game statistics (match counts, durations, packs played);</li>
-          <li>local monetization flags (e.g. purchase entitlement);</li>
-          <li>
-            local counters used for ad pacing, tutorial hints, and the
-            review-prompt logic.
-          </li>
-        </ul>
-        <p>
-          This information is used only to run app features and is not sent
-          to our own backend server (with exceptions for online mode — see
-          2.3 and 2.4).
-        </p>
-
-        <h3>2.2. Third-party services</h3>
-        <p>The app uses the following third-party SDKs / services:</p>
-        <ul>
-          <li>
-            <strong>Google Mobile Ads (AdMob)</strong> — for advertising
-            (interstitial and rewarded);
-          </li>
-          <li>
-            <strong>Google Firebase Analytics</strong> — for aggregated,
-            anonymous app-usage analytics (matches started, built-in pack
-            popularity, mode distribution);
-          </li>
-          <li>
-            <strong>Google Firebase Crashlytics</strong> — for crash reports
-            used to improve app stability;
-          </li>
-          <li>
-            <strong>Google Play Billing</strong> and
-            <strong>Apple In-App Purchase</strong> — for in-app purchases;
-          </li>
-          <li>
-            <strong>Cloudflare</strong> (Workers, Durable Objects, KV, R2)
-            — hosting and infrastructure for our backend (online rooms,
-            sharing user-created packs between players in the same room,
-            built-in image delivery). Cloudflare processes connection-level
-            technical data (IP address, request headers) to route traffic.
-          </li>
-          <li>
-            <strong>Telegram</strong> — the messenger whose private internal
-            chat receives messages sent from the in-app feedback form (see
-            2.8). Telegram processes the contents of such a message as an
-            ordinary chat message.
-          </li>
-          <li>
-            <strong>Fallback relay servers</strong> — on networks where a
-            direct connection to our primary infrastructure is unavailable,
-            app traffic (including online-mode data and image loading) may
-            be routed through fallback relay servers that we operate on
-            third-party hosting providers, including outside your region.
-            These servers process data in transit only (pass-through
-            proxying and a temporary cache of the public character images)
-            and keep no request logs.
-          </li>
-        </ul>
-        <p>
-          These providers may process technical and interaction data (for
-          example advertising identifier, IP address, app and device
-          identifiers, in-app events, diagnostic data, and transaction data)
-          under their own privacy policies. Links to those policies are in
-          section 11.
-        </p>
-
-        <h3>2.3. Online mode (optional)</h3>
-        <p>
-          When you use the online room mode (each player on their own
-          device, joining by code), our backend (hosted on Cloudflare)
-          temporarily receives:
-        </p>
-        <ul>
-          <li>
-            the nickname you entered — it is visible to other participants
-            of the same room;
-          </li>
-          <li>
-            in-game actions during a match (character selection, elimination
-            marks, guess attempts) — they are revealed to other participants
-            of the room only to the extent required by gameplay (public
-            turns, final result);
-          </li>
-          <li>
-            the chosen pack id and, if applicable, a copy of the user-created
-            pack (see 2.4);
-          </li>
-          <li>
-            a randomly generated token used to reconnect after a network
-            interruption.
-          </li>
-        </ul>
-        <p>
-          Server-side room state is automatically deleted 24 hours after
-          creation. Data does not carry over between different rooms or
-          matches. The online mode does not include any chat or messaging
-          between players.
-        </p>
-
-        <h3>2.4. User-created packs (UGC) in online mode</h3>
-        <p>
-          If the room host chose a user-created pack (made by them in the
-          UGC editor), a copy of that pack (metadata + character images) is
-          temporarily uploaded to our ephemeral R2 storage so it can be
-          delivered to the other players in the room. That copy is
-          automatically deleted no later than 24 hours after room creation.
-        </p>
-        <p>
-          Outside an active online room, user-created packs are
-          <strong>not stored on our servers</strong> and remain only in the
-          local storage of the device that created them.
-        </p>
-        <p>
-          We do not moderate user-pack content. If you see material that
-          violates our
-          <a href="../terms-of-use/#en">UGC policy</a> (section 5), please
-          report it — see section 6 below.
-        </p>
-
-        <h3>2.5. Camera access</h3>
-        <p>
-          In online mode, the app may offer to scan a QR code containing a
-          game-room join code. The camera is launched only on an explicit
-          user action (tapping the scanner button) and is used solely for
-          this scan. Camera frames are neither saved nor transmitted —
-          recognition happens locally on the device, and only the resulting
-          text room code is sent to our backend.
-        </p>
-        <p>
-          In the UGC pack editor, the camera is used to capture character
-          images. Captured photos go only into the local UGC pack on your
-          device. They are not sent to our server (except via case 2.4 — if
-          you use the resulting pack in an online match).
-        </p>
-
-        <h3>2.6. Photo library access</h3>
-        <p>
-          In the UGC pack editor, you can pick character images from your
-          device's photo library. Library access is requested only on an
-          explicit user action (tapping a pick button). Selected photos are
-          copied into the local UGC pack; the originals in your library are
-          not modified.
-        </p>
-
-        <h3>2.7. Tracking transparency on iOS</h3>
-        <p>
-          On iOS, the app uses Apple's App Tracking Transparency (ATT)
-          framework. The first time you open the app, iOS displays a system
-          prompt asking whether you allow the app to track your activity
-          across other companies' apps and websites. If you tap "Ask App
-          Not to Track", the app will not access your advertising
-          identifier (IDFA), and you will see only non-personalized ads.
-          The app continues to work in full regardless of your choice. You
-          can change this preference at any time in <strong>Settings →
-          Privacy &amp; Security → Tracking → Crackface</strong>.
-        </p>
-
-
-        <h3>2.8. Feedback (problem reports and ideas)</h3>
-        <p>
-          The app includes a "Report a problem" / "Suggest an idea" form. It
-          is sent only when you explicitly tap "Send". Along with the text
-          you write, the following is attached:
-        </p>
-        <ul>
-          <li>the app version and build number;</li>
-          <li>
-            the name and version of the operating system (e.g. "android 14");
-          </li>
-          <li>the interface language;</li>
-          <li>
-            which of our games the message is about — the same form is used
-            by several of our apps.
-          </li>
-        </ul>
-        <p>
-          No device identifier, device name, advertising identifier, e-mail
-          address or account credentials are sent. The message is anonymous:
-          we cannot link it to you, to your purchases or to your game
-          sessions, and <strong>we cannot reply to it</strong> — if you want
-          an answer, write to the address in section 1.
-        </p>
-        <p>
-          Technically the message is posted to our backend (hosted on
-          Cloudflare) and immediately forwarded to a private internal chat in
-          the <strong>Telegram</strong> messenger that only we can access. It
-          is not stored on our backend. The sender's IP address is used only
-          to rate-limit submissions (spam protection) and is not stored
-          alongside the text.
-        </p>
-        <p>
-          Please do not put personal data — yours or anyone else's — into the
-          message: the form is meant for describing a technical problem or a
-          suggestion.
-        </p>
-
-        <h2>3. Why data is used</h2>
-        <ul>
-          <li>to provide core game functionality;</li>
-          <li>to save user preferences and UGC packs;</li>
-          <li>to show ads in the free version;</li>
-          <li>to analyze app usage and improve stability;</li>
-          <li>to process and restore purchases;</li>
-          <li>to run online mode and share UGC packs between players;</li>
-          <li>to handle problem reports and suggestions (see 2.8);</li>
-          <li>to comply with store and legal requirements.</li>
-        </ul>
-
-        <h2>4. Data sharing</h2>
-        <p>We do not sell users' personal data. Data may be shared only:</p>
-        <ul>
-          <li>with advertising, analytics, and payment infrastructure providers;</li>
-          <li>
-            with our backend hosting provider (Cloudflare) — to operate the
-            server side of online mode;
-          </li>
-          <li>
-            with other players in the same online room — in the scope
-            necessary for the game (see sections 2.3 and 2.4);
-          </li>
-          <li>
-            with Telegram — only the text you wrote in the feedback form
-            and the technical details attached to it (see 2.8);
-          </li>
-          <li>when required by applicable law.</li>
-        </ul>
-
-        <h2>5. Retention</h2>
-        <ul>
-          <li>
-            Local data (including user-created packs) remains on the device
-            until the app is removed or app data is cleared by the user.
-          </li>
-          <li>
-            Online room state and temporary UGC-pack copies are retained on
-            our backend for up to 24 hours from creation and are
-            automatically deleted after that period.
-          </li>
-          <li>
-            Local online-room credentials (code, session token) are retained
-            on the device for up to 2 hours after last use and then erased
-            automatically.
-          </li>
-          <li>
-            Messages sent from the feedback form stay in our internal
-            Telegram chat until we delete them manually. They are not deleted
-            automatically, as they serve as the history of what has been
-            reported.
-          </li>
-          <li>
-            Data processed by third parties (ads, analytics, crashes,
-            payments) is retained under their own retention policies.
-          </li>
-        </ul>
-
-        <h2>6. Your rights</h2>
-        <p>
-          Depending on your jurisdiction, you may have rights to access,
-          correct, delete, or restrict processing of your data, and to
-          withdraw consent. For these requests, or to report UGC content,
-          contact us at <strong>artem.podrushnyak@gmail.com</strong>. For
-          UGC reports, please use the subject "[Crackface UGC Report]" —
-          it speeds up triage.
-        </p>
-        <p>
-          To remove local app data, you can uninstall the app or clear app
-          data in your OS settings.
-        </p>
-        <p>
-          Firebase Analytics and Crashlytics collection can be disabled at
-          the OS level (iOS: Settings → Privacy → Tracking; Android:
-          Settings → Google → Ads).
-        </p>
-
-        <h2>7. Children</h2>
-        <p>
-          The app is not intended for children under 13 (or the equivalent
-          age in your jurisdiction). We do not knowingly collect personal
-          data from children. If you are a parent / guardian and believe we
-          have processed a child's data, please email the address above —
-          we will delete it.
-        </p>
-
-        <h2>8. International transfers</h2>
-        <p>
-          Third-party providers may process data on servers outside your
-          country under applicable legal transfer mechanisms and their own
-          policies.
-        </p>
-
-        <h2>9. Security</h2>
-        <p>
-          We apply reasonable technical and organizational measures to
-          protect data. No method of storage or transmission can be
-          guaranteed fully secure.
-        </p>
-
-        <h2>10. Policy changes</h2>
-        <p>
-          We may update this Privacy Policy from time to time. The latest
-          version takes effect on the date shown at the top of this page.
-          Material changes will be surfaced inside the app on next launch.
-        </p>
-
-        <h2>11. Third-party privacy resources</h2>
         <ul>
           <li>
             Google Privacy Policy:
