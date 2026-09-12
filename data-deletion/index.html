@@ -226,8 +226,9 @@
                 and images)</td>
               <td>Our storage (Cloudflare R2 + KV)</td>
               <td>Immediately on "Remove link" or on request; otherwise
-                automatically 90 days after the link was published or last
-                updated, and the file no later than 100 days</td>
+                automatically 90 days after the later of the link's creation,
+                its most recent update, or the most recent download via it;
+                the file no later than 100 days after it was last written</td>
             </tr>
             <tr>
               <td>A revocation marker for a used code — the fact and the
@@ -419,9 +420,10 @@
                 персонажей)</td>
               <td>Наше хранилище (Cloudflare R2 и KV)</td>
               <td>Сразу по кнопке «Отозвать ссылку» или по вашему
-                обращению; иначе автоматически через 90 дней после
-                публикации или последнего обновления ссылки, а файл — не
-                позднее 100 дней</td>
+                обращению; иначе автоматически через 90 дней с наиболее
+                позднего из событий: создание ссылки, её последнее обновление
+                или последнее скачивание по ней; файл — не позднее 100 дней
+                после его последней записи</td>
             </tr>
             <tr>
               <td>Отметка об отозванном коде — только факт и дата, без
