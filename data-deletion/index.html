@@ -113,6 +113,14 @@
             and the link stops working for everyone who has it.
           </li>
           <li>
+            <strong>A pack you published in the Library.</strong> On the
+            same share screen, <strong>"Remove from the Library"</strong>
+            takes it out of the catalogue at once (the link, if you keep
+            it, stays). Your nickname and author record are deleted 180
+            days after your last pack leaves the Library — or on request,
+            see &sect;3.
+          </li>
+          <li>
             <strong>Everything the app keeps on your device</strong> — your
             packs, the player roster with its photos, game statistics,
             settings. Delete the app, or clear its data in your system
@@ -191,6 +199,15 @@
             reinstalled, so "Remove link" is no longer available to you;
           </li>
           <li>
+            your <strong>author tag</strong> (the short code next to your
+            nickname in the Library) if you want your author record —
+            nickname, publication list, download totals — deleted now
+            rather than 180 days after your last pack leaves the Library;
+            we will first unpublish anything still listed under it. If you
+            still hold the author key, unpublish from the app first: that
+            is what proves the record is yours;
+          </li>
+          <li>
             the approximate date and the wording of a message you sent
             through the in-app feedback form, if you want it removed from
             our internal chat;
@@ -229,6 +246,16 @@
                 automatically 90 days after the later of the link's creation,
                 its most recent update, or the most recent download via it;
                 the file no later than 100 days after it was last written</td>
+            </tr>
+            <tr>
+              <td>A pack published in the Library: catalogue entry, cover
+                thumbnail, nickname, author record (key hash, publication
+                list, download totals)</td>
+              <td>Our storage (Cloudflare D1 + R2)</td>
+              <td>Entry and thumbnail: immediately on "Remove from the
+                Library" or on our removal; the file then follows the
+                share-link row above. Author record: 180 days after the
+                last pack leaves the Library, or on request</td>
             </tr>
             <tr>
               <td>A revocation marker for a used code — the fact and the
@@ -302,6 +329,14 @@
             <strong>«Отозвать ссылку»</strong>. Копия на наших серверах
             удаляется сразу, и ссылка перестаёт работать у всех, у кого
             она есть.
+          </li>
+          <li>
+            <strong>Пак, опубликованный в Библиотеке.</strong> На том же
+            экране «Поделиться» — <strong>«Убрать из Библиотеки»</strong>:
+            пак сразу исчезает из каталога (ссылка, если вы её оставили,
+            продолжает работать). Ваш ник и запись автора удаляются через
+            180 дней после того, как последний ваш пак покинул Библиотеку,
+            — или по запросу, см. &sect;3.
           </li>
           <li>
             <strong>Всё, что приложение хранит на устройстве</strong> — ваши
@@ -385,6 +420,15 @@
             кнопка «Отозвать ссылку» вам больше недоступна;
           </li>
           <li>
+            ваш <strong>тег автора</strong> (короткий код рядом с ником в
+            Библиотеке), если хотите удалить запись автора — ник, список
+            публикаций, суммы скачиваний — сейчас, а не через 180 дней
+            после ухода последнего пака из Библиотеки; всё, что ещё
+            опубликовано под ним, мы сначала снимем. Если ключ автора у вас
+            есть, сначала снимите паки из приложения: это и есть
+            подтверждение, что запись ваша;
+          </li>
+          <li>
             примерную дату и текст сообщения, отправленного через форму
             обратной связи, если хотите убрать его из нашего служебного
             чата;
@@ -424,6 +468,16 @@
                 позднего из событий: создание ссылки, её последнее обновление
                 или последнее скачивание по ней; файл — не позднее 100 дней
                 после его последней записи</td>
+            </tr>
+            <tr>
+              <td>Пак, опубликованный в Библиотеке: запись в каталоге,
+                миниатюра обложки, ник, запись автора (хеш ключа, список
+                публикаций, суммы скачиваний)</td>
+              <td>Наше хранилище (Cloudflare D1 + R2)</td>
+              <td>Запись и миниатюра — сразу по «Убрать из Библиотеки» или
+                при снятии нами; файл дальше живёт по строке о ссылке выше.
+                Запись автора — через 180 дней после ухода последнего пака
+                из Библиотеки или по запросу</td>
             </tr>
             <tr>
               <td>Отметка об отозванном коде — только факт и дата, без

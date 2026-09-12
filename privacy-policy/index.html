@@ -135,7 +135,13 @@
             links you created (see 2.9). It is generated on the device, is
             tied neither to you nor to any account, and only a value derived
             from it — one the secret cannot be recovered from — is ever sent
-            to the server.
+            to the server;
+          </li>
+          <li>
+            your author key and nickname, if you have published a pack in
+            the Library (see 2.10). The key is issued by the server and is
+            kept on the device so the app can sign your publications; you
+            can display it in the settings to copy it elsewhere.
           </li>
         </ul>
         <p>
@@ -378,12 +384,12 @@
           In return you get an 8-character code and a link of the form
           <strong>https://crackface.app/p/CODE</strong>.
           <strong>Anyone holding that link can download the pack</strong> —
-          there is no password and no invitation on it. We publish no links
-          ourselves and keep no catalogue of them, and the page behind a
-          link shows nothing of the pack's content: it carries the install
-          buttons only. But whatever you sent by link travels onward as
-          freely as the link itself — keep that in mind when a pack holds
-          images of people.
+          there is no password and no invitation on it. A link you have not
+          published in the Library (2.10) is listed nowhere by us, and the
+          page behind it shows nothing of the pack's content: it carries
+          the install buttons only. But whatever you sent by link travels
+          onward as freely as the link itself — keep that in mind when a
+          pack holds images of people.
         </p>
         <p>
           A link remains valid for 90 days from the later of: its creation,
@@ -411,11 +417,92 @@
           only, none of the pack's content — for up to 180 days.
         </p>
         <p>
-          We do not moderate pack content and do not review it in advance.
-          If someone sent you a link to a pack with unacceptable material,
-          tell us that pack's code — see section 6 below and section 5.4 of
-          the <a href="../terms-of-use/#en">Terms of Use</a>. Given the code
-          we delete the file and make the link dead.
+          A pack shared by link is not moderated and not reviewed in
+          advance; only packs submitted to the Library are looked at, before
+          they appear there (2.10). If someone sent you a link to a pack
+          with unacceptable material, tell us that pack's code — see
+          section 6 below and section 5.4 of the
+          <a href="../terms-of-use/#en">Terms of Use</a>. Given the code we
+          delete the file and make the link dead.
+        </p>
+
+        <h3>2.10. Publishing a pack in the Library</h3>
+        <p>
+          A pack you have created a link for can also be published in the
+          Library — a public catalogue at
+          <strong>crackface.app/packs</strong> and inside the app. This
+          happens only on your explicit action ("Publish to the Library")
+          and only for the pack you picked for it; section 5.5 of the
+          <a href="../terms-of-use/#en">Terms of Use</a> sets out what
+          publishing means.
+        </p>
+        <p>Publishing sends to our backend, in addition to what 2.9 lists:</p>
+        <ul>
+          <li>
+            the nickname you chose to publish under and the language and
+            tags you gave the pack;
+          </li>
+          <li>
+            your author key (see below), or on your first publication a
+            request for one.
+          </li>
+        </ul>
+        <p>
+          <strong>What becomes public.</strong> While the pack is published,
+          anyone can see — on the website and in the app, and through
+          search engines that index the website — its name, cover,
+          character names and images, character count, language, tags,
+          your nickname with a short tag next to it, and its download
+          count. Anyone can download it. Nothing else about you is shown:
+          not your device, not your other links, not the packs you have
+          not published.
+        </p>
+        <p>
+          <strong>The author key</strong> is a random value our server
+          issues on your first publication and shows to you once. It is
+          tied to no account, e-mail or device; the server keeps only a
+          hash of it — a value the key cannot be recovered from — together
+          with your nickname and the list of packs published with it. The
+          same hash yields the short tag shown next to your nickname. Your
+          author key is what lets you unpublish a pack, and the only thing
+          that can bring your nickname and download counts to another
+          device: we cannot restore it for you.
+        </p>
+        <p>
+          <strong>Review.</strong> Before a submitted pack appears in the
+          Library, a person on our side looks at its cover, character
+          names and images. The review is limited to the prohibited
+          content listed in section 5.2 of the Terms of Use; nothing about
+          it is recorded beyond the decision and its date.
+        </p>
+        <p>
+          <strong>Download counts</strong> are kept per pack and, summed,
+          per author, and shown publicly. They are aggregate numbers; no
+          data about the people who downloaded a pack is collected or
+          retained for them.
+        </p>
+        <p>
+          <strong>Reports.</strong> Anyone can report a Library pack from
+          the app or the website. A report sends us the pack's code, the
+          reason you chose or wrote, and — for abuse prevention only — a
+          hash of your network address, kept for 30 days. Reports go to our
+          internal Telegram chat and are handled under section 5.4 of the
+          Terms of Use.
+        </p>
+        <p>
+          <strong>Retention.</strong> The published copy of the pack, its
+          catalogue entry and its cover thumbnail are kept while the pack
+          is published. When you unpublish it (or we remove it), the
+          catalogue entry is deleted immediately and the file returns to
+          the rules of 2.9; a marker that the pack was published and
+          removed — the code, the date and the reason, none of the pack's
+          content — is kept for up to 180 days, and for as long as a
+          complaint about the pack is being handled. Your author record
+          (key hash, nickname, publication list, download totals) is kept
+          while at least one of your packs is published or for 180 days
+          after the last one is removed, whichever is later. A closed
+          author key (Terms of Use, 5.5) is kept for as long as the closure
+          lasts.
         </p>
 
         <h2>3. Why data is used</h2>
@@ -429,6 +516,11 @@
           <li>
             to deliver your pack to the people you sent its link to
             (see 2.9);
+          </li>
+          <li>
+            to run the Library: list the packs their authors published,
+            credit them by nickname, count downloads, and review submissions
+            and reports (see 2.10);
           </li>
           <li>
             to deliver new character packs and notifications about them
@@ -491,6 +583,15 @@
             down yourself, the file is deleted immediately and a marker that
             the code is invalid (holding none of the pack's content) is kept
             for up to 180 days.
+          </li>
+          <li>
+            A pack published in the Library, its catalogue entry and cover
+            thumbnail are kept while it is published; after removal the
+            entry is deleted at once, the file follows the rule above, and a
+            marker of the removal (code, date, reason) is kept for up to 180
+            days or as long as a complaint about it is handled. An author
+            record is kept while any of its packs is published or for 180
+            days after the last one is removed (see 2.10).
           </li>
           <li>
             Messages sent from the feedback form stay in our internal
@@ -667,7 +768,13 @@
             распоряжаться созданными вами ссылками на паки (см. 2.9). Он
             создаётся на устройстве, не связан ни с вами, ни с каким-либо
             аккаунтом, а на сервер уходит только вычисленное из него
-            значение, по которому сам секрет восстановить нельзя.
+            значение, по которому сам секрет восстановить нельзя;
+          </li>
+          <li>
+            ваш ключ автора и ник, если вы публиковали пак в Библиотеке
+            (см. 2.10). Ключ выдаёт сервер, а приложение хранит его на
+            устройстве, чтобы подписывать ваши публикации; в настройках его
+            можно показать и скопировать.
           </li>
         </ul>
         <p>
@@ -915,12 +1022,12 @@
           В ответ выдаётся код из 8 символов и ссылка вида
           <strong>https://crackface.app/p/КОД</strong>.
           <strong>Пак по такой ссылке может скачать любой, у кого она
-          есть</strong> — ни пароля, ни приглашения на ней нет. Сами мы
-          ссылки нигде не публикуем и не ведём их каталога, а страница по
-          ссылке не показывает содержимое пака: на ней только кнопки
-          установки игры. Но всё, что вы отправили ссылкой, дальше
-          расходится так же свободно, как и сама ссылка, — учитывайте это,
-          добавляя в пак изображения людей.
+          есть</strong> — ни пароля, ни приглашения на ней нет. Ссылку,
+          которую вы не опубликовали в Библиотеке (2.10), мы нигде не
+          показываем, а страница по ней не показывает содержимое пака: на
+          ней только кнопки установки игры. Но всё, что вы отправили
+          ссылкой, дальше расходится так же свободно, как и сама ссылка, —
+          учитывайте это, добавляя в пак изображения людей.
         </p>
         <p>
           Ссылка действительна в течение 90 дней с наиболее позднего из
@@ -949,11 +1056,93 @@
           содержимого пака — до 180 дней.
         </p>
         <p>
-          Содержимое паков мы не модерируем и заранее не просматриваем. Если
-          вам прислали ссылку на пак с недопустимым материалом, сообщите нам
+          Пак, переданный ссылкой, мы не модерируем и заранее не
+          просматриваем; просматриваются только паки, отправленные в
+          Библиотеку, — до того, как они там появятся (2.10). Если вам
+          прислали ссылку на пак с недопустимым материалом, сообщите нам
           код этого пака — см. раздел 6 ниже и раздел 5.4
           <a href="../terms-of-use/#ru">Пользовательского соглашения</a>. По
           коду мы удаляем файл и делаем ссылку нерабочей.
+        </p>
+
+        <h3>2.10. Публикация пака в Библиотеке</h3>
+        <p>
+          Пак, для которого вы создали ссылку, можно также опубликовать в
+          Библиотеке — публичном каталоге на
+          <strong>crackface.app/packs</strong> и в приложении. Это
+          происходит только по вашему явному действию («Опубликовать в
+          Библиотеке») и только с тем паком, который вы для этого выбрали;
+          что означает публикация, описано в п. 5.5
+          <a href="../terms-of-use/#ru">Пользовательского соглашения</a>.
+        </p>
+        <p>
+          При публикации на наш бэкенд, помимо перечисленного в 2.9,
+          отправляются:
+        </p>
+        <ul>
+          <li>
+            ник, под которым вы решили публиковать, а также язык и теги,
+            которые вы указали для пака;
+          </li>
+          <li>
+            ваш ключ автора (см. ниже) или, при первой публикации, запрос
+            на его выдачу.
+          </li>
+        </ul>
+        <p>
+          <strong>Что становится публичным.</strong> Пока пак опубликован,
+          любой может увидеть — на сайте и в приложении, а также через
+          поисковые системы, индексирующие сайт, — его название, обложку,
+          имена и изображения персонажей, их количество, язык, теги, ваш
+          ник с коротким тегом рядом и число скачиваний. Любой может его
+          скачать. Ничего другого о вас не показывается: ни устройство, ни
+          другие ваши ссылки, ни паки, которые вы не публиковали.
+        </p>
+        <p>
+          <strong>Ключ автора</strong> — случайное значение, которое наш
+          сервер выдаёт при первой публикации и показывает вам один раз. Он
+          не привязан ни к аккаунту, ни к почте, ни к устройству; сервер
+          хранит только его хеш — значение, по которому ключ восстановить
+          нельзя, — вместе с вашим ником и списком опубликованных с ним
+          паков. Из того же хеша получается короткий тег рядом с ником.
+          Ключ автора — то, чем вы снимаете пак с публикации, и
+          единственное, что переносит ваш ник и счётчики на другое
+          устройство: восстановить его за вас мы не можем.
+        </p>
+        <p>
+          <strong>Проверка.</strong> Прежде чем отправленный пак появится в
+          Библиотеке, человек с нашей стороны просматривает его обложку,
+          имена и изображения персонажей. Проверка ограничена запрещённым
+          контентом из п. 5.2 Пользовательского соглашения; о ней не
+          сохраняется ничего, кроме решения и его даты.
+        </p>
+        <p>
+          <strong>Счётчики скачиваний</strong> ведутся по каждому паку и, в
+          сумме, по автору и показываются публично. Это агрегированные
+          числа; данные о людях, скачавших пак, для них не собираются и не
+          хранятся.
+        </p>
+        <p>
+          <strong>Жалобы.</strong> Пожаловаться на пак из Библиотеки может
+          любой — из приложения или с сайта. Жалоба передаёт нам код пака,
+          выбранную или написанную вами причину и — только для защиты от
+          злоупотреблений — хеш вашего сетевого адреса, который хранится 30
+          дней. Жалобы попадают в наш служебный чат в Telegram и
+          рассматриваются по п. 5.4 Пользовательского соглашения.
+        </p>
+        <p>
+          <strong>Срок хранения.</strong> Опубликованная копия пака, его
+          запись в каталоге и миниатюра обложки хранятся, пока пак
+          опубликован. Когда вы снимаете его с публикации (или это делаем
+          мы), запись в каталоге удаляется сразу, а файл возвращается к
+          правилам п. 2.9; отметка о том, что пак был опубликован и снят, —
+          код, дата и причина, без содержимого пака — хранится до 180 дней,
+          а также всё время, пока рассматривается жалоба на этот пак.
+          Запись автора (хеш ключа, ник, список публикаций, суммы
+          скачиваний) хранится, пока опубликован хотя бы один ваш пак, или
+          180 дней после снятия последнего — что наступит позже. Закрытый
+          ключ автора (п. 5.5 Пользовательского соглашения) хранится всё
+          время, пока действует закрытие.
         </p>
 
         <h2>3. Цели обработки</h2>
@@ -967,6 +1156,11 @@
           <li>
             передача вашего пака тем, кому вы отправили ссылку на него
             (см. 2.9);
+          </li>
+          <li>
+            работа Библиотеки: показ паков, опубликованных их авторами,
+            указание автора по нику, подсчёт скачиваний, проверка отправок
+            и жалоб (см. 2.10);
           </li>
           <li>
             доставка новых наборов персонажей и уведомлений о них (см. 2.2);
@@ -1032,6 +1226,15 @@
             записи. Если вы отозвали ссылку
             сами, файл удаляется сразу, а отметка о недействительности кода
             (без содержимого пака) хранится до 180 дней.
+          </li>
+          <li>
+            Пак, опубликованный в Библиотеке, его запись в каталоге и
+            миниатюра обложки хранятся, пока он опубликован; после снятия
+            запись удаляется сразу, файл следует правилу выше, а отметка о
+            снятии (код, дата, причина) хранится до 180 дней или пока
+            рассматривается жалоба на него. Запись автора хранится, пока
+            опубликован хотя бы один его пак, или 180 дней после снятия
+            последнего (см. 2.10).
           </li>
           <li>
             Сообщения из формы обратной связи хранятся в нашем служебном чате
