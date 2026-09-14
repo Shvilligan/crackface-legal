@@ -114,11 +114,13 @@
           </li>
           <li>
             <strong>A pack you published in the Library.</strong> On the
-            same share screen, <strong>"Remove from the Library"</strong>
-            takes it out of the catalogue at once (the link, if you keep
-            it, stays). Your nickname and author record are deleted 180
-            days after your last pack leaves the Library — or on request,
-            see &sect;3.
+            same share screen, <strong>"Remove from Library"</strong> takes
+            it out of the catalogue at once — on any device that holds your
+            author key; the cover and character pictures extracted for the
+            catalogue are deleted from our storage at the same moment. The
+            link, if you keep it, stays. The catalogue entry (with its
+            status), your nickname and your author record are not deleted
+            automatically — ask us, see &sect;3.
           </li>
           <li>
             <strong>Everything the app keeps on your device</strong> — your
@@ -201,11 +203,14 @@
           <li>
             your <strong>author tag</strong> (the short code next to your
             nickname in the Library) if you want your author record —
-            nickname, publication list, download totals — deleted now
-            rather than 180 days after your last pack leaves the Library;
-            we will first unpublish anything still listed under it. If you
-            still hold the author key, unpublish from the app first: that
-            is what proves the record is yours;
+            nickname, key hash, the entries of your packs with their titles,
+            character names, tags, counts and status — deleted; nothing
+            deletes them on its own. We will first unpublish anything still
+            listed under it. If you still hold the author key, unpublish
+            from the app first: that is what proves the record is yours.
+            Two things stay: the record that a key was closed for repeat
+            infringement, for as long as the closure lasts, and the entry
+            of a pack a complaint about is still being handled;
           </li>
           <li>
             the approximate date and the wording of a message you sent
@@ -248,14 +253,51 @@
                 the file no later than 100 days after it was last written</td>
             </tr>
             <tr>
-              <td>A pack published in the Library: catalogue entry, cover
-                thumbnail, nickname, author record (key hash, publication
-                list, download totals)</td>
-              <td>Our storage (Cloudflare D1 + R2)</td>
-              <td>Entry and thumbnail: immediately on "Remove from the
-                Library" or on our removal; the file then follows the
-                share-link row above. Author record: 180 days after the
-                last pack leaves the Library, or on request</td>
+              <td>A pack published in the Library: the cover and character
+                pictures extracted for the catalogue</td>
+              <td>Our storage (Cloudflare R2)</td>
+              <td>Immediately when the pack leaves the Library — on "Remove
+                from Library", on our removal, when you update the link, or
+                when the link dies. The pack file itself follows the
+                share-link row above</td>
+            </tr>
+            <tr>
+              <td>The Library entry of a pack (title, character names,
+                language, tags, counts, dates, status, reason) and your
+                author record (key hash, nickname, dates)</td>
+              <td>Our database (Cloudflare D1)</td>
+              <td>Not deleted automatically; shown to nobody once the pack
+                has left the Library. Deleted on request (&sect;3), except a
+                closed key while the closure lasts and a pack under
+                complaint while it is handled</td>
+            </tr>
+            <tr>
+              <td>The review card of a submitted pack (title, nickname and
+                tag, language, tags, first character names, links)</td>
+              <td>Our internal Telegram chat</td>
+              <td>Manually — on request together with the author record,
+                unless a complaint about the pack still needs it</td>
+            </tr>
+            <tr>
+              <td>The counted-download markers of a link (code, time,
+                random value) and the download day-mark (a hash derived
+                from the downloader's address, next to the code)</td>
+              <td>Our storage (KV)</td>
+              <td>Markers: kept as the link's count, nothing personal in
+                them. Day-mark: expires 24 hours after it was written</td>
+            </tr>
+            <tr>
+              <td>Request-limit counters keyed by network address</td>
+              <td>Our backend (Cloudflare Durable Object storage)</td>
+              <td>Swept automatically within a few hours after the window
+                (a minute or an hour) closes</td>
+            </tr>
+            <tr>
+              <td>Backend log lines (event, pack code, public author id,
+                counts, errors — no names, keys or addresses) and
+                Cloudflare's own request records</td>
+              <td>Cloudflare Workers Logs</td>
+              <td>A few days, then gone on their own</td>
             </tr>
             <tr>
               <td>A revocation marker for a used code — the fact and the
@@ -332,11 +374,13 @@
           </li>
           <li>
             <strong>Пак, опубликованный в Библиотеке.</strong> На том же
-            экране «Поделиться» — <strong>«Убрать из Библиотеки»</strong>:
-            пак сразу исчезает из каталога (ссылка, если вы её оставили,
-            продолжает работать). Ваш ник и запись автора удаляются через
-            180 дней после того, как последний ваш пак покинул Библиотеку,
-            — или по запросу, см. &sect;3.
+            экране «Поделиться» — <strong>«Снять с витрины»</strong>: пак
+            сразу исчезает из каталога — на любом устройстве, где есть ваш
+            ключ автора; в тот же момент из нашего хранилища удаляются
+            обложка и изображения персонажей, извлечённые для каталога.
+            Ссылка, если вы её оставили, продолжает работать. Запись
+            каталога (с её статусом), ваш ник и запись автора автоматически
+            не удаляются — напишите нам, см. &sect;3.
           </li>
           <li>
             <strong>Всё, что приложение хранит на устройстве</strong> — ваши
@@ -421,12 +465,15 @@
           </li>
           <li>
             ваш <strong>тег автора</strong> (короткий код рядом с ником в
-            Библиотеке), если хотите удалить запись автора — ник, список
-            публикаций, суммы скачиваний — сейчас, а не через 180 дней
-            после ухода последнего пака из Библиотеки; всё, что ещё
-            опубликовано под ним, мы сначала снимем. Если ключ автора у вас
-            есть, сначала снимите паки из приложения: это и есть
-            подтверждение, что запись ваша;
+            Библиотеке), если хотите удалить запись автора — ник, хеш
+            ключа, записи ваших паков с названиями, именами персонажей,
+            тегами, счётчиками и статусом; сами по себе они не удаляются.
+            Всё, что ещё опубликовано под ним, мы сначала снимем. Если ключ
+            автора у вас есть, сначала снимите паки из приложения: это и
+            есть подтверждение, что запись ваша. Остаются две вещи: запись
+            о том, что ключ закрыт за повторные нарушения, — пока действует
+            закрытие, и запись пака, жалоба на который ещё
+            рассматривается;
           </li>
           <li>
             примерную дату и текст сообщения, отправленного через форму
@@ -470,14 +517,53 @@
                 после его последней записи</td>
             </tr>
             <tr>
-              <td>Пак, опубликованный в Библиотеке: запись в каталоге,
-                миниатюра обложки, ник, запись автора (хеш ключа, список
-                публикаций, суммы скачиваний)</td>
-              <td>Наше хранилище (Cloudflare D1 + R2)</td>
-              <td>Запись и миниатюра — сразу по «Убрать из Библиотеки» или
-                при снятии нами; файл дальше живёт по строке о ссылке выше.
-                Запись автора — через 180 дней после ухода последнего пака
-                из Библиотеки или по запросу</td>
+              <td>Пак, опубликованный в Библиотеке: обложка и изображения
+                персонажей, извлечённые для каталога</td>
+              <td>Наше хранилище (Cloudflare R2)</td>
+              <td>Сразу, когда пак покидает Библиотеку — по «Снять с
+                витрины», при снятии нами, при обновлении вами ссылки или
+                когда ссылка умирает. Сам файл пака живёт по строке о
+                ссылке выше</td>
+            </tr>
+            <tr>
+              <td>Запись пака в Библиотеке (название, имена персонажей,
+                язык, теги, счётчики, даты, статус, причина) и запись
+                автора (хеш ключа, ник, даты)</td>
+              <td>Наша база (Cloudflare D1)</td>
+              <td>Автоматически не удаляются; после ухода пака из
+                Библиотеки никому не показываются. Удаляются по обращению
+                (&sect;3), кроме закрытого ключа, пока действует закрытие,
+                и пака, жалоба на который рассматривается</td>
+            </tr>
+            <tr>
+              <td>Карточка проверки отправленного пака (название, ник и
+                тег, язык, теги, первые имена персонажей, ссылки)</td>
+              <td>Наш служебный чат в Telegram</td>
+              <td>Вручную — по обращению вместе с записью автора, если
+                карточка не нужна для рассмотрения жалобы на пак</td>
+            </tr>
+            <tr>
+              <td>Отметки засчитанных скачиваний ссылки (код, время,
+                случайное значение) и суточная метка скачивания (хеш,
+                вычисленный из адреса скачивающего, рядом с кодом)</td>
+              <td>Наше хранилище (KV)</td>
+              <td>Отметки — хранятся как счётчик ссылки, ничего личного в
+                них нет. Суточная метка — истекает через 24 часа после
+                записи</td>
+            </tr>
+            <tr>
+              <td>Счётчики ограничения запросов, ключом которых служит
+                сетевой адрес</td>
+              <td>Наш бэкенд (хранилище Cloudflare Durable Object)</td>
+              <td>Очищаются автоматически в пределах нескольких часов после
+                закрытия окна (минута или час)</td>
+            </tr>
+            <tr>
+              <td>Строки журнала бэкенда (событие, код пака, публичный
+                идентификатор автора, счётчики, ошибки — без имён, ключей и
+                адресов) и собственные записи Cloudflare о запросах</td>
+              <td>Cloudflare Workers Logs</td>
+              <td>Несколько дней, затем исчезают сами</td>
             </tr>
             <tr>
               <td>Отметка об отозванном коде — только факт и дата, без

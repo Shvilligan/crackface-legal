@@ -79,7 +79,7 @@
         <p class="meta">
           App: <strong>Crackface</strong><br />
           Effective date: <strong>May 25, 2026</strong><br />
-          Last updated: <strong>September 12, 2026</strong>
+          Last updated: <strong>September 14, 2026</strong>
         </p>
         <p>
           This Privacy Policy explains how
@@ -138,16 +138,25 @@
             to the server;
           </li>
           <li>
-            your author key and nickname, if you have published a pack in
-            the Library (see 2.10). The key is issued by the server and is
-            kept on the device so the app can sign your publications; you
-            can display it in the settings to copy it elsewhere.
+            your author key, nickname and public author id, if you have
+            published a pack in the Library (see 2.10). The key is issued by
+            the server and is kept in the app's ordinary preferences storage
+            on the device so the app can sign your publications; you can
+            display it in the settings to copy it elsewhere or show it as a
+            QR code;
+          </li>
+          <li>
+            Library data that never leaves the device: the authors you hid
+            or marked as favourites, the language and size filters you
+            chose, what the app last knew about the status of each pack you
+            submitted (so it can tell you about a decision), and, for each
+            pack that came by link, the code it came from.
           </li>
         </ul>
         <p>
           This information is used only to run app features and is not sent
           to our own backend server (with the exceptions described in 2.3,
-          2.4, and 2.9).
+          2.4, 2.9 and 2.10).
         </p>
 
         <h3>2.2. Third-party services</h3>
@@ -161,7 +170,11 @@
             <strong>Google Firebase Analytics</strong> — for aggregated,
             de-identified app-usage analytics (matches started and finished,
             mode distribution, pack popularity, packs installed from the
-            catalogue or from a link, notifications opened);
+            catalogue or from a link, notifications opened, and Library
+            actions — the catalogue opened, a pack published, imported,
+            updated, unpublished or reported, a decision shown — with the
+            pack's language, the outcome or the error code as parameters;
+            never your nickname, your author key or a pack's code);
           </li>
           <li>
             <strong>Google Firebase Crashlytics</strong> — for crash reports
@@ -184,19 +197,21 @@
             <strong>Apple In-App Purchase</strong> — for in-app purchases;
           </li>
           <li>
-            <strong>Cloudflare</strong> (Workers, Durable Objects, KV, R2)
-            — hosting and infrastructure for our backend (online rooms,
-            sharing user-created packs between players in the same room,
-            storing packs you published a link for, delivery of built-in
-            images and of the new-pack catalogue). Cloudflare processes
-            connection-level technical data (IP address, request headers) to
-            route traffic.
+            <strong>Cloudflare</strong> (Workers, Durable Objects, KV, R2,
+            D1, Analytics Engine) — hosting and infrastructure for our
+            backend (online rooms, sharing user-created packs between
+            players in the same room, storing packs you published a link
+            for, the Library index, delivery of built-in images and of the
+            new-pack catalogue). Cloudflare processes connection-level
+            technical data (IP address, request headers) to route traffic;
+            what our own code does with your network address is in 2.11.
           </li>
           <li>
             <strong>Telegram</strong> — the messenger whose private internal
             chat receives messages sent from the in-app feedback form (see
-            2.8). Telegram processes the contents of such a message as an
-            ordinary chat message.
+            2.8) and the review cards of packs submitted to the Library
+            (see 2.10). Telegram processes the contents of such a message
+            as an ordinary chat message.
           </li>
           <li>
             <strong>Fallback relay servers</strong> — on networks where a
@@ -206,7 +221,13 @@
             third-party hosting providers, including outside your region.
             These servers process data in transit only (pass-through
             proxying and a temporary cache of the public character images)
-            and keep no request logs.
+            and keep no request logs. Everything the app sends to our API
+            travels through the relay when your session is routed via it —
+            including, for Library authors, the author key and the
+            link-ownership value described in 2.9 and 2.10 — and the relay
+            forwards your network address to our backend in a header so
+            that request limits (2.11) apply per person rather than to the
+            relay as a whole.
           </li>
         </ul>
         <p>
@@ -275,7 +296,8 @@
           storage of the device that created it.
         </p>
         <p>
-          We do not moderate user-pack content. If you see material that
+          We do not review user-pack content in advance, except packs their
+          authors submit to the Library (2.10). If you see material that
           violates our
           <a href="../terms-of-use/#en">UGC policy</a> (section 5), please
           report it — see section 6 below.
@@ -405,9 +427,18 @@
         <p>
           For each link we keep a count of the number of times the pack has
           been downloaded via that link and display it to the author in the
-          app. The count is a single aggregate number per link; it is not
-          associated with any person who downloaded the pack, and no data
-          about those persons is collected or retained for this purpose.
+          app (and, for a pack published in the Library, publicly — 2.10).
+          Each counted download is stored as a marker holding only the
+          code, the time and a random value — nothing about the person. So
+          that one address counts once a day rather than every time "Add"
+          is tapped, the server also keeps, for 24 hours, a day-mark
+          derived from the downloader's network address: the address (for
+          IPv6, its network half) is passed through a one-way hash function
+          together with a fixed prefix, and the first 8 bytes of the result
+          are stored next to the pack's code. The address itself is not
+          stored, cannot be recovered from the mark, and the mark expires
+          automatically after 24 hours. Downloads made from a device that
+          holds the pack author's own key (2.10) are not counted.
         </p>
         <p>
           You can take a link down at any time — "Remove link", in the same
@@ -429,9 +460,10 @@
         <h3>2.10. Publishing a pack in the Library</h3>
         <p>
           A pack you have created a link for can also be published in the
-          Library — a public catalogue at
-          <strong>crackface.app/packs</strong> and inside the app. This
-          happens only on your explicit action ("Publish to the Library")
+          Library — a public catalogue inside the app. There is no
+          catalogue on the website, and the page behind a link still shows
+          nothing of the pack (2.9). Publishing happens only on your
+          explicit action ("Publish in the Library" → "Send for review")
           and only for the pack you picked for it; section 5.5 of the
           <a href="../terms-of-use/#en">Terms of Use</a> sets out what
           publishing means.
@@ -448,61 +480,122 @@
           </li>
         </ul>
         <p>
+          <strong>What the server takes from the pack.</strong> The server
+          opens the stored copy of the pack and extracts what the catalogue
+          shows: the title, the character names (also kept in lower case as
+          a search index, so the catalogue can be searched by name), the
+          cover and a reduced picture of each character (up to 200), which
+          are stored as separate files under the pack's code. The catalogue
+          entry also holds the character count, the language, the tags,
+          the version, the download count, the dates of submission and of
+          the decision, and the status with the reason for a refusal or a
+          removal.
+        </p>
+        <p>
           <strong>What becomes public.</strong> While the pack is published,
-          anyone can see — on the website and in the app, and through
-          search engines that index the website — its name, cover,
-          character names and images, character count, language, tags,
-          your nickname with a short tag next to it, and its download
-          count. Anyone can download it. Nothing else about you is shown:
-          not your device, not your other links, not the packs you have
-          not published.
+          anyone using the app can see its name, cover, character names and
+          pictures, character count, language, tags, your nickname with a
+          short tag next to it, its download count and the date it was
+          published. Anyone can download it. Nothing else about you is
+          shown: not your device, not your other links, not the packs you
+          have not published. The reviewer may replace a nickname that
+          breaks the Terms with the neutral word "Author", may change the
+          tags of a pack, and may mark a pack as "Recommended".
         </p>
         <p>
           <strong>The author key</strong> is a random value our server
-          issues on your first publication and shows to you once. It is
+          issues on your first publication and sends to your device once
+          (the app on that device can show it to you again; we cannot). It is
           tied to no account, e-mail or device; the server keeps only a
           hash of it — a value the key cannot be recovered from — together
-          with your nickname and the list of packs published with it. The
-          same hash yields the short tag shown next to your nickname. Your
-          author key is what lets you unpublish a pack, and the only thing
-          that can bring your nickname and download counts to another
-          device: we cannot restore it for you.
+          with your nickname, the date it was issued, whether it has been
+          closed, and the list of packs published with it. The short tag
+          shown next to your nickname is derived from the same hash. The
+          key is kept on your device (2.1) and is sent only to our API,
+          over an encrypted connection (directly or via the relay, 2.2):
+          when you publish, unpublish, update or check on a pack; with a
+          pack download, so that your own downloads are not counted; and
+          once per app launch, to ask whether any of your submissions has
+          been decided on. It is what lets you unpublish a pack, and the
+          only thing that can bring your nickname and download counts to
+          another device — by typing it there: we cannot restore it for
+          you.
         </p>
         <p>
           <strong>Review.</strong> Before a submitted pack appears in the
-          Library, a person on our side looks at its cover, character
-          names and images. The review is limited to the prohibited
-          content listed in section 5.2 of the Terms of Use; nothing about
-          it is recorded beyond the decision and its date.
+          Library, a person on our side looks at it. For that, the backend
+          posts a card into our private internal chat in
+          <strong>Telegram</strong> (see 2.2) with the pack's title, your
+          nickname and tag, the language, the tags, the first character
+          names, and links to the cover and to the pack file on our API;
+          the decision is taken through the buttons of that card. The
+          review is the one section 5.5 of the Terms of Use describes — the
+          prohibited content of 5.2, whether the pack can be played, whether
+          it duplicates or fits the Library — and not a check of rights;
+          what is recorded is the decision, its reason and its date. The card
+          stays in that chat as the history of the review.
         </p>
         <p>
           <strong>Download counts</strong> are kept per pack and, summed,
-          per author, and shown publicly. They are aggregate numbers; no
-          data about the people who downloaded a pack is collected or
-          retained for them.
+          per author, and shown publicly. How a download is counted — and
+          the 24-hour day-mark derived from the downloader's address — is
+          described in 2.9.
         </p>
         <p>
           <strong>Reports.</strong> Anyone can report a Library pack from
-          the app or the website. A report sends us the pack's code, the
-          reason you chose or wrote, and — for abuse prevention only — a
-          hash of your network address, kept for 30 days. Reports go to our
-          internal Telegram chat and are handled under section 5.4 of the
-          Terms of Use.
+          the app: the "Report" button composes an e-mail to the address in
+          section 1 with the pack's code and title, to which you add your
+          reason. Nothing is sent to our backend and nothing about you is
+          recorded by us beyond the e-mail you choose to send. Reports are
+          handled under section 5.4 of the Terms of Use.
         </p>
         <p>
-          <strong>Retention.</strong> The published copy of the pack, its
-          catalogue entry and its cover thumbnail are kept while the pack
-          is published. When you unpublish it (or we remove it), the
-          catalogue entry is deleted immediately and the file returns to
-          the rules of 2.9; a marker that the pack was published and
-          removed — the code, the date and the reason, none of the pack's
-          content — is kept for up to 180 days, and for as long as a
-          complaint about the pack is being handled. Your author record
-          (key hash, nickname, publication list, download totals) is kept
-          while at least one of your packs is published or for 180 days
-          after the last one is removed, whichever is later. A closed
-          author key (Terms of Use, 5.5) is kept for as long as the closure
-          lasts.
+          <strong>Retention.</strong> The published copy of the pack is the
+          same file as behind the link and follows the rules of 2.9. The
+          cover and character pictures extracted for the catalogue are
+          deleted the moment the pack leaves the Library — whether you
+          unpublish it, we remove it, you update the link, or the link
+          dies. The catalogue entry is not deleted automatically: it stays
+          in our database with its title, character names, language, tags,
+          counts, dates, status and reason, so that a removed pack cannot
+          come back under the same code and repeat rights complaints can be
+          counted (Terms of Use, 5.5); it is shown to nobody. The same
+          applies to your author record (key hash, nickname, dates, whether
+          the key is closed). We delete both on your request — see section
+          6 — except that the record of a closed key stays for as long as
+          the closure lasts, and the entry of a pack under complaint stays
+          for as long as that complaint is handled.
+        </p>
+
+        <h3>2.11. Network address, request limits, logs and statistics</h3>
+        <p>
+          Every request the app makes to our backend carries your network
+          address (IP) — from Cloudflare, or, when your session goes
+          through the relay (2.2), in a header the relay adds. Our own code
+          uses it for one purpose: limiting how many requests one address
+          may make in a window (a minute or an hour, depending on the
+          route), so that the service cannot be flooded. The counter is
+          stored in Cloudflare Durable Object storage under a key that
+          contains the address and the start of the window; keys whose
+          window is more than two hours old are removed by an automatic
+          sweep, so an address stays there for a few hours at most. The address is
+          not written into pack records, the Library or the download
+          markers (the day-mark in 2.9 holds a hash, not the address).
+        </p>
+        <p>
+          Our backend writes technical log lines (Cloudflare Workers Logs)
+          about what it did: the event, the pack code, the public author
+          id, the language, the character and image counts, the reviewer's
+          action, the sizes of uploads and the text of errors — never
+          nicknames, character names, author keys, ownership values or
+          network addresses. Cloudflare keeps these lines, together with
+          its own record of each request (URL, method, status, timing),
+          for a few days. Separately, link events (created,
+          downloaded, renewed, revoked, file missing, limit hit) are
+          written to a Cloudflare Analytics Engine dataset with the pack
+          code, the event, its outcome and the pack's size in bytes —
+          nothing about the person; that dataset is what we count link
+          usage from.
         </p>
 
         <h2>3. Why data is used</h2>
@@ -523,6 +616,10 @@
             and reports (see 2.10);
           </li>
           <li>
+            to protect the service from abuse — limit request rates and
+            count each address once a day (see 2.9 and 2.11);
+          </li>
+          <li>
             to deliver new character packs and notifications about them
             (see 2.2);
           </li>
@@ -536,7 +633,7 @@
           <li>with advertising, analytics, and payment infrastructure providers;</li>
           <li>
             with our backend hosting provider (Cloudflare) — to operate the
-            server side of online mode;
+            server side of online mode, pack links and the Library;
           </li>
           <li>
             with other players in the same online room — in the scope
@@ -547,12 +644,17 @@
             scope of that pack's content (see 2.9);
           </li>
           <li>
+            with everyone using the app — the pack you published in the
+            Library and your nickname with its tag (see 2.10);
+          </li>
+          <li>
             with Google — to deliver push notifications to your device, if
             you allowed them (see 2.2);
           </li>
           <li>
-            with Telegram — only the text you wrote in the feedback form
-            and the technical details attached to it (see 2.8);
+            with Telegram — the text you wrote in the feedback form and the
+            technical details attached to it (see 2.8), and the review card
+            of a pack you submitted to the Library (see 2.10);
           </li>
           <li>when required by applicable law.</li>
         </ul>
@@ -585,19 +687,33 @@
             for up to 180 days.
           </li>
           <li>
-            A pack published in the Library, its catalogue entry and cover
-            thumbnail are kept while it is published; after removal the
-            entry is deleted at once, the file follows the rule above, and a
-            marker of the removal (code, date, reason) is kept for up to 180
-            days or as long as a complaint about it is handled. An author
-            record is kept while any of its packs is published or for 180
-            days after the last one is removed (see 2.10).
+            A pack published in the Library: the cover and character
+            pictures extracted for the catalogue are deleted at once when
+            the pack leaves the Library; the pack file follows the rule
+            above; the catalogue entry (title, character names, language,
+            tags, counts, dates, status, reason) and your author record (key
+            hash, nickname, dates) are not deleted automatically — they are
+            kept, shown to nobody, until you ask us to delete them (section
+            6), or, for a closed key or a pack under complaint, for as long
+            as that lasts (see 2.10).
           </li>
           <li>
-            Messages sent from the feedback form stay in our internal
-            Telegram chat until we delete them manually. They are not deleted
+            The day-mark of a download (a hash derived from the address,
+            next to a pack code) expires 24 hours after it was written.
+            Request-limit counters keyed by network address are swept within a
+            few hours after their window closes (see 2.9 and 2.11).
+          </li>
+          <li>
+            Our backend log lines are kept by Cloudflare for a few days;
+            the link-event statistics (code, event, outcome, size — nothing
+            about a person) are kept by Cloudflare for up to three months.
+          </li>
+          <li>
+            Messages sent from the feedback form and the review cards of
+            packs submitted to the Library stay in our internal Telegram
+            chat until we delete them manually. They are not deleted
             automatically, as they serve as the history of what has been
-            reported.
+            reported and reviewed.
           </li>
           <li>
             Data processed by third parties (ads, analytics, crashes,
@@ -625,6 +741,16 @@
           on the device the link was created on. If that device is lost or
           the app was reinstalled, write to the address in section 1 with
           the pack's code and we will delete the file by hand.
+        </p>
+        <p>
+          A pack you published in the Library is taken down with "Remove
+          from Library" on any device that holds your author key; the
+          pictures extracted for the catalogue go with it at once. Its
+          catalogue entry, your nickname and your author record are deleted
+          only on request: write to the address in section 1 with your
+          author tag (the short code next to your nickname) and, if you no
+          longer hold the key, the codes of your packs. We delete them by
+          hand (see 2.10 for the two exceptions).
         </p>
         <p>
           Push notifications are turned off in your operating system's
@@ -712,7 +838,7 @@
         <p class="meta">
           Приложение: <strong>Crackface</strong><br />
           Дата вступления в силу: <strong>25 мая 2026</strong><br />
-          Последнее обновление: <strong>12 сентября 2026</strong>
+          Последнее обновление: <strong>14 сентября 2026</strong>
         </p>
         <p>
           Настоящая Политика конфиденциальности описывает, как
@@ -771,16 +897,25 @@
             значение, по которому сам секрет восстановить нельзя;
           </li>
           <li>
-            ваш ключ автора и ник, если вы публиковали пак в Библиотеке
-            (см. 2.10). Ключ выдаёт сервер, а приложение хранит его на
+            ваш ключ автора, ник и публичный идентификатор автора, если вы
+            публиковали пак в Библиотеке (см. 2.10). Ключ выдаёт сервер, а
+            приложение хранит его в обычном хранилище настроек на
             устройстве, чтобы подписывать ваши публикации; в настройках его
-            можно показать и скопировать.
+            можно показать, скопировать или вывести QR-кодом;
+          </li>
+          <li>
+            данные Библиотеки, которые не покидают устройство: авторы,
+            которых вы скрыли или добавили в избранное, выбранные фильтры
+            языка и размера, последнее известное приложению состояние
+            каждого отправленного вами пака (чтобы сообщить о решении) и,
+            для каждого пришедшего по ссылке пака, код, по которому он
+            пришёл.
           </li>
         </ul>
         <p>
           Эти данные используются только для работы функций приложения и не
           отправляются на наш собственный сервер (с исключениями, описанными
-          в 2.3, 2.4 и 2.9).
+          в 2.3, 2.4, 2.9 и 2.10).
         </p>
 
         <h3>2.2. Сторонние сервисы</h3>
@@ -795,7 +930,11 @@
             обезличенной аналитики использования приложения (запуски и
             завершения партий, распределение игровых режимов, популярность
             паков, установки паков из каталога и по ссылке, открытия
-            уведомлений);
+            уведомлений, а также действия в Библиотеке — открытие
+            каталога, публикация, добавление, обновление, снятие пака или
+            жалоба на него, показ решения — с параметрами: язык пака,
+            результат или код ошибки; никогда не ваш ник, не ключ автора и
+            не код пака);
           </li>
           <li>
             <strong>Google Firebase Crashlytics</strong> — для сбора отчётов
@@ -819,17 +958,20 @@
             в приложении;
           </li>
           <li>
-            <strong>Cloudflare</strong> (Workers, Durable Objects, KV, R2) —
-            хостинг и инфраструктура нашего бэкенда (онлайн-комнаты, обмен
-            пользовательскими паками между игроками одной комнаты, хранение
-            паков, для которых вы создали ссылку, раздача встроенных
-            изображений и каталога новых паков). Cloudflare обрабатывает технические
-            данные соединения (IP-адрес, заголовки запросов) для маршрутизации
-            трафика.
+            <strong>Cloudflare</strong> (Workers, Durable Objects, KV, R2,
+            D1, Analytics Engine) — хостинг и инфраструктура нашего бэкенда
+            (онлайн-комнаты, обмен пользовательскими паками между игроками
+            одной комнаты, хранение паков, для которых вы создали ссылку,
+            индекс Библиотеки, раздача встроенных изображений и каталога
+            новых паков). Cloudflare обрабатывает технические данные
+            соединения (IP-адрес, заголовки запросов) для маршрутизации
+            трафика; что с вашим сетевым адресом делает наш собственный код
+            — в п. 2.11.
           </li>
           <li>
             <strong>Telegram</strong> — мессенджер, в закрытый служебный чат
-            которого доставляются сообщения из формы обратной связи (см. 2.8).
+            которого доставляются сообщения из формы обратной связи (см. 2.8)
+            и карточки проверки паков, отправленных в Библиотеку (см. 2.10).
             Telegram обрабатывает содержимое такого сообщения как обычное
             сообщение в чате.
           </li>
@@ -842,7 +984,13 @@
             том числе за пределами вашего региона. Такие серверы
             обрабатывают данные исключительно в транзите (сквозное
             проксирование и временный кеш публичных изображений персонажей)
-            и не ведут журналов запросов.
+            и не ведут журналов запросов. Когда ваша сессия идёт через
+            relay, через него проходит всё, что приложение отправляет на
+            наш API, — в том числе, у авторов Библиотеки, ключ автора и
+            значение-подтверждение владения ссылкой из п. 2.9 и 2.10; сам
+            relay передаёт нашему бэкенду ваш сетевой адрес в заголовке,
+            чтобы ограничения на число запросов (п. 2.11) действовали на
+            человека, а не на relay целиком.
           </li>
         </ul>
         <p>
@@ -911,8 +1059,9 @@
           локальном хранилище устройства создателя.
         </p>
         <p>
-          Мы не модерируем содержимое пользовательских паков. Если вы видите
-          материал, нарушающий нашу
+          Мы не просматриваем содержимое пользовательских паков заранее —
+          кроме паков, которые их авторы отправили в Библиотеку (2.10).
+          Если вы видите материал, нарушающий нашу
           <a href="../terms-of-use/#ru">политику UGC</a> (раздел 5), пожалуйста,
           сообщите об этом — см. раздел 6 ниже.
         </p>
@@ -1042,11 +1191,20 @@
           после её последней записи.
         </p>
         <p>
-          По каждой ссылке мы ведём подсчёт количества скачиваний пака по этой
-          ссылке и отображаем его автору в приложении. Подсчёт представляет
-          собой единственное совокупное число на ссылку; оно не связано с
-          каким-либо лицом, скачавшим пак, и никакие данные о таких лицах для
-          этой цели не собираются и не хранятся.
+          По каждой ссылке мы ведём подсчёт количества скачиваний пака по
+          этой ссылке и отображаем его автору в приложении (а для пака,
+          опубликованного в Библиотеке, — публично, см. 2.10). Каждое
+          засчитанное скачивание хранится как отметка, в которой только
+          код, время и случайное значение — ничего о человеке. Чтобы один
+          адрес засчитывался раз в сутки, а не при каждом нажатии
+          «Добавить», сервер также хранит в течение 24 часов суточную
+          метку, вычисленную из сетевого адреса скачивающего: адрес (для
+          IPv6 — его сетевая половина) пропускается через одностороннюю
+          хеш-функцию вместе с фиксированным префиксом, и рядом с кодом
+          пака сохраняются первые 8 байт результата. Сам адрес не
+          сохраняется, восстановить его из метки нельзя, а метка
+          автоматически истекает через 24 часа. Скачивания с устройства, на
+          котором есть ключ автора этого пака (2.10), не засчитываются.
         </p>
         <p>
           Убрать ссылку можно в любой момент — «Отозвать ссылку» в том же окне
@@ -1068,10 +1226,11 @@
         <h3>2.10. Публикация пака в Библиотеке</h3>
         <p>
           Пак, для которого вы создали ссылку, можно также опубликовать в
-          Библиотеке — публичном каталоге на
-          <strong>crackface.app/packs</strong> и в приложении. Это
-          происходит только по вашему явному действию («Опубликовать в
-          Библиотеке») и только с тем паком, который вы для этого выбрали;
+          Библиотеке — публичном каталоге внутри приложения. Каталога на
+          сайте нет, а страница по ссылке по-прежнему не показывает
+          содержимое пака (2.9). Публикация происходит только по вашему
+          явному действию («Опубликовать в Библиотеке» → «Отправить на
+          проверку») и только с тем паком, который вы для этого выбрали;
           что означает публикация, описано в п. 5.5
           <a href="../terms-of-use/#ru">Пользовательского соглашения</a>.
         </p>
@@ -1090,59 +1249,121 @@
           </li>
         </ul>
         <p>
+          <strong>Что сервер берёт из пака.</strong> Сервер открывает
+          сохранённую копию пака и извлекает из неё то, что показывает
+          каталог: название, имена персонажей (они же в нижнем регистре
+          хранятся как поисковый индекс, чтобы каталог искал по именам),
+          обложку и уменьшенное изображение каждого персонажа (до 200),
+          которые сохраняются отдельными файлами под кодом пака. В записи
+          каталога также хранятся число персонажей, язык, теги, номер
+          версии, число скачиваний, даты отправки и решения, а также статус
+          с причиной отказа или снятия.
+        </p>
+        <p>
           <strong>Что становится публичным.</strong> Пока пак опубликован,
-          любой может увидеть — на сайте и в приложении, а также через
-          поисковые системы, индексирующие сайт, — его название, обложку,
-          имена и изображения персонажей, их количество, язык, теги, ваш
-          ник с коротким тегом рядом и число скачиваний. Любой может его
-          скачать. Ничего другого о вас не показывается: ни устройство, ни
-          другие ваши ссылки, ни паки, которые вы не публиковали.
+          любой пользователь приложения может увидеть его название,
+          обложку, имена и изображения персонажей, их количество, язык,
+          теги, ваш ник с коротким тегом рядом, число скачиваний и дату
+          публикации. Любой может его скачать. Ничего другого о вас не
+          показывается: ни устройство, ни другие ваши ссылки, ни паки,
+          которые вы не публиковали. Проверяющий может заменить ник,
+          нарушающий Соглашение, нейтральным словом «Автор», изменить теги
+          пака и отметить пак как «Рекомендуем».
         </p>
         <p>
           <strong>Ключ автора</strong> — случайное значение, которое наш
-          сервер выдаёт при первой публикации и показывает вам один раз. Он
-          не привязан ни к аккаунту, ни к почте, ни к устройству; сервер
+          сервер выдаёт при первой публикации и отправляет на устройство
+          один раз (приложение на этом устройстве может показать его снова;
+          мы — нет). Он не привязан ни к аккаунту, ни к почте, ни к
+          устройству; сервер
           хранит только его хеш — значение, по которому ключ восстановить
-          нельзя, — вместе с вашим ником и списком опубликованных с ним
-          паков. Из того же хеша получается короткий тег рядом с ником.
-          Ключ автора — то, чем вы снимаете пак с публикации, и
-          единственное, что переносит ваш ник и счётчики на другое
-          устройство: восстановить его за вас мы не можем.
+          нельзя, — вместе с вашим ником, датой выдачи, отметкой о
+          закрытии и списком опубликованных с ним паков. Из того же хеша
+          получается короткий тег рядом с ником. Ключ хранится на вашем
+          устройстве (2.1) и отправляется только на наш API по
+          зашифрованному соединению (напрямую или через relay, 2.2): когда
+          вы публикуете, снимаете, обновляете пак или проверяете его
+          статус; вместе со скачиванием пака — чтобы ваши собственные
+          скачивания не засчитывались; и один раз при запуске приложения —
+          чтобы узнать, принято ли решение по вашим отправкам. Ключ — то,
+          чем вы снимаете пак с публикации, и единственное, что переносит
+          ваш ник и счётчики на другое устройство, — вводом его там:
+          восстановить его за вас мы не можем.
         </p>
         <p>
           <strong>Проверка.</strong> Прежде чем отправленный пак появится в
-          Библиотеке, человек с нашей стороны просматривает его обложку,
-          имена и изображения персонажей. Проверка ограничена запрещённым
-          контентом из п. 5.2 Пользовательского соглашения; о ней не
-          сохраняется ничего, кроме решения и его даты.
+          Библиотеке, человек с нашей стороны его просматривает. Для этого
+          бэкенд отправляет в наш закрытый служебный чат в
+          <strong>Telegram</strong> (см. 2.2) карточку с названием пака,
+          вашим ником и тегом, языком, тегами, первыми именами персонажей и
+          ссылками на обложку и на файл пака на нашем API; решение
+          принимается кнопками под этой карточкой. Проверка — та, что
+          описана в п. 5.5 Пользовательского соглашения: запрещённый
+          контент из п. 5.2, можно ли в пак играть, не дубль ли он и
+          подходит ли Библиотеке, — и не проверка прав; записываются
+          решение, его причина и дата. Карточка остаётся в этом чате как история проверки.
         </p>
         <p>
           <strong>Счётчики скачиваний</strong> ведутся по каждому паку и, в
-          сумме, по автору и показываются публично. Это агрегированные
-          числа; данные о людях, скачавших пак, для них не собираются и не
-          хранятся.
+          сумме, по автору и показываются публично. Как засчитывается
+          скачивание — и что такое суточная метка из адреса скачивающего,
+          живущая 24 часа, — описано в 2.9.
         </p>
         <p>
           <strong>Жалобы.</strong> Пожаловаться на пак из Библиотеки может
-          любой — из приложения или с сайта. Жалоба передаёт нам код пака,
-          выбранную или написанную вами причину и — только для защиты от
-          злоупотреблений — хеш вашего сетевого адреса, который хранится 30
-          дней. Жалобы попадают в наш служебный чат в Telegram и
-          рассматриваются по п. 5.4 Пользовательского соглашения.
+          любой — из приложения: кнопка «Пожаловаться» составляет письмо на
+          адрес из раздела 1 с кодом и названием пака, к которому вы
+          добавляете причину. На наш бэкенд ничего не отправляется, и
+          ничего о вас мы не записываем, кроме письма, которое вы сами
+          решите отправить. Жалобы рассматриваются по п. 5.4
+          Пользовательского соглашения.
         </p>
         <p>
-          <strong>Срок хранения.</strong> Опубликованная копия пака, его
-          запись в каталоге и миниатюра обложки хранятся, пока пак
-          опубликован. Когда вы снимаете его с публикации (или это делаем
-          мы), запись в каталоге удаляется сразу, а файл возвращается к
-          правилам п. 2.9; отметка о том, что пак был опубликован и снят, —
-          код, дата и причина, без содержимого пака — хранится до 180 дней,
-          а также всё время, пока рассматривается жалоба на этот пак.
-          Запись автора (хеш ключа, ник, список публикаций, суммы
-          скачиваний) хранится, пока опубликован хотя бы один ваш пак, или
-          180 дней после снятия последнего — что наступит позже. Закрытый
-          ключ автора (п. 5.5 Пользовательского соглашения) хранится всё
-          время, пока действует закрытие.
+          <strong>Срок хранения.</strong> Опубликованная копия пака — тот же
+          файл, что стоит за ссылкой, и живёт по правилам п. 2.9. Обложка и
+          изображения персонажей, извлечённые для каталога, удаляются в
+          момент, когда пак покидает Библиотеку, — сняли ли его вы, убрали
+          ли мы, обновили ли вы ссылку или ссылка умерла. Запись каталога
+          автоматически не удаляется: она остаётся в нашей базе с
+          названием, именами персонажей, языком, тегами, счётчиками,
+          датами, статусом и причиной — чтобы снятый пак не вернулся под
+          тем же кодом и чтобы считать повторные жалобы на права
+          (Пользовательское соглашение, п. 5.5); никому она не
+          показывается. То же относится к записи автора (хеш ключа, ник,
+          даты, отметка о закрытии ключа). И то и другое мы удаляем по
+          вашему запросу — см. раздел 6, — кроме записи о закрытом ключе,
+          которая хранится всё время, пока действует закрытие, и записи
+          пака, на который рассматривается жалоба, — пока она
+          рассматривается.
+        </p>
+
+        <h3>2.11. Сетевой адрес, ограничение запросов, журналы и статистика</h3>
+        <p>
+          Каждый запрос приложения к нашему бэкенду несёт ваш сетевой адрес
+          (IP) — от Cloudflare или, когда сессия идёт через relay (2.2), в
+          заголовке, который добавляет relay. Наш собственный код использует
+          его для одного: ограничить число запросов с одного адреса за окно
+          (минута или час — в зависимости от маршрута), чтобы сервис нельзя
+          было завалить. Счётчик хранится в хранилище Cloudflare Durable
+          Object под ключом, в который входят адрес и начало окна; ключи,
+          чьё окно старше двух часов, удаляет автоматическая очистка, так
+          что адрес лежит там самое большее несколько часов. Адрес не
+          записывается ни в записи паков, ни в Библиотеку, ни в отметки
+          скачиваний (суточная метка из п. 2.9 содержит хеш, а не адрес).
+        </p>
+        <p>
+          Наш бэкенд пишет технические строки журнала (Cloudflare Workers
+          Logs) о том, что он сделал: событие, код пака, публичный
+          идентификатор автора, язык, число персонажей и изображений,
+          действие проверяющего, размеры загрузок и тексты ошибок — никогда
+          не ники, не имена персонажей, не ключи автора, не значения
+          владения и не сетевые адреса. Cloudflare хранит эти строки вместе
+          с собственной записью о каждом запросе (URL, метод, статус,
+          время) несколько дней. Отдельно события ссылок (создана, скачана,
+          продлена, отозвана, файл отсутствует, лимит исчерпан) пишутся в
+          набор данных Cloudflare Analytics Engine с кодом пака, событием,
+          его исходом и размером пака в байтах — ничего о человеке; по
+          этому набору мы считаем использование ссылок.
         </p>
 
         <h2>3. Цели обработки</h2>
@@ -1163,6 +1384,10 @@
             и жалоб (см. 2.10);
           </li>
           <li>
+            защита сервиса от злоупотреблений — ограничение числа запросов
+            и подсчёт каждого адреса раз в сутки (см. 2.9 и 2.11);
+          </li>
+          <li>
             доставка новых наборов персонажей и уведомлений о них (см. 2.2);
           </li>
           <li>обработка сообщений об ошибках и пожеланий (см. 2.8);</li>
@@ -1178,7 +1403,7 @@
           <li>поставщикам рекламы, аналитики и платежной инфраструктуры;</li>
           <li>
             провайдеру хостинга нашего бэкенда (Cloudflare) — для работы
-            серверной части онлайн-режима;
+            серверной части онлайн-режима, ссылок на паки и Библиотеки;
           </li>
           <li>
             другим игрокам, находящимся с вами в одной онлайн-комнате — в
@@ -1189,13 +1414,18 @@
             содержимого этого пака (см. 2.9);
           </li>
           <li>
+            всем пользователям приложения — пак, который вы опубликовали в
+            Библиотеке, и ваш ник с тегом (см. 2.10);
+          </li>
+          <li>
             сервису Google — для доставки push-уведомлений на ваше
             устройство, если вы их разрешили (см. 2.2);
           </li>
           <li>
-            сервису Telegram — только текст, который вы сами написали в
-            форме обратной связи, и приложенные к нему технические
-            сведения (см. 2.8);
+            сервису Telegram — текст, который вы сами написали в форме
+            обратной связи, и приложенные к нему технические сведения (см.
+            2.8), а также карточку проверки пака, отправленного вами в
+            Библиотеку (см. 2.10);
           </li>
           <li>в случаях, предусмотренных применимым законодательством.</li>
         </ul>
@@ -1228,18 +1458,34 @@
             (без содержимого пака) хранится до 180 дней.
           </li>
           <li>
-            Пак, опубликованный в Библиотеке, его запись в каталоге и
-            миниатюра обложки хранятся, пока он опубликован; после снятия
-            запись удаляется сразу, файл следует правилу выше, а отметка о
-            снятии (код, дата, причина) хранится до 180 дней или пока
-            рассматривается жалоба на него. Запись автора хранится, пока
-            опубликован хотя бы один его пак, или 180 дней после снятия
-            последнего (см. 2.10).
+            Пак, опубликованный в Библиотеке: обложка и изображения
+            персонажей, извлечённые для каталога, удаляются сразу, когда
+            пак покидает Библиотеку; файл пака следует правилу выше; запись
+            каталога (название, имена персонажей, язык, теги, счётчики,
+            даты, статус, причина) и запись автора (хеш ключа, ник, даты)
+            автоматически не удаляются — они хранятся, никому не
+            показываясь, пока вы не попросите их удалить (раздел 6), а для
+            закрытого ключа или пака, на который рассматривается жалоба, —
+            пока это длится (см. 2.10).
           </li>
           <li>
-            Сообщения из формы обратной связи хранятся в нашем служебном чате
-            в Telegram до тех пор, пока мы не удалим их вручную. Автоматически
-            они не удаляются, поскольку служат историей обращений.
+            Суточная метка скачивания (хеш, вычисленный из адреса, рядом с
+            кодом пака) истекает через 24 часа после записи. Счётчики
+            ограничения запросов, ключом которых служит сетевой адрес,
+            очищаются в пределах нескольких часов после закрытия окна (см.
+            2.9 и 2.11).
+          </li>
+          <li>
+            Строки журнала нашего бэкенда Cloudflare хранит несколько дней;
+            статистика событий ссылок (код, событие, исход, размер — ничего
+            о человеке) хранится у Cloudflare до трёх месяцев.
+          </li>
+          <li>
+            Сообщения из формы обратной связи и карточки проверки паков,
+            отправленных в Библиотеку, хранятся в нашем служебном чате в
+            Telegram до тех пор, пока мы не удалим их вручную. Автоматически
+            они не удаляются, поскольку служат историей обращений и
+            проверок.
           </li>
           <li>
             Данные, обрабатываемые сторонними провайдерами (реклама,
@@ -1270,6 +1516,15 @@
           устройство утеряно или приложение было переустановлено, напишите
           нам на адрес из раздела 1 и укажите код пака — мы удалим файл
           вручную.
+        </p>
+        <p>
+          Пак, опубликованный в Библиотеке, снимается кнопкой «Снять с
+          витрины» на любом устройстве, где есть ваш ключ автора; вместе с
+          ним сразу удаляются изображения, извлечённые для каталога. Его
+          запись в каталоге, ваш ник и запись автора удаляются только по
+          запросу: напишите на адрес из раздела 1 и укажите тег автора
+          (короткий код рядом с ником) и, если ключа у вас больше нет, коды
+          ваших паков. Удаляем вручную (два исключения — в п. 2.10).
         </p>
         <p>
           Push-уведомления отключаются в настройках уведомлений вашей
