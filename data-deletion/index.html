@@ -299,9 +299,17 @@
             <tr>
               <td>Backend log lines (event, pack code, public author id,
                 counts, errors — no names, keys or addresses) and
-                Cloudflare's own request records</td>
+                Cloudflare's own request records (URL, status, timing,
+                network address)</td>
               <td>Cloudflare Workers Logs</td>
               <td>A few days, then gone on their own</td>
+            </tr>
+            <tr>
+              <td>Error lines of failed requests through a relay (time, path,
+                reason — the network address and request parameters are
+                removed within an hour)</td>
+              <td>Our relay servers</td>
+              <td>Up to 14 days, then gone on their own</td>
             </tr>
             <tr>
               <td>A revocation marker for a used code — the fact and the
@@ -569,9 +577,17 @@
             <tr>
               <td>Строки журнала бэкенда (событие, код пака, публичный
                 идентификатор автора, счётчики, ошибки — без имён, ключей и
-                адресов) и собственные записи Cloudflare о запросах</td>
+                адресов) и собственные записи Cloudflare о запросах (URL,
+                статус, время, сетевой адрес)</td>
               <td>Cloudflare Workers Logs</td>
               <td>Несколько дней, затем исчезают сами</td>
+            </tr>
+            <tr>
+              <td>Строки об ошибках запросов через relay (время, путь,
+                причина — сетевой адрес и параметры запроса удаляются в
+                течение часа)</td>
+              <td>Наши relay-серверы</td>
+              <td>До 14 дней, затем исчезают сами</td>
             </tr>
             <tr>
               <td>Отметка об отозванном коде — только факт и дата, без

@@ -79,7 +79,7 @@
         <p class="meta">
           App: <strong>Crackface</strong><br />
           Effective date: <strong>May 25, 2026</strong><br />
-          Last updated: <strong>September 16, 2026</strong>
+          Last updated: <strong>September 27, 2026</strong>
         </p>
         <p>
           This Privacy Policy explains how
@@ -237,7 +237,11 @@
             third-party hosting providers, including outside your region.
             These servers process data in transit only (pass-through
             proxying and a temporary cache of the public character images)
-            and keep no request logs. Everything the app sends to our API
+            and keep no request logs. When a request through a relay fails,
+            the relay keeps a technical error line (the time, the request's
+            path and the reason) for up to 14 days for diagnostics; your
+            network address and the request's parameters are removed from
+            it within an hour. Everything the app sends to our API
             travels through the relay when your session is routed via it —
             including, for Library authors, the author key and the
             link-ownership value described in 2.9 and 2.10 — and the relay
@@ -617,9 +621,13 @@
           id, the language, the character and image counts, the reviewer's
           action, the sizes of uploads and the text of errors — never
           nicknames, character names, author keys, ownership values or
-          network addresses. Cloudflare keeps these lines, together with
-          its own record of each request (URL, method, status, timing),
-          for a few days. Separately, link events (created,
+          network addresses. Cloudflare keeps these lines for a few days,
+          together with its own record of each request: the URL, method,
+          status and timing, your network address (IP) with the country
+          and network operator it belongs to, and the app's technical
+          request headers (such as its User-Agent). We look at these
+          records to diagnose failures and to count traffic in aggregate
+          (for example, by country). Separately, link events (created,
           downloaded, renewed, revoked, file missing, limit hit) are
           written to a Cloudflare Analytics Engine dataset with the pack
           code, the event, its outcome and the pack's size in bytes —
@@ -739,6 +747,11 @@
             Our backend log lines are kept by Cloudflare for a few days;
             the link-event statistics (code, event, outcome, size — nothing
             about a person) are kept by Cloudflare for up to three months.
+          </li>
+          <li>
+            Error lines of failed requests on the relay servers (2.2) are
+            kept for up to 14 days; the network address and the request's
+            parameters are removed from them within an hour.
           </li>
           <li>
             Messages sent from the feedback form and the review cards of
@@ -884,7 +897,7 @@
         <p class="meta">
           Приложение: <strong>Crackface</strong><br />
           Дата вступления в силу: <strong>25 мая 2026</strong><br />
-          Последнее обновление: <strong>16 сентября 2026</strong>
+          Последнее обновление: <strong>27 сентября 2026</strong>
         </p>
         <p>
           Настоящая Политика конфиденциальности описывает, как
@@ -1047,7 +1060,11 @@
             том числе за пределами вашего региона. Такие серверы
             обрабатывают данные исключительно в транзите (сквозное
             проксирование и временный кеш публичных изображений персонажей)
-            и не ведут журналов запросов. Когда ваша сессия идёт через
+            и не ведут журналов запросов. Когда запрос через relay не
+            удаётся, relay сохраняет для диагностики техническую строку об
+            ошибке (время, путь запроса и причину) до 14 дней; ваш сетевой
+            адрес и параметры запроса удаляются из неё в течение часа.
+            Когда ваша сессия идёт через
             relay, через него проходит всё, что приложение отправляет на
             наш API, — в том числе, у авторов Библиотеки, ключ автора и
             значение-подтверждение владения ссылкой из п. 2.9 и 2.10; сам
@@ -1431,9 +1448,13 @@
           идентификатор автора, язык, число персонажей и изображений,
           действие проверяющего, размеры загрузок и тексты ошибок — никогда
           не ники, не имена персонажей, не ключи автора, не значения
-          владения и не сетевые адреса. Cloudflare хранит эти строки вместе
-          с собственной записью о каждом запросе (URL, метод, статус,
-          время) несколько дней. Отдельно события ссылок (создана, скачана,
+          владения и не сетевые адреса. Cloudflare хранит эти строки
+          несколько дней вместе с собственной записью о каждом запросе: URL,
+          метод, статус и время, ваш сетевой адрес (IP) со страной и
+          оператором сети, к которым он относится, и технические заголовки
+          запроса приложения (например, его User-Agent). Эти записи мы
+          смотрим, чтобы разбирать сбои и считать трафик в целом (например,
+          по странам). Отдельно события ссылок (создана, скачана,
           продлена, отозвана, файл отсутствует, лимит исчерпан) пишутся в
           набор данных Cloudflare Analytics Engine с кодом пака, событием,
           его исходом и размером пака в байтах — ничего о человеке; по
@@ -1555,6 +1576,11 @@
             Строки журнала нашего бэкенда Cloudflare хранит несколько дней;
             статистика событий ссылок (код, событие, исход, размер — ничего
             о человеке) хранится у Cloudflare до трёх месяцев.
+          </li>
+          <li>
+            Строки об ошибках запросов на relay-серверах (п. 2.2) хранятся
+            до 14 дней; сетевой адрес и параметры запроса удаляются из них в
+            течение часа.
           </li>
           <li>
             Сообщения из формы обратной связи и карточки проверки паков,
