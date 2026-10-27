@@ -107,123 +107,85 @@
           storage:
         </p>
         <ul>
-          <li>player names entered by the user;</li>
-          <li>language, sound, and board-card-size preferences;</li>
           <li>
-            user-created character packs (UGC packs): pack metadata,
-            character names, and images added by the user;
-          </li>
-          <li>game statistics (match counts, durations, packs played);</li>
-          <li>
-            the player roster: names, photos, and game statistics of the
-            people you added yourself to the list of players at your table;
+            player names you enter, and the player roster: names, photos and
+            game statistics of the people you added yourself to the list of
+            players at your table;
           </li>
           <li>
-            local monetization flags (whether the "Agent Badge" purchase is
-            active);
+            your settings (such as language, sound and card size) and the
+            choices you made in the app, including whether board reminders
+            and news about packs are on;
           </li>
           <li>
-            favourite packs, daily-assignment progress, and markers for
-            catalogue items you have already seen;
+            character packs you created (UGC packs): pack details, character
+            names and the images you added;
           </li>
           <li>
-            local counters used for ad pacing, tutorial hints, and the
-            review-, notification- and update-prompt logic;
+            game statistics and progress (games played, daily assignments,
+            favourite packs);
+          </li>
+          <li>whether the "Agent Badge" purchase is active;</li>
+          <li>
+            service counters, for example to keep ads and hints from showing
+            too often;
           </li>
           <li>
-            a random device secret that proves your right to manage the pack
-            links you created (see 2.9). It is generated on the device, is
-            tied neither to you nor to any account, and only a value derived
-            from it — one the secret cannot be recovered from — is ever sent
-            to the server;
+            a random device secret, tied neither to you nor to any account,
+            that proves the pack links you created are yours to manage
+            (2.9); only a value derived from it, from which the secret cannot
+            be recovered, is sent to our servers;
           </li>
           <li>
             your author key, nickname and public author id, if you have
-            published a pack in the Library (see 2.10). The key is issued by
-            the server and is kept in the app's ordinary preferences storage
-            on the device so the app can sign your publications; you can
-            display it in the settings to copy it elsewhere or show it as a
-            QR code;
+            published a pack in the Library (2.10);
           </li>
           <li>
-            Library data that never leaves the device: the authors you hid
-            or marked as favourites, the language and size filters you
-            chose, what the app last knew about the status of each pack you
-            submitted (so it can tell you about a decision), and, for each
-            pack that came by link, the code it came from;
+            Library data: the authors you hid or marked as favourites, your
+            filters, and the status of the packs you submitted;
           </li>
           <li>
-            the Case boards you are on ("My boards", see 2.3): each board's
-            code and name, your seat on it (a random identifier and token),
-            what the app last saw there (the day and how many cases were
-            waiting), the copies of the board's packs you downloaded (kept
-            while you stay on the board and have opened it in the last 30
-            days), whether you asked for board reminders, and when our
-            server last accepted your device for board notifications (a
-            time and a checksum, not the delivery token — see 2.3).
-          </li>
-          <li>
-            whether you agreed to news about packs ("News &amp; new packs"
-            in Settings, see 2.2).
+            the Case boards you are on (2.3): each board's code and name,
+            your seat on it (a random identifier and token) and the copies of
+            the board's packs you downloaded.
           </li>
         </ul>
         <p>
-          This information is used only to run app features and is not sent
-          to our own backend server (with the exceptions described in 2.3,
-          2.4, 2.9 and 2.10).
+          This information is used to run the app's features. It reaches
+          our servers only when you use the features described in 2.3, 2.4,
+          2.9 and 2.10.
         </p>
 
         <h3>2.2. Third-party services</h3>
-        <p>The app uses the following third-party SDKs / services:</p>
+        <p>We use the following third-party services:</p>
         <ul>
           <li>
-            <strong>Google Mobile Ads (AdMob)</strong> — for advertising
-            (interstitial, app-open and rewarded);
+            <strong>Google Mobile Ads (AdMob)</strong> — to show ads in the
+            free version; it is the only advertising provider in the app.
+            Your choices about personalised ads are described in 2.7 and
+            section 6;
           </li>
           <li>
-            <strong>Google Firebase Analytics</strong> — for aggregated,
-            de-identified app-usage analytics (matches started and finished,
-            mode distribution, pack popularity, packs installed from the
-            catalogue or from a link, notifications opened, the answer to
-            the notification permission request, whether Case board
-            reminders were turned on or off, whether news about packs was
-            turned on or off and where (the end-of-game prompt or Settings),
-            whether an update was offered and what you answered, and Library
-            actions — the catalogue opened, a pack published, imported,
-            updated, unpublished or reported, a decision shown — with the
-            pack's language, the outcome or the error code as parameters;
-            never your nickname, your author key or a pack's code);
+            <strong>Google Firebase Analytics</strong> — to understand how
+            the app is used (for example, games played, packs and features
+            used, notifications opened, choices made in the app). It does not
+            receive your nickname, your author key or a pack's code;
           </li>
           <li>
             <strong>Google Firebase Crashlytics</strong> — for crash reports
             used to improve app stability;
           </li>
           <li>
-            <strong>Google Firebase Cloud Messaging</strong> — delivery of
-            push notifications: news about new character packs, if you
-            agreed to it, and Case board notifications (2.3), if you turned
-            board reminders on. They arrive only where the operating system
-            permits notifications: on iOS and on Android 13+ the app asks
-            for that permission first (the prompt comes after a few finished
-            games, when you first open a Case board and agree to its
-            reminders, or when you turn news or board reminders on in the
-            app — never at launch), while older Android versions
-            permit them by default. The device receives a technical delivery
-            token from Google. News about packs is a choice of its own,
-            separate from the permission and from board reminders: the app
-            asks about it after a few finished games, and the "News &amp;
-            new packs" switch in Settings turns it on and off. We send such
-            campaigns by hand, only to devices that agreed, in three lists —
-            one for Russian, one for Ukrainian and one in English for every
-            other interface language — never to an individual player. Case board
-            notifications are another kind: the evening reminder is
-            scheduled on the device itself and goes through neither Google
-            nor our servers, while the notification that a friend on your
-            board has started the day's cases is sent by our server to your
-            device's delivery token (2.3). Firebase Analytics above only
-            counts, without identifying you, whether these were turned on
-            and whether one was opened. You can turn all notifications off
-            in your operating system's settings.
+            <strong>Google Firebase Cloud Messaging</strong> — to deliver push
+            notifications: news about new character packs, if you agreed to
+            it, and the Case board notifications our server sends (2.3), if
+            you turned board reminders on. For this, your device receives a
+            push token from Google. News about packs needs your separate
+            consent in the app, apart from your device's notification
+            permission and from board reminders. We send news about packs to
+            everyone who agreed, grouped by the language of their app; we do
+            not send it to individual players. Notifications reach you only
+            if you allow them for Crackface on your device.
           </li>
           <li>
             <strong>Google Play Billing</strong> and
@@ -231,21 +193,17 @@
           </li>
           <li>
             <strong>App Store</strong> and <strong>Google Play</strong> — to
-            offer you a newer version of the app: on iOS the app asks the App
-            Store's public lookup service whether one exists, sending the
-            app's identifier and your device's region (a country code); on
-            Android it uses Google Play's in-app updates, where Play itself
-            shows the offer and downloads the update;
+            tell you when a newer version of the app is available; on iOS the
+            check sends the app's identifier and your device's region (a
+            country code);
           </li>
           <li>
-            <strong>Cloudflare</strong> (Workers, Durable Objects, KV, R2,
-            D1, Analytics Engine) — hosting and infrastructure for our
-            backend (online rooms, sharing user-created packs between
-            players in the same room, storing packs you published a link
-            for, the Library index, delivery of built-in images and of the
-            new-pack catalogue). Cloudflare processes connection-level
-            technical data (IP address, request headers) to route traffic;
-            what our own code does with your network address is in 2.11.
+            <strong>Cloudflare</strong> — hosts our servers and stores the
+            server-side data described in this policy (online rooms and Case
+            boards, pack links, the Library), and delivers the built-in
+            character images and the catalogue of new packs. Cloudflare
+            processes connection data (IP address, request headers) to route
+            traffic; how we use your network address is described in 2.11.
           </li>
           <li>
             <strong>Telegram</strong> — the messenger whose private internal
@@ -255,39 +213,29 @@
             as an ordinary chat message.
           </li>
           <li>
-            <strong>Fallback relay servers</strong> — on networks where a
-            direct connection to our primary infrastructure is unavailable,
-            app traffic (including online-mode data and image loading) may
-            be routed through fallback relay servers that we operate on
-            third-party hosting providers, including outside your region.
-            These servers process data in transit only (pass-through
-            proxying and a temporary cache of the public character images)
-            and keep no request logs. When a request through a relay fails,
-            the relay keeps a technical error line (the time, the request's
-            path and the reason) for up to 14 days for diagnostics; your
-            network address and the request's parameters are removed from
-            it within an hour. Everything the app sends to our API
-            travels through the relay when your session is routed via it —
-            including, for Library authors, the author key and the
-            link-ownership value described in 2.9 and 2.10 — and the relay
-            forwards your network address to our backend in a header so
-            that request limits (2.11) apply per person rather than to the
-            relay as a whole.
+            <strong>Fallback relay servers</strong> — on networks where our
+            main servers cannot be reached directly, the app's traffic
+            (including online play and image loading) goes through relay
+            servers that we run with third-party hosting providers, including
+            outside your region. Everything the app sends to our servers then
+            passes through them. They keep no request logs — only a
+            temporary cache of the public character images and short error
+            records of failed requests (section 5).
           </li>
         </ul>
         <p>
-          These providers may process technical and interaction data (for
-          example advertising identifier, IP address, app and device
-          identifiers, in-app events, diagnostic data, and transaction data)
-          under their own privacy policies. Links to those policies are in
-          section 11.
+          Depending on the service, these providers receive technical and
+          usage data — for example the advertising identifier, IP address,
+          app and device identifiers, in-app events, diagnostic data and
+          purchase records — and process it under their own privacy
+          policies. Links to those policies are in section 11.
         </p>
 
         <h3>2.3. Online mode (optional)</h3>
         <p>
           When you use the online room mode (each player on their own
-          device, joining by code), our backend (hosted on Cloudflare)
-          temporarily receives:
+          device, joining by code), our servers (hosted by Cloudflare)
+          temporarily receive:
         </p>
         <ul>
           <li>
@@ -316,106 +264,84 @@
           </li>
         </ul>
         <p>
-          Server-side room state is automatically deleted 24 hours after the
-          last activity in the room — except on a Case board, below. Data
-          does not carry over between different rooms or matches. The online
-          mode does not include any chat or messaging between players: in
-          "Find the Mole", where a table can seat up to 20, players describe
-          their character out loud — no voice or text is carried by the app.
+          Room data on our servers is deleted 24 hours after the last
+          activity in the room (Case boards are described below). Data does
+          not carry over between rooms or matches. The online mode has no
+          chat or messaging between players: in "Find the Mole" players
+          describe their character out loud, and the app carries no voice
+          or text.
         </p>
         <p>
           <strong>Case board.</strong> A Case board is a Crackdle room that
-          lasts: up to 50 members solve the same few cases each day, whenever
-          it suits them, and the board keeps the score. For that, our backend
-          keeps, for as long as the board exists:
+          lasts: its members solve the same cases each day, whenever it
+          suits them, and the board keeps the score. For as long as the
+          board exists, our servers keep:
         </p>
         <ul>
+          <li>the board's name, if it has one;</li>
           <li>
-            each member's nickname, the day they joined and when they last
-            played, the cases they opened, the characters they named in them
-            and their results;
+            each member's nickname, when they joined and last played, the
+            cases they opened, the characters they named in them and their
+            results;
           </li>
           <li>
-            each day's table and the all-time table (the board's "Leaders":
-            Today, Yesterday, All time), including the lines of members who
-            have since left the board;
+            the day tables and the all-time table, including the lines of
+            members who have since left the board;
           </li>
           <li>
-            the board's journal (its latest 50 entries): who added or removed
-            a pack, changed a setting, handed the board over or excluded
-            someone, with their nicknames;
+            the board's journal of recent changes — who added or removed a
+            pack, changed a setting, handed the board over or excluded
+            someone — with their nicknames;
           </li>
           <li>
             for a member who was dropped for inactivity or excluded: the
-            nickname and a one-way hash of their token — so that the first
-            can come back on the same phone, and the second cannot;
+            nickname and a one-way hash of their token, so that the first
+            can come back on the same phone and the second cannot;
           </li>
           <li>
             the UTC offset of the owner's phone (a number of minutes, not a
-            location), so that the board's day ends at the owner's midnight;
-            members see when the day ends.
+            location), so that the board's day ends at the owner's midnight.
           </li>
         </ul>
         <p>
-          Nicknames and results are shown only to the board's members;
-          anyone with the board's code sees only its game, the number of
-          members and whether entry is closed. The details of a day — its
-          cases, who named which character, the results and the day's table
-          — are deleted after 30 days; the all-time table and the journal
-          stay for the life of the board. The board is deleted with everything on it 14 days
-          after the last activity on it, or right away when its last member
-          leaves. Leaving a board removes you from its members; what you
-          played stays in its tables under your nickname until the board is
-          deleted, or until, once you have left, you ask us to replace your
-          nickname (section 6).
+          The board's name, nicknames and results are shown only to the
+          board's members (the name also appears in their board
+          notifications); anyone with the board's code sees only its game,
+          the number of members and whether entry is closed. How long this is kept is set
+          out in section 5.
         </p>
         <p>
-          Board reminders are optional. The app asks once, when you first
-          open a board, without naming a time. Turned on, they are two
-          things. The evening reminder is a local notification your device
-          schedules for itself when cases are waiting on your boards —
-          nothing about it is sent to our servers. And when another member
-          of your board finishes their first case of the board's day, while
-          you have not finished one there yet that day and still have cases
-          open, our server sends your device a push notification: the
-          board's name (or, for a board without one, its code) and that
-          member's nickname ("Anna is on the case"); the notification also
-          carries the board's code, so that tapping it opens the board.
-          At most one a day per board, only between 9:00 and 22:00 by your
-          phone's clock, and not while you have the board open. For that,
-          the app gives our backend, for each of the (up to 20) boards you
-          opened most recently: your
-          device's delivery token (from Google, see 2.2), whether it is an
-          Android or an iOS device, your phone's UTC offset (a number of
-          minutes, not a location — for the 9:00–22:00 window) and the
-          wording of that notification in your app's language. They are
-          kept in your seat on the board, are never shown to other members,
-          and are passed only to Google Firebase Cloud Messaging (and, for
-          an iPhone, through it to Apple's push service) to deliver the
-          notification. The bell in "My boards" turns both on and off.
+          <strong>Board reminders</strong> are optional and are turned on
+          in the app. They are two notifications. The evening reminder about
+          cases waiting on your boards is scheduled and shown by your device
+          itself; it does not go through our servers or through Google's
+          notification service. And when another
+          member of your board has finished their first case of the day and
+          you have not played there yet that day, our server sends you a
+          notification with the board's name (or its code) and that
+          member's nickname. For this, we keep with your seat on your boards
+          your device's push token (from Google, see 2.2), its platform
+          (Android or iOS), your phone's UTC offset (a number of minutes,
+          not a location, so that notifications come at a suitable time of
+          day) and the wording of the notification in your app's language.
+          We use them only to send these notifications, through Google
+          Firebase Cloud Messaging (and, for iPhones, Apple Push
+          Notification service); other members never see them. How long
+          they are kept is set out in section 5.
         </p>
 
         <h3>2.4. User-created packs (UGC) in online mode</h3>
         <p>
-          If the room host chose a user-created pack (made by them in the
-          UGC editor), a copy of that pack (metadata + character images) is
-          temporarily uploaded to our ephemeral R2 storage so it can be
-          delivered to the other players in the room. That copy is deleted
-          together with the room — 24 hours after the last activity in it;
-          a copy that outlives the room is removed by a storage rule no
-          later than 7 days.
+          If the room host chose a user-created pack (made in the UGC
+          editor), a copy of that pack (pack details and character images)
+          is kept on our servers for as long as the room exists, so that the
+          other players in the room can download it (retention: section 5).
         </p>
         <p>
-          On a Case board (2.3), a pack a member added to the board is
-          uploaded by that member's app (or the owner's) and kept for as long
-          as the board still plays it: our server rewrites the copy about
-          once a month, so that the storage rule does not take it from under
-          the board. Only the board's members can download it. The copy is
-          deleted when the pack leaves the board and the days that used it
-          are past, together with the board, or at once when we remove it on
-          a complaint — after which it cannot be added to that board again.
-          A copy whose deletion failed is removed by a storage rule no later
-          than 60 days after it was last written.
+          On a Case board (2.3), a copy of each pack a member added to the
+          board is kept on our servers while the board uses it and keeps the
+          days that used it; only the board's members can download it
+          (retention: section 5).
         </p>
         <p>
           Outside an online room, a user-created pack is stored on our
@@ -433,12 +359,11 @@
 
         <h3>2.5. Camera access</h3>
         <p>
-          In online mode, the app may offer to scan a QR code containing a
-          game-room join code. The camera is launched only on an explicit
-          user action (tapping the scanner button) and is used solely for
-          this scan. Camera frames are neither saved nor transmitted —
-          recognition happens locally on the device, and only the resulting
-          text room code is sent to our backend.
+          In online mode, you can join a room by scanning its QR code. The
+          camera turns on only when you tap the scanner button and is used
+          only for this scan. Camera frames are neither saved nor sent: the
+          code is recognised on your device, and only the room code itself
+          is sent to our servers.
         </p>
         <p>
           In the UGC pack editor, the camera is used to capture character
@@ -454,20 +379,17 @@
           device's photo library. Library access is requested only on an
           explicit user action (tapping a pick button). Selected photos are
           copied into the local UGC pack; the originals in your library are
-          not modified.
+          not modified. Like camera photos, they are not sent to our servers
+          except in cases 2.4 and 2.9.
         </p>
 
         <h3>2.7. Tracking transparency on iOS</h3>
         <p>
-          On iOS, the app uses Apple's App Tracking Transparency (ATT)
-          framework. The first time you open the app, iOS displays a system
-          prompt asking whether you allow the app to track your activity
-          across other companies' apps and websites. If you tap "Ask App
-          Not to Track", the app will not access your advertising
-          identifier (IDFA), and you will see only non-personalized ads.
-          The app continues to work in full regardless of your choice. You
-          can change this preference at any time in <strong>Settings →
-          Privacy &amp; Security → Tracking → Crackface</strong>.
+          On iOS, we use your advertising identifier (IDFA) only if you
+          allow tracking in Apple's App Tracking Transparency (ATT) prompt.
+          If you do not, you see only non-personalised ads; the app works in
+          full either way. You can change this choice at any time in your
+          device settings (see section 6).
         </p>
 
 
@@ -490,19 +412,17 @@
         </ul>
         <p>
           No device identifier, device name, advertising identifier, e-mail
-          address or account credentials are sent. The message is anonymous:
-          we cannot link it to you, to your purchases or to your game
-          sessions, and <strong>we cannot reply to it</strong> — if you want
-          an answer, write to the address in section 1.
+          address or account details are sent with it. We do not link the
+          message to you, your purchases or your games, and <strong>we
+          cannot reply to it</strong> — if you want an answer, write to the
+          address in section 1.
         </p>
         <p>
-          Technically the message is posted to our backend (hosted on
-          Cloudflare) and immediately forwarded to a private internal chat in
-          the <strong>Telegram</strong> messenger that only we can access. It
-          is not stored on our backend. The sender's IP address is used only
-          to rate-limit submissions (spam protection): it forms part of the
-          key of a service counter, which is swept within hours, and it is
-          never stored alongside the text.
+          The message passes through our servers (Cloudflare), which do not
+          store it, to a private chat in the <strong>Telegram</strong>
+          messenger that only we can access. Your IP address is used only to
+          limit how often messages can be sent (spam protection) and is not
+          stored with the message (see 2.11).
         </p>
         <p>
           Please do not put personal data — yours or anyone else's — into the
@@ -517,7 +437,7 @@
           for it.
         </p>
         <p>
-          Creating a link sends the following to our backend (Cloudflare):
+          Creating a link sends the following to our servers (Cloudflare):
         </p>
         <ul>
           <li>
@@ -526,61 +446,47 @@
           </li>
           <li>the pack's name, character count, and version number;</li>
           <li>
-            a value computed from your device secret and the pack id (see
-            2.1) — it is what proves the link is yours to manage. When you
-            add a pack you published in the Library on another device of
-            yours (one holding your author key), that device's value is
-            stored beside the first, and the link can be managed from
-            either; the values live as long as the link does.
+            a value derived from your device secret (see 2.1) that proves
+            the link is yours to manage. If you add a pack you published in
+            the Library on another device of yours (one holding your author
+            key), that device's value is kept as well, so the link can be
+            managed from either. These values are kept as long as the link
+            exists.
           </li>
         </ul>
         <p>
-          In return you get an 8-character code and a link of the form
+          In return you get a code and a link of the form
           <strong>https://crackface.app/p/CODE</strong>.
           <strong>Anyone holding that link can download the pack</strong> —
-          there is no password and no invitation on it. A link you have not
-          published in the Library (2.10) is listed nowhere by us, and the
-          page behind it shows nothing of the pack's content: it carries
-          the install buttons only. But whatever you sent by link travels
-          onward as freely as the link itself — keep that in mind when a
-          pack holds images of people.
+          there is no password and no invitation on it. We do not list a
+          link anywhere unless you publish the pack in the Library (2.10),
+          and the web page behind a link does not show the pack's content.
+          But whatever you sent by link travels onward as freely as the
+          link itself — keep that in mind when a pack holds images of
+          people.
         </p>
         <p>
-          A link remains valid for 90 days from the later of: its creation,
-          the most recent update of the pack behind it (the "Update" action
-          in the app, which replaces the stored copy under the same link),
-          or the most recent download of the pack via the link. A download
-          extends the period only once the link has less than 45 days
-          remaining. Consequently, a link that continues to be used does not
-          expire; a link that has not been downloaded for 90 days expires,
-          ceases to work, and the stored copy is deleted by an automated
-          storage rule no later than 100 days after it was last written.
-          The exception is a pack published in the Library: for as long as
-          it is published we renew its link ourselves, and it does not
-          expire (2.10).
+          A link stays active while it is used: it expires no later than 90
+          days after it was last created, updated or downloaded, and its
+          file is deleted no later than 100 days after that date. The link
+          of a pack published in the Library does not expire while the pack
+          is published (2.10).
         </p>
         <p>
-          For each link we keep a count of the number of times the pack has
-          been downloaded via that link and display it to the author in the
-          app (and, for a pack published in the Library, publicly — 2.10).
-          Each counted download is stored as a marker holding only the
-          code, the time and a random value — nothing about the person. So
-          that one address counts once a day rather than every time "Add"
-          is tapped, the server also keeps, for 24 hours, a day-mark
-          derived from the downloader's network address: the address (for
-          IPv6, its network half) is passed through a one-way hash function
-          together with a fixed prefix, and the first 8 bytes of the result
-          are stored next to the pack's code. The address itself is not
-          stored, cannot be recovered from the mark, and the mark expires
-          automatically after 24 hours. Downloads made from a device that
-          holds the pack author's own key (2.10) are not counted.
+          For each link we count downloads and show the count to the author
+          in the app (and, for a pack published in the Library, to everyone
+          — 2.10). Each counted download is recorded with the code and the
+          time and nothing about the person. To count downloads from one
+          network once a day, we keep a one-way hash of the network address
+          for 24 hours; the address itself is not stored. Downloads from a
+          device that holds the pack author's key (2.10) are not counted.
         </p>
         <p>
-          You can take a link down at any time — "Remove link", in the same
-          screen of the app. The file is deleted immediately and the code
-          becomes permanently invalid: so that it is never handed to another
-          pack later, we keep a revocation marker — the fact and the date
-          only, none of the pack's content — for up to 180 days.
+          You can take a link down at any time in the app. Its file is then
+          deleted immediately and the code stops working for good; so that
+          the code is never given to another pack, we keep a record that it
+          was revoked — the fact and the date only, none of the pack's
+          content — for up to 180 days.
         </p>
         <p>
           A pack shared by link is not moderated and not reviewed in
@@ -595,15 +501,13 @@
         <h3>2.10. Publishing a pack in the Library</h3>
         <p>
           A pack you have created a link for can also be published in the
-          Library — a public catalogue inside the app. There is no
-          catalogue on the website, and the page behind a link still shows
-          nothing of the pack (2.9). Publishing happens only on your
-          explicit action ("Publish in the Library" → "Send for review")
-          and only for the pack you picked for it; section 5.5 of the
+          Library — a public catalogue inside the app (there is none on the
+          website). Only the packs you choose are published, and only after
+          you send them for review; section 5.5 of the
           <a href="../terms-of-use/#en">Terms of Use</a> sets out what
           publishing means.
         </p>
-        <p>Publishing sends to our backend, in addition to what 2.9 lists:</p>
+        <p>Publishing sends to our servers, in addition to what 2.9 lists:</p>
         <ul>
           <li>
             the nickname you chose to publish under and the language and
@@ -615,16 +519,13 @@
           </li>
         </ul>
         <p>
-          <strong>What the server takes from the pack.</strong> The server
-          opens the stored copy of the pack and extracts what the catalogue
-          shows: the title, the character names (also kept in lower case as
-          a search index, so the catalogue can be searched by name), the
-          cover and a reduced picture of each character (up to 200), which
-          are stored as separate files under the pack's code. The catalogue
-          entry also holds the character count, the language, the tags,
-          the version, the download count, the dates of submission and of
-          the decision, and the status with the reason for a refusal or a
-          removal.
+          <strong>What we take from the pack.</strong> For the catalogue we
+          take from the stored copy of the pack its title, the character
+          names (also used for search), the cover and a smaller picture of
+          each character. The catalogue entry also holds the character
+          count, the language, the tags, the version, the download count,
+          the dates of submission and of the decision, and the status with
+          the reason for a refusal or a removal.
         </p>
         <p>
           <strong>What becomes public.</strong> While the pack is published,
@@ -640,108 +541,74 @@
         </p>
         <p>
           <strong>The author key</strong> is a random value our server
-          issues on your first publication and sends to your device once
-          (the app on that device can show it to you again; we cannot). It is
-          tied to no account, e-mail or device; the server keeps only a
-          hash of it — a value the key cannot be recovered from — together
-          with your nickname, the date it was issued, whether it has been
-          closed, and the list of packs published with it. The short tag
-          shown next to your nickname is derived from the same hash. The
-          key is kept on your device (2.1) and is sent only to our API,
-          over an encrypted connection (directly or via the relay, 2.2):
-          when you publish, unpublish, update or check on a pack; with a
-          pack download, so that your own downloads are not counted; and
-          once per app launch, to ask whether any of your submissions has
-          been decided on. It is what lets you unpublish a pack, and the
-          only thing that can bring your nickname and download counts to
-          another device — by typing it there: we cannot restore it for
-          you.
+          issues on your first publication and sends to your device. It is
+          tied to no account, e-mail or device. We keep only a one-way hash
+          of it, from which the key cannot be recovered, together with your
+          nickname, the date it was issued, whether it has been closed, and
+          the list of packs published with it; the short tag shown next to
+          your nickname is derived from the same hash. Your device sends the
+          key to our servers, over an encrypted connection, when you publish,
+          update or unpublish a pack or check on your submissions, and with
+          pack downloads, so that your own downloads are not counted. The
+          key lets you manage your packs, and only the key can move your
+          nickname and download counts to another device — by entering it
+          there. We cannot restore it for you.
         </p>
         <p>
           <strong>Review.</strong> Before a submitted pack appears in the
-          Library, a person on our side looks at it. For that, the backend
-          posts a card into our private internal chat in
-          <strong>Telegram</strong> (see 2.2) with the pack's title, your
-          nickname and tag, the language, the tags, the first character
-          names, and links to the cover and to the pack file on our API;
-          the decision is taken through the buttons of that card. The
-          review is the one section 5.5 of the Terms of Use describes — the
-          prohibited content of 5.2, whether the pack can be played, whether
-          it duplicates or fits the Library — and not a check of rights;
-          what is recorded is the decision, its reason and its date. The card
-          stays in that chat as the history of the review.
+          Library, a person on our side reviews it as described in section
+          5.5 of the Terms of Use; this is not a check of rights. For this,
+          we send a card to our private chat in <strong>Telegram</strong>
+          (see 2.2) with the pack's title, your nickname and tag, its
+          language and tags, the first character names, and links to the
+          cover and to the pack file. We record the decision, its reason and
+          its date; the card stays in that chat as the history of the
+          review.
         </p>
         <p>
           <strong>Download counts</strong> are kept per pack and, summed,
-          per author, and shown publicly. How a download is counted — and
-          the 24-hour day-mark derived from the downloader's address — is
-          described in 2.9.
+          per author, and shown publicly. How downloads are counted, and why
+          a hash of the downloader's network address is kept for 24 hours,
+          is described in 2.9.
         </p>
         <p>
           <strong>Reports.</strong> Anyone can report a Library pack from
-          the app: the "Report" button composes an e-mail to the address in
-          section 1 with the pack's code and title, to which you add your
-          reason. Nothing is sent to our backend and nothing about you is
-          recorded by us beyond the e-mail you choose to send. Reports are
-          handled under section 5.4 of the Terms of Use.
+          the app: the report is an e-mail to the address in section 1 with
+          the pack's code and title, to which you add your reason. We record
+          nothing about you beyond the e-mail you choose to send. Reports
+          are handled under section 5.4 of the Terms of Use.
         </p>
         <p>
-          <strong>Retention.</strong> The published copy of the pack is the
-          same file as behind the link. For as long as the pack is
-          published, its link does not expire: our backend renews it
-          itself, under the same rule as a download (2.9), downloads or not.
-          When the pack leaves the Library, the link becomes an ordinary
-          link again: its period counts from the last renewal and from then
-          on follows the rules of 2.9. The cover and character pictures
-          extracted for the catalogue are deleted the moment the pack
-          leaves the Library — whether you unpublish it, we remove it, you
-          update the link, or you remove the link. The catalogue entry is
-          not deleted automatically: it stays
-          in our database with its title, character names, language, tags,
-          counts, dates, status and reason, so that a removed pack cannot
-          come back under the same code and repeat rights complaints can be
-          counted (Terms of Use, 5.5); it is shown to nobody. The same
-          applies to your author record (key hash, nickname, dates, whether
-          the key is closed). We delete both on your request — see section
-          6 — except that the record of a closed key stays for as long as
-          the closure lasts, and the entry of a pack under complaint stays
-          for as long as that complaint is handled.
+          <strong>Retention.</strong> While the pack is published, its link
+          does not expire. After the pack leaves the Library, we keep its
+          catalogue entry and your author record, shown to nobody, so that a
+          removed pack cannot come back under the same code and repeat
+          rights complaints can be counted (Terms of Use, 5.5). How long
+          each part is kept is set out in section 5.
         </p>
 
         <h3>2.11. Network address, request limits, logs and statistics</h3>
         <p>
-          Every request the app makes to our backend carries your network
-          address (IP) — from Cloudflare, or, when your session goes
-          through the relay (2.2), in a header the relay adds. Our own code
-          uses it for one purpose: limiting how many requests one address
-          may make in a window (a minute, ten minutes or an hour, depending
-          on the route), so that the service cannot be flooded. The counter is
-          stored in Cloudflare Durable Object storage under a key that
-          contains the address and the start of the window; keys whose
-          window is more than two hours old are removed by an automatic
-          sweep, so an address stays there for a few hours at most (apart
-          from our hosting provider's restore points, section 5). The address is
-          not written into pack records, the Library or the download
-          markers (the day-mark in 2.9 holds a hash, not the address).
+          Every request the app makes to our servers carries your network
+          address (IP). We use it to limit how many requests one address can
+          make in a short period, so that the service cannot be flooded;
+          these counters are deleted within a few hours. We do not store
+          your address with packs, in the Library or with download records
+          (what 2.9 keeps for 24 hours is a hash, not the address). It is
+          also recorded in server logs, as described below.
         </p>
         <p>
-          Our backend writes technical log lines (Cloudflare Workers Logs)
-          about what it did: the event, the pack code, the public author
-          id, the language, the character and image counts, the reviewer's
-          action, the sizes of uploads and the text of errors — never
-          nicknames, character names, author keys, ownership values or
-          network addresses. Cloudflare keeps these lines for a few days,
-          together with its own record of each request: the URL, method,
-          status and timing, your network address (IP) with the country
-          and network operator it belongs to, and the app's technical
-          request headers (such as its User-Agent). We look at these
+          Our servers keep technical logs of what they did (for example, the
+          event, the pack code, counts and sizes, and error messages); these
+          logs do not contain nicknames, character names, author keys, link
+          ownership values or network addresses. Cloudflare also keeps its
+          own record of each request: the URL requested, the time and the
+          result, your network address (IP) with its country and network
+          operator, and the app's technical request headers. We use these
           records to diagnose failures and to count traffic in aggregate
-          (for example, by country). Separately, link events (created,
-          downloaded, renewed, revoked, file missing, limit hit) are
-          written to a Cloudflare Analytics Engine dataset with the pack
-          code, the event, its outcome and the pack's size in bytes —
-          nothing about the person; that dataset is what we count link
-          usage from.
+          (for example, by country). Separately, we keep statistics of link
+          events (such as created, downloaded or revoked) with the pack code
+          and nothing about the person, to count how links are used.
         </p>
 
         <h2>3. Why data is used</h2>
@@ -752,8 +619,8 @@
           <li>to analyze app usage and improve stability;</li>
           <li>to process and restore purchases;</li>
           <li>
-            to run online mode — rooms and Case boards with their tables
-            ("Leaders") — and share UGC packs between players;
+            to run online mode — rooms and Case boards with their score
+            tables — and share UGC packs between players;
           </li>
           <li>
             to deliver your pack to the people you sent its link to
@@ -773,20 +640,35 @@
             them (see 2.2);
           </li>
           <li>
-            to tell the members of a Case board that a friend has started
-            the day's cases, if they turned board reminders on (see 2.3);
+            to let members of a Case board who turned board reminders on
+            know that another member has played their first case of the day
+            (see 2.3);
           </li>
           <li>to handle problem reports and suggestions (see 2.8);</li>
           <li>to comply with store and legal requirements.</li>
         </ul>
+        <p>
+          Where the EU or UK GDPR applies, we rely on: your consent — for
+          news about packs, board notifications from our server (2.3) and
+          personalised ads (you can withdraw it at any time, see section 6);
+          performance of our agreement with you (the Terms of Use) — for
+          online rooms, Case boards, pack links, the Library and purchases;
+          our legitimate interest in keeping the app working and safe — for
+          crash reports, analytics, request limits and server logs; and legal
+          obligations — where the law requires us to keep or disclose data.
+        </p>
 
         <h2>4. Data sharing</h2>
-        <p>We do not sell users' personal data. Data may be shared only:</p>
+        <p>We do not sell your personal data. We share it only:</p>
         <ul>
-          <li>with advertising, analytics, and payment infrastructure providers;</li>
           <li>
-            with our backend hosting provider (Cloudflare) — to operate the
-            server side of online mode, pack links and the Library;
+            with the other providers named in 2.2 — advertising, analytics
+            and crash reports, payments, update checks and the hosting of our
+            relay servers — for the purposes stated there;
+          </li>
+          <li>
+            with our hosting provider (Cloudflare) — to run our servers for
+            online play, pack links and the Library;
           </li>
           <li>
             with other players in the same online room or on the same Case
@@ -802,14 +684,10 @@
             Library and your nickname with its tag (see 2.10);
           </li>
           <li>
-            with Google (Firebase Cloud Messaging) and, for an iPhone,
-            through it with Apple (Apple Push Notification service) — your
-            device's delivery token and the notification to deliver: news
-            about packs, if you agreed to it, and Case board notifications,
-            if you turned board reminders on (see 2.2 and 2.3). A board
-            notification carries the board's name (or, for a board without
-            one, its code) and the nickname of a member of that board, and
-            also the board's code, so that tapping it opens the board;
+            with Google (Firebase Cloud Messaging) and, for iPhones, Apple
+            (Apple Push Notification service) — your device's push token and
+            the content of the notifications described in 2.2 and 2.3, to
+            deliver them;
           </li>
           <li>
             with Telegram — the text you wrote in the feedback form and the
@@ -818,6 +696,10 @@
           </li>
           <li>when required by applicable law.</li>
         </ul>
+        <p>
+          The service providers listed above protect the data we share with
+          them to the same or an equal standard as described in this policy.
+        </p>
 
         <h2>5. Retention</h2>
         <ul>
@@ -826,88 +708,76 @@
             until the app is removed or app data is cleared by the user.
           </li>
           <li>
-            Online room state and temporary UGC-pack copies are retained on
-            our backend for up to 24 hours from the last activity in the
-            room; a pack copy that outlives the room is removed by a storage
-            rule no later than 7 days.
+            Online room data, including a copy of a user-created pack played
+            in the room, is kept on our servers until 24 hours after the last
+            activity in the room; a pack copy is in any case deleted within 7
+            days.
           </li>
           <li>
-            A Case board (2.3) is kept for as long as it is played: it is
-            deleted with everything on it 14 days after the last activity on
-            it, or right away when its last member leaves. Until then the
-            details of each day are kept for 30 days, the all-time table and
-            the journal for the life of the board. A pack copy on a board is
-            kept while the board still plays it and rewritten about once a
-            month; a copy whose deletion failed is removed by a storage rule
-            no later than 60 days after it was last written (2.4).
+            A Case board (2.3) is deleted with everything on it 14 days after
+            the last activity on it, or as soon as its last member leaves.
+            Until then, the details of each day (its cases, who named which
+            character, the results and the day's table) are kept for 30
+            days, and the all-time table and the journal for the life of the
+            board; what a member played stays in the tables after they leave
+            (section 6). A copy of a pack on a board is kept while the board
+            uses it and while the board keeps the days that used it (30
+            days); it is then deleted, in any case no later than 100 days
+            after the pack leaves the board.
           </li>
           <li>
-            Your device's delivery token and what is sent with it for Case
-            board notifications (2.3) are kept in your seat on each board
-            they were sent for. They are removed when you turn board
-            reminders off (or turn
-            notifications off for the app in the system settings — at the
-            next opening of the app), leave the board, are excluded from it
-            or dropped for inactivity, when the board is deleted, or when
-            Google reports that the app was removed from your device. A
-            token that has not been refreshed for 7 days — the app sends it
-            again when something in it changes and otherwise at most once a
-            day, when you open the app, and only for the 20 boards you
-            opened most recently — is no longer used, and is removed at
-            that board's next notification. If we stop sending these
-            notifications on our side, the stored tokens stay until one of
-            the above.
+            Your device's push token and the data kept with it for board
+            notifications (2.3) are deleted when you turn board reminders off
+            (or turn off notifications for the app on your device — the next
+            time you open the app), leave a board or are removed from it,
+            when the board is deleted, or when Google reports that the token
+            no longer works. A token your device has not renewed for 7 days
+            is no longer used.
           </li>
           <li>
             Local online-room credentials (code, session token) are retained
             on the device for up to 24 hours after last use and then erased
-            automatically. A Case board's code and your seat on it stay in
-            "My boards" on the device until you leave the board or the board
-            is gone.
+            automatically. A Case board's code and your seat on it stay on
+            your device until you leave the board or it is deleted.
           </li>
           <li>
-            A pack you published a link for is stored for 90 days from the
-            later of the link's creation, its most recent update, or the most
-            recent download via the link; the file is deleted by an automated
-            storage rule no later than 100 days after it was last written. If
-            you take the link
-            down yourself, the file is deleted immediately and a marker that
-            the code is invalid (holding none of the pack's content) is kept
-            for up to 180 days.
+            A pack link expires no later than 90 days after it was last
+            created, updated or downloaded, and the pack's file is deleted no
+            later than 100 days after that date (2.9). If you take the link
+            down yourself, the file is deleted immediately, and a record that
+            the code was revoked (without the pack's content) is kept for up
+            to 180 days.
           </li>
           <li>
-            A pack published in the Library: the cover and character
-            pictures extracted for the catalogue are deleted at once when
-            the pack leaves the Library; the pack file does not expire
-            while the pack is published — we renew the link — and once the
-            pack leaves the Library it follows the rule above, counted from
-            the last renewal; the catalogue entry (title, character names,
-            language,
-            tags, counts, dates, status, reason) and your author record (key
-            hash, nickname, dates) are not deleted automatically — they are
-            kept, shown to nobody, until you ask us to delete them (section
-            6), or, for a closed key or a pack under complaint, for as long
-            as that lasts (see 2.10).
+            A pack published in the Library: its link does not expire while
+            it is published; after the pack leaves the Library, the link
+            expires no later than 90 days after it left or was last updated
+            or downloaded, whichever is later, and the file is deleted no
+            later than 100 days after that date. The cover and character
+            pictures taken for the catalogue are deleted as soon as the pack
+            leaves the Library. The catalogue entry (title, character names,
+            language, tags, counts, dates, status and reason) and your author
+            record (key hash, nickname, dates, whether the key is closed) are
+            not deleted automatically: they are kept, shown to nobody, until
+            you ask us to delete them (section 6) — except that the record of
+            a closed key is kept for as long as the closure lasts, and the
+            entry of a pack under complaint for as long as the complaint is
+            handled.
           </li>
           <li>
-            The day-mark of a download (a hash derived from the address,
-            next to a pack code) expires 24 hours after it was written.
-            Request-limit counters keyed by network address are swept within a
-            few hours after their window closes (see 2.9 and 2.11).
+            The hash used to count downloads (2.9) is deleted 24 hours after
+            it was written; request-limit counters (2.11), within a few
+            hours.
           </li>
           <li>
             Our hosting provider (Cloudflare) keeps restore points of our
-            backend databases — the state of online rooms and Case boards,
-            the request-limit counters and the Library database — from which
-            each can be restored to a moment within the last 30 days at most.
-            Data deleted from these databases as described above can
-            therefore remain in the restore points for up to 30 days after
-            its deletion.
+            databases (online rooms and Case boards, request-limit counters,
+            the Library) for up to 30 days, so data deleted as described
+            above can remain in them for up to 30 days after its deletion.
           </li>
           <li>
-            Our backend log lines are kept by Cloudflare for a few days;
-            the link-event statistics (code, event, outcome, size — nothing
-            about a person) are kept by Cloudflare for up to three months.
+            Server logs (2.11) are kept by Cloudflare for a few days; link
+            event statistics, for up to three months.
           </li>
           <li>
             Error lines of failed requests on the relay servers (2.2) are
@@ -934,67 +804,45 @@
           withdraw consent. For these requests, or to report UGC content,
           contact us at <strong>artem.podrushnyak@gmail.com</strong>. For
           UGC reports, please use the subject "[Crackface UGC Report]" —
-          it speeds up triage.
+          it speeds up triage. If you are in the EU, the UK or another
+          country with similar law, you can also lodge a complaint with your
+          local data protection authority.
         </p>
         <p>
-          To remove local app data, you can uninstall the app or clear app
-          data in your OS settings. Step-by-step instructions for every
-          case, with what is deleted and what is kept, are on a separate
-          page: <a href="../data-deletion/#en">Data deletion</a>.
+          To remove the data stored on your device, uninstall the app or
+          clear its data in your device settings. In the app you can delete
+          a pack link, take a pack out of the Library and leave a Case board
+          yourself. Some data can be deleted only by us, on request: a pack
+          link when no device that manages it is left, your Library
+          catalogue entries and author record, your nickname in a Case
+          board's tables after you have left the board, and a whole board
+          at its owner's request (we may first ask for details showing that
+          the board is yours). Write to the address in section 1.
+          Step-by-step instructions, what to include in a request, and what
+          is deleted and what is kept are on a separate page:
+          <a href="../data-deletion/#en">Data deletion</a>.
         </p>
         <p>
-          A pack you shared by link is deleted with the "Remove link" button
-          on any device connected to the link — the one it was created on,
-          or any where you added your published pack with your author key.
-          If no such device is left (lost, or the app was reinstalled),
-          write to the address in section 1 with the pack's code and we
-          will delete the file by hand.
+          You can withdraw your consent to news about packs at any time in
+          the app's settings, and turn board reminders off in the app;
+          turning them off also deletes your device's push token from your
+          boards. You can turn off all Crackface notifications in your
+          device settings.
         </p>
         <p>
-          A pack you published in the Library is taken down with "Remove
-          from Library" on any device that holds your author key; the
-          pictures extracted for the catalogue go with it at once. Its
-          catalogue entry, your nickname and your author record are deleted
-          only on request: write to the address in section 1 with your
-          author tag (the short code next to your nickname) and, if you no
-          longer hold the key, the codes of your packs. We delete them by
-          hand (see 2.10 for the two exceptions).
+          You can change your choice about personalised ads at any time in
+          the app's settings, where your region requires consent. On iOS you
+          can allow or stop tracking in your device settings (2.7); on
+          Android you can reset or delete your advertising identifier in
+          your device's Google settings.
         </p>
         <p>
-          Case board. "Leave the board" in the board's settings removes you
-          from its members; what you played stays in its tables under your
-          nickname until the board is deleted. To have your nickname replaced
-          with a dash everywhere on a board — the day tables, the all-time
-          table, the journal —
-          leave the board first, then write to the address in section 1 with
-          the board's code and your nickname exactly as it appears there:
-          while you are a member, your seat keeps your nickname and each day
-          you play is recorded under it. A board's owner can ask us the same
-          way to delete the whole board; since its other members lose it too,
-          we may first ask for details that show the board is yours.
-        </p>
-        <p>
-          News about packs is turned off with the "News &amp; new packs"
-          switch in Settings. Case board reminders and the notification
-          that a friend has started the day's cases are turned off with the
-          bell in "My boards" (or a board's settings); turning it off also
-          removes your device's delivery token from your boards. All
-          notifications are turned off in your operating system's
-          notification settings.
-        </p>
-        <p>
-          Advertising. Your choice about personalised ads is changed in the
-          app: <strong>Settings → Privacy choices</strong>. On iOS the
-          system tracking prompt applies as well (Settings → Privacy &amp;
-          Security → Tracking → Crackface); on Android the advertising
-          identifier can be reset or deleted in the Google settings.
-        </p>
-        <p>
-          Analytics and crash reports. The app has no separate switch for
-          Firebase Analytics and Crashlytics. What they collect is
-          de-identified and listed in 2.2; it is not tied to your identity,
-          so we cannot delete it for one person on request. Collection stops
-          when you remove the app.
+          Firebase Analytics and Crashlytics have no separate switch in the
+          app. Their data is linked to identifiers of your app installation
+          and device (such as the advertising identifier), not to your name
+          or contact details. We cannot tell which data is yours, so we
+          cannot delete it for you on request; collection stops when you
+          remove the app. Google keeps crash reports for 90 days.
         </p>
 
         <h2>7. Children</h2>
@@ -1008,26 +856,28 @@
 
         <h2>8. International transfers</h2>
         <p>
-          Third-party providers may process data on servers outside your
-          country under applicable legal transfer mechanisms and their own
-          policies.
+          Google, Apple, Cloudflare and Telegram process data in other
+          countries, including the United States, and protect such transfers
+          with their own safeguards, described in their privacy policies
+          (section 11). Our relay servers (2.2) can be located outside your
+          country.
         </p>
 
         <h2>9. Security</h2>
         <p>
           We apply reasonable technical and organizational measures to
-          protect data. No method of storage or transmission can be
-          guaranteed fully secure.
+          protect data; for example, the app connects to our servers only
+          over encrypted connections. No method of storage or transmission
+          can be guaranteed fully secure.
         </p>
 
         <h2>10. Policy changes</h2>
         <p>
-          We may update this Privacy Policy from time to time. A new version
-          takes effect on the date shown at the top of this page, where you
-          can also see when the document was last updated. The current
-          version is always available at this address and opens from the
-          app: Settings → Privacy Policy. By continuing to use the app after
-          a new version is published, you accept it.
+          We may update this Privacy Policy from time to time. We publish each
+          new version on this page and update the dates at the top; the
+          current version also opens from the app's settings. If a change
+          significantly affects how we use your data, we will also tell you
+          in the app or in the notes of the app update that brings it.
         </p>
 
         <h2>11. Third-party privacy resources</h2>
@@ -1041,7 +891,7 @@
             <a href="https://support.google.com/admob/answer/6128543">https://support.google.com/admob/answer/6128543</a>
           </li>
           <li>
-            Firebase (Analytics + Crashlytics):
+            Firebase (Analytics, Crashlytics, Cloud Messaging):
             <a href="https://firebase.google.com/support/privacy">https://firebase.google.com/support/privacy</a>
           </li>
           <li>
@@ -1092,126 +942,88 @@
           хранилище устройства:
         </p>
         <ul>
-          <li>имена игроков, введённые пользователем;</li>
-          <li>настройки языка, звука, размера карточек;</li>
           <li>
-            пользовательские наборы персонажей (UGC-паки): метаданные пака,
-            имена персонажей и изображения, добавленные пользователем;
-          </li>
-          <li>статистика сыгранных партий (счётчики игр, время, паки);</li>
-          <li>
-            картотека игроков: имена, фотографии и игровая статистика людей,
-            которых вы сами добавили в список для игры за одним столом;
+            имена игроков, которые вы вводите, и картотека игроков: имена,
+            фотографии и игровая статистика людей, которых вы сами добавили в
+            список для игры за одним столом;
           </li>
           <li>
-            локальные флаги монетизации (признак активированной покупки
-            «Жетон агента»);
+            ваши настройки (например, язык, звук и размер карточек) и выбор,
+            сделанный в приложении, в том числе включены ли напоминания досок
+            дел и новости о паках;
           </li>
           <li>
-            избранные паки, прогресс спецзаданий и отметки о просмотренных
-            новинках каталога;
+            созданные вами наборы персонажей (UGC-паки): данные пака, имена
+            персонажей и добавленные вами изображения;
           </li>
           <li>
-            локальные служебные счётчики для логики показа рекламы, подсказок,
-            запроса оценки приложения, предложения включить уведомления и
-            предложения обновиться;
+            игровая статистика и прогресс (сыгранные партии, спецзадания,
+            избранные паки);
+          </li>
+          <li>признак активной покупки «Жетон агента»;</li>
+          <li>
+            служебные счётчики — например, чтобы реклама и подсказки не
+            показывались слишком часто;
           </li>
           <li>
-            случайный секрет устройства, которым подтверждается право
-            распоряжаться созданными вами ссылками на паки (см. 2.9). Он
-            создаётся на устройстве, не связан ни с вами, ни с каким-либо
-            аккаунтом, а на сервер уходит только вычисленное из него
-            значение, по которому сам секрет восстановить нельзя;
+            случайный секрет устройства, не связанный ни с вами, ни с
+            каким-либо аккаунтом, которым подтверждается, что созданными вами
+            ссылками на паки распоряжаетесь вы (2.9); на наши серверы
+            передаётся только вычисленное из него значение, по которому сам
+            секрет восстановить нельзя;
           </li>
           <li>
             ваш ключ автора, ник и публичный идентификатор автора, если вы
-            публиковали пак в Библиотеке (см. 2.10). Ключ выдаёт сервер, а
-            приложение хранит его в обычном хранилище настроек на
-            устройстве, чтобы подписывать ваши публикации; в настройках его
-            можно показать, скопировать или вывести QR-кодом;
+            публиковали пак в Библиотеке (2.10);
           </li>
           <li>
-            данные Библиотеки, которые не покидают устройство: авторы,
-            которых вы скрыли или добавили в избранное, выбранные фильтры
-            языка и размера, последнее известное приложению состояние
-            каждого отправленного вами пака (чтобы сообщить о решении) и,
-            для каждого пришедшего по ссылке пака, код, по которому он
-            пришёл;
+            данные Библиотеки: авторы, которых вы скрыли или добавили в
+            избранное, ваши фильтры и состояние отправленных вами паков;
           </li>
           <li>
-            доски дел, на которых вы состоите («Мои доски», см. 2.3): код и
-            название каждой доски, ваше место на ней (случайный
-            идентификатор и токен), что приложение видело там в последний
-            раз (день и сколько дел ждало), скачанные копии паков доски
-            (хранятся, пока вы на доске и открывали её за последние 30
-            дней), включены ли напоминания о досках и когда наш сервер в
-            последний раз принял ваше устройство для уведомлений доски
-            (время и контрольная сумма, не токен доставки — см. 2.3).
-          </li>
-          <li>
-            согласились ли вы на новости о паках («Новости и новые паки» в
-            Настройках, см. 2.2).
+            доски дел, на которых вы состоите (2.3): код и название каждой
+            доски, ваше место на ней (случайный идентификатор и токен) и
+            скачанные копии паков доски.
           </li>
         </ul>
         <p>
-          Эти данные используются только для работы функций приложения и не
-          отправляются на наш собственный сервер (с исключениями, описанными
-          в 2.3, 2.4, 2.9 и 2.10).
+          Эти данные используются для работы функций приложения. На наши
+          серверы они попадают, только когда вы пользуетесь функциями,
+          описанными в п. 2.3, 2.4, 2.9 и 2.10.
         </p>
 
         <h3>2.2. Сторонние сервисы</h3>
-        <p>Приложение использует сторонние SDK / сервисы:</p>
+        <p>Мы используем следующие сторонние сервисы:</p>
         <ul>
           <li>
-            <strong>Google Mobile Ads (AdMob)</strong> — для показа рекламы
-            (межстраничной, при открытии приложения и за вознаграждение);
+            <strong>Google Mobile Ads (AdMob)</strong> — показ рекламы в
+            бесплатной версии; это единственный рекламный провайдер в
+            приложении. Выбор в отношении персонализированной рекламы описан
+            в п. 2.7 и разделе 6;
           </li>
           <li>
-            <strong>Google Firebase Analytics</strong> — для агрегированной
-            обезличенной аналитики использования приложения (запуски и
-            завершения партий, распределение игровых режимов, популярность
-            паков, установки паков из каталога и по ссылке, открытия
-            уведомлений, ответ на запрос разрешения на уведомления,
-            включение и выключение напоминаний досок дел, включение и
-            выключение новостей о паках и где это сделано (вопрос после
-            партий или Настройки), предложение обновиться и ответ на него, а
-            также действия в Библиотеке — открытие
-            каталога, публикация, добавление, обновление, снятие пака или
-            жалоба на него, показ решения — с параметрами: язык пака,
-            результат или код ошибки; никогда не ваш ник, не ключ автора и
-            не код пака);
+            <strong>Google Firebase Analytics</strong> — чтобы понимать, как
+            используется приложение (например, сыгранные партии,
+            использованные паки и функции, открытые уведомления, выбор,
+            сделанный в приложении). Ваш ник, ключ автора и код пака в
+            аналитику не передаются;
           </li>
           <li>
             <strong>Google Firebase Crashlytics</strong> — для сбора отчётов
-            об ошибках и крашах приложения с целью повышения стабильности;
+            о сбоях приложения, чтобы повышать его стабильность;
           </li>
           <li>
             <strong>Google Firebase Cloud Messaging</strong> — доставка
             push-уведомлений: новостей о новых наборах персонажей, если вы на
-            них согласились, и уведомлений досок дел (2.3), если вы включили
-            напоминания досок. Они приходят только там, где уведомления
-            разрешены операционной системой: на iOS и на Android 13+
-            приложение сначала спрашивает разрешение (запрос показывается не
-            при запуске, а после нескольких сыгранных партий, при первом
-            открытии доски дел, если вы согласились на её напоминания, или
-            когда вы включаете новости или напоминания досок в приложении), на
-            более старых версиях Android они разрешены по умолчанию.
-            Устройство получает от Google технический токен доставки.
-            Новости о паках — отдельный выбор, независимый от разрешения и от
-            напоминаний досок: приложение спрашивает о них после нескольких
-            сыгранных партий, а переключатель «Новости и новые паки» в
-            Настройках включает и выключает их. Такие рассылки мы
-            отправляем вручную, только согласившимся устройствам, тремя
-            списками — русским, украинским и английским для остальных языков
-            интерфейса, — и никогда не адресуем
-            конкретному игроку. Уведомления досок дел — другое: вечернее
-            напоминание планируется на самом устройстве и не проходит ни
-            через Google, ни через наши серверы, а уведомление о том, что
-            друг на вашей доске уже взялся за дела дня, отправляет наш
-            сервер на токен доставки вашего устройства (2.3). Firebase
-            Analytics выше лишь обезличенно считает, включено ли это и
-            открыто ли уведомление. Отключить все уведомления можно в
-            настройках операционной системы.
+            них согласились, и уведомлений досок дел, которые отправляет наш
+            сервер (2.3), если вы включили напоминания досок. Для этого
+            устройство получает от Google токен push-уведомлений. На новости
+            о паках нужно отдельное согласие в приложении — независимо от
+            разрешения на уведомления в устройстве и от напоминаний досок.
+            Новости о паках мы рассылаем всем согласившимся, группами по
+            языку приложения; отдельным игрокам мы их не адресуем.
+            Уведомления приходят, только если вы разрешили их для Crackface
+            на своём устройстве.
           </li>
           <li>
             <strong>Google Play Billing</strong> и
@@ -1220,22 +1032,18 @@
           </li>
           <li>
             <strong>App Store</strong> и <strong>Google Play</strong> — чтобы
-            предложить вам новую версию приложения: на iOS приложение
-            спрашивает у открытого сервиса поиска App Store, есть ли она,
-            передавая идентификатор приложения и регион устройства (код
-            страны); на Android используется встроенное обновление Google
-            Play — предложение показывает и обновление скачивает сам Play;
+            сообщить вам о новой версии приложения; на iOS при проверке
+            передаются идентификатор приложения и регион устройства (код
+            страны);
           </li>
           <li>
-            <strong>Cloudflare</strong> (Workers, Durable Objects, KV, R2,
-            D1, Analytics Engine) — хостинг и инфраструктура нашего бэкенда
-            (онлайн-комнаты, обмен пользовательскими паками между игроками
-            одной комнаты, хранение паков, для которых вы создали ссылку,
-            индекс Библиотеки, раздача встроенных изображений и каталога
-            новых паков). Cloudflare обрабатывает технические данные
-            соединения (IP-адрес, заголовки запросов) для маршрутизации
-            трафика; что с вашим сетевым адресом делает наш собственный код
-            — в п. 2.11.
+            <strong>Cloudflare</strong> — хостинг наших серверов: хранит
+            описанные в этой политике данные на стороне сервера
+            (онлайн-комнаты и доски дел, ссылки на паки, Библиотеку) и
+            раздаёт встроенные изображения персонажей и каталог новых паков.
+            Cloudflare обрабатывает данные соединения (IP-адрес, заголовки
+            запросов) для маршрутизации трафика; как мы используем ваш
+            сетевой адрес — в п. 2.11.
           </li>
           <li>
             <strong>Telegram</strong> — мессенджер, в закрытый служебный чат
@@ -1245,39 +1053,29 @@
             сообщение в чате.
           </li>
           <li>
-            <strong>Резервные relay-серверы</strong> — в сетях, где прямое
-            соединение с нашей основной инфраструктурой недоступно, трафик
-            приложения (включая данные онлайн-режима и загрузку изображений)
-            может маршрутизироваться через резервные relay-серверы, которые
-            мы администрируем на мощностях сторонних хостинг-провайдеров, в
-            том числе за пределами вашего региона. Такие серверы
-            обрабатывают данные исключительно в транзите (сквозное
-            проксирование и временный кеш публичных изображений персонажей)
-            и не ведут журналов запросов. Когда запрос через relay не
-            удаётся, relay сохраняет для диагностики техническую строку об
-            ошибке (время, путь запроса и причину) до 14 дней; ваш сетевой
-            адрес и параметры запроса удаляются из неё в течение часа.
-            Когда ваша сессия идёт через
-            relay, через него проходит всё, что приложение отправляет на
-            наш API, — в том числе, у авторов Библиотеки, ключ автора и
-            значение-подтверждение владения ссылкой из п. 2.9 и 2.10; сам
-            relay передаёт нашему бэкенду ваш сетевой адрес в заголовке,
-            чтобы ограничения на число запросов (п. 2.11) действовали на
-            человека, а не на relay целиком.
+            <strong>Резервные relay-серверы</strong> — в сетях, где наши
+            основные серверы напрямую недоступны, трафик приложения (включая
+            онлайн-игру и загрузку изображений) идёт через relay-серверы,
+            которые мы администрируем у сторонних хостинг-провайдеров, в том
+            числе за пределами вашего региона. Тогда через них проходит всё,
+            что приложение отправляет на наши серверы. Журналов запросов они
+            не ведут — только временный кеш публичных изображений персонажей
+            и короткие записи об ошибках неудавшихся запросов (раздел 5).
           </li>
         </ul>
         <p>
-          Эти сервисы могут обрабатывать технические данные устройства и
-          данные взаимодействия (например, рекламный идентификатор, IP-адрес,
-          идентификаторы приложения и устройства, события в приложении,
-          диагностические данные и данные транзакций) в соответствии со своими
-          политиками. Ссылки на их политики — в разделе 11.
+          В зависимости от сервиса эти поставщики получают технические
+          данные и данные об использовании приложения — например, рекламный
+          идентификатор, IP-адрес, идентификаторы приложения и устройства,
+          события в приложении, диагностические данные и данные о покупках —
+          и обрабатывают их в соответствии со своими политиками
+          конфиденциальности. Ссылки на их политики — в разделе 11.
         </p>
 
         <h3>2.3. Онлайн-режим (опционально)</h3>
         <p>
           При использовании онлайн-режима игры (несколько устройств, комната
-          по коду) на наш бэкенд (хостинг Cloudflare) временно передаётся:
+          по коду) на наши серверы (хостинг Cloudflare) временно передаются:
         </p>
         <ul>
           <li>
@@ -1307,33 +1105,32 @@
           </li>
         </ul>
         <p>
-          Серверное состояние комнаты автоматически удаляется через 24 часа
-          после последней активности в ней — кроме доски дел, о ней ниже.
-          Между разными комнатами и партиями данные не пересекаются. Чат /
-          переписка между игроками в онлайн-режиме не предусмотрены: в
-          режиме «Найди крота», где за столом бывает до 20 человек, игроки
-          описывают персонажа вслух — голос и текст через приложение не
+          Данные комнаты на наших серверах удаляются через 24 часа после
+          последней активности в ней (о досках дел — ниже). Между разными
+          комнатами и партиями данные не пересекаются. Чата и переписки
+          между игроками в онлайн-режиме нет: в «Найди крота» игроки
+          описывают персонажа вслух, а голос и текст через приложение не
           передаются.
         </p>
         <p>
           <strong>Доска дел.</strong> Доска дел — комната Crackdle, которая
-          живёт долго: до 50 участников каждый день раскрывают одни и те же
-          несколько дел, когда им удобно, а доска ведёт счёт. Для этого наш
-          бэкенд хранит, пока доска существует:
+          живёт долго: её участники каждый день раскрывают одни и те же
+          дела, когда им удобно, а доска ведёт счёт. Пока доска существует,
+          наши серверы хранят:
         </p>
         <ul>
+          <li>название доски, если оно задано;</li>
           <li>
-            ник каждого участника, день, когда он пришёл, и когда играл в
-            последний раз, открытые им дела, названных в них персонажей и
-            его результаты;
+            ник каждого участника, когда он пришёл и когда играл в последний
+            раз, открытые им дела, названных в них персонажей и его
+            результаты;
           </li>
           <li>
-            таблицу каждого дня и таблицу за всё время («Лидеры» доски:
-            «Сегодня», «Вчера», «Всё время»), в том числе строки
+            таблицы дней и таблицу за всё время, в том числе строки
             участников, которые уже покинули доску;
           </li>
           <li>
-            журнал доски (последние 50 записей): кто добавил или убрал пак,
+            журнал последних изменений доски — кто добавил или убрал пак,
             изменил настройку, передал руководство или исключил участника, —
             с никами;
           </li>
@@ -1345,68 +1142,48 @@
           <li>
             смещение часового пояса телефона владельца (число минут от UTC,
             не местоположение), чтобы день доски заканчивался в полночь
-            владельца; участники видят, когда кончается день.
+            владельца.
           </li>
         </ul>
         <p>
-          Ники и результаты видят только участники доски; тот, у кого есть
-          только код, видит лишь игру доски, число участников и закрыт ли
-          вход. Подробности дня — его дела, кто каких персонажей называл,
-          результаты и таблица дня — удаляются через 30 дней; таблица за всё
-          время и журнал живут, пока жива доска. Доска удаляется со всем содержимым
-          через 14 дней после последней активности на ней или сразу, когда
-          её покидает последний участник. Если вы покинули доску, вы больше
-          не участник; то, что вы сыграли, остаётся в её таблицах под вашим
-          ником, пока доска не удалена или пока вы, уже покинув доску, не
-          попросите нас заменить ник (раздел 6).
+          Название доски, ники и результаты видят только участники доски
+          (название также видно в их уведомлениях досок); тот, у кого есть
+          только код доски, видит лишь её игру, число участников и закрыт ли
+          вход. Сроки хранения — в разделе 5.
         </p>
         <p>
-          Напоминания доски — по желанию. Приложение спрашивает один раз,
-          при первом открытии доски, не называя времени. Включённые, они
-          состоят из двух частей. Вечернее напоминание — локальное
-          уведомление, которое устройство само планирует на случай, когда на
-          ваших досках ждут дела, — на наши серверы о нём ничего не
-          передаётся. А когда другой участник вашей доски заканчивает своё
-          первое дело за день доски, пока вы там в этот день ещё ничего не
-          закончили и у вас остались открытые дела, наш сервер присылает на
-          ваше устройство push-уведомление: название доски (у доски без
-          названия — её код) и ник этого участника («Аня уже в деле»);
-          уведомление несёт и код доски, чтобы по нажатию открылась доска.
-          Не чаще одного в день на доску, только с 9:00 до 22:00 по часам
-          вашего телефона и не тогда, когда доска у вас открыта. Для этого
-          приложение передаёт нашему бэкенду для каждой из (не более 20)
-          досок, которые вы открывали последними: токен доставки вашего
-          устройства (от Google, см. 2.2), Android это или iOS, смещение
-          часов телефона от UTC (число минут, не местоположение, — для окна
-          9:00–22:00) и текст этого уведомления на языке приложения. Они
-          хранятся в вашем месте на доске, никогда не показываются другим
-          участникам и передаются только Google Firebase Cloud Messaging (а
-          для iPhone — через него сервису уведомлений Apple), чтобы
-          доставить уведомление. Колокольчик в «Моих досках» включает и
-          выключает и то, и другое.
+          <strong>Напоминания досок дел</strong> — по желанию, они
+          включаются в приложении. Это два уведомления. Вечернее напоминание
+          о делах, которые ждут вас на досках, планирует и показывает само
+          устройство; оно не проходит ни через наши серверы, ни через службу
+          уведомлений Google. А когда другой
+          участник вашей доски закончил первое дело дня, а вы в этот день
+          там ещё не играли, наш сервер присылает вам уведомление с
+          названием доски (или её кодом) и ником этого участника. Для этого
+          вместе с вашим местом на ваших досках мы храним токен
+          push-уведомлений вашего устройства (от Google, см. п. 2.2),
+          платформу (Android или iOS), смещение часового пояса телефона от
+          UTC (число минут, не местоположение, — чтобы уведомления приходили
+          в подходящее время суток) и текст уведомления на языке
+          приложения. Мы используем их только для отправки этих уведомлений
+          через Google Firebase Cloud Messaging (а для iPhone — через Apple
+          Push Notification service); другим участникам они не
+          показываются. Сроки хранения — в разделе 5.
         </p>
 
         <h3>2.4. Пользовательские паки (UGC) в онлайн-режиме</h3>
         <p>
-          Если хост комнаты выбрал пользовательский пак (созданный им
-          самостоятельно в редакторе UGC), копия этого пака (метаданные +
-          изображения персонажей) временно загружается в наше эфемерное R2
-          хранилище для передачи остальным игрокам комнаты. Эта копия
-          удаляется вместе с комнатой — через 24 часа после последней
-          активности в ней; копию, пережившую удаление комнаты, стирает
-          правило хранилища не позднее чем через 7 дней.
+          Если хост комнаты выбрал пользовательский пак (созданный в
+          редакторе UGC), копия этого пака (данные пака и изображения
+          персонажей) хранится на наших серверах, пока существует комната,
+          чтобы её могли скачать остальные игроки комнаты (сроки хранения —
+          в разделе 5).
         </p>
         <p>
-          На доске дел (2.3) пак, который участник добавил на доску,
-          загружает приложение этого участника (или владельца доски); копия
-          хранится, пока доска его ещё играет: наш сервер перезаписывает её
-          примерно раз в месяц, чтобы правило хранилища не стёрло её из-под
-          доски. Скачать её могут только участники доски. Копия удаляется,
-          когда пак ушёл с доски и дни, которые его играли, прошли, вместе с
-          доской или сразу, когда мы убираем пак по жалобе, — после этого
-          его нельзя снова добавить на эту доску. Копию, которую не удалось
-          удалить, стирает правило хранилища не позднее чем через 60 дней
-          после её последней записи.
+          На доске дел (2.3) копия каждого пака, который участник добавил на
+          доску, хранится на наших серверах, пока пак используется на доске
+          и пока доска хранит дни, в которые он использовался; скачать её
+          могут только участники доски (сроки хранения — в разделе 5).
         </p>
         <p>
           За пределами онлайн-комнаты пользовательский пак хранится на наших
@@ -1424,12 +1201,11 @@
 
         <h3>2.5. Доступ к камере</h3>
         <p>
-          В онлайн-режиме приложение может предложить отсканировать QR-код с
-          кодом игровой комнаты. Камера запускается только по явному действию
-          пользователя (нажатие кнопки сканера) и используется исключительно
-          для этого сканирования. Изображения с камеры не сохраняются и никуда
-          не передаются — распознавание происходит локально на устройстве, а
-          на наш бэкенд уходит только получившийся текстовый код комнаты.
+          В онлайн-режиме к комнате можно подключиться, отсканировав её
+          QR-код. Камера включается только по нажатию кнопки сканера и
+          используется только для этого сканирования. Изображения с камеры
+          не сохраняются и никуда не передаются: код распознаётся на
+          устройстве, и на наши серверы уходит только сам код комнаты.
         </p>
         <p>
           В редакторе пользовательских паков камера используется для съёмки
@@ -1445,20 +1221,18 @@
           персонажей из фотогалереи устройства. Доступ к фотогалерее
           запрашивается только по явному действию пользователя (нажатие
           кнопки выбора). Выбранные фото копируются в локальный UGC-пак;
-          оригиналы в галерее не изменяются.
+          оригиналы в галерее не изменяются. Как и снимки с камеры, они не
+          отправляются на наши серверы, кроме случаев 2.4 и 2.9.
         </p>
 
         <h3>2.7. Прозрачность трекинга на iOS</h3>
         <p>
-          На iOS приложение использует Apple App Tracking Transparency (ATT).
-          При первом запуске iOS показывает системный запрос на разрешение
-          отслеживания вашей активности в приложениях и на сайтах других
-          компаний. Если вы выберете «Попросить не отслеживать», приложение
-          не получит доступ к вашему рекламному идентификатору (IDFA), и
-          реклама будет неперсонализированной. Приложение продолжает работать
-          в полном объёме независимо от вашего выбора. Изменить выбор можно
-          в любой момент: <strong>Настройки → Конфиденциальность и
-          безопасность → Отслеживание → Crackface</strong>.
+          На iOS мы используем ваш рекламный идентификатор (IDFA), только если
+          вы разрешили отслеживание в системном запросе Apple App Tracking
+          Transparency (ATT). Если не разрешили, реклама будет только
+          неперсонализированной; приложение работает в полном объёме при
+          любом выборе. Изменить выбор можно в любой момент в настройках
+          устройства (см. раздел 6).
         </p>
 
 
@@ -1481,20 +1255,17 @@
         </ul>
         <p>
           Идентификатор устройства, имя устройства, рекламный идентификатор,
-          ваш адрес электронной почты и учётные данные <strong>не
-          передаются</strong>. Сообщение анонимно: мы не можем связать его
-          с вами, с вашими покупками или с вашими игровыми сессиями, и
-          <strong>ответить на него мы тоже не можем</strong> — если нужен
-          ответ, напишите на адрес из раздела 1.
+          адрес электронной почты и учётные данные вместе с ним <strong>не
+          передаются</strong>. Мы не связываем сообщение ни с вами, ни с
+          вашими покупками или играми, и <strong>ответить на него мы не
+          можем</strong> — если нужен ответ, напишите на адрес из раздела 1.
         </p>
         <p>
-          Технически сообщение отправляется на наш бэкенд (Cloudflare) и
-          сразу пересылается в закрытый служебный чат в мессенджере
-          <strong>Telegram</strong>, доступный только нам. На нашем бэкенде
-          сообщение не сохраняется. IP-адрес отправителя используется только
-          для ограничения частоты отправки (защита от спама): он входит в
-          ключ служебного счётчика, который стирается в пределах нескольких
-          часов, и с текстом сообщения не хранится.
+          Сообщение проходит через наши серверы (Cloudflare), которые его не
+          сохраняют, в закрытый служебный чат в мессенджере
+          <strong>Telegram</strong>, доступный только нам. IP-адрес
+          отправителя используется только для ограничения частоты отправки
+          (защита от спама) и вместе с сообщением не хранится (см. 2.11).
         </p>
         <p>
           Пожалуйста, не указывайте в тексте персональные данные — свои или
@@ -1509,7 +1280,7 @@
           который вы для этого выбрали.
         </p>
         <p>
-          При создании ссылки на наш бэкенд (Cloudflare) передаются:
+          При создании ссылки на наши серверы (Cloudflare) передаются:
         </p>
         <ul>
           <li>
@@ -1518,62 +1289,47 @@
           </li>
           <li>название пака, количество персонажей и номер его версии;</li>
           <li>
-            значение, вычисленное из секрета вашего устройства и
-            идентификатора пака (см. 2.1) — им подтверждается, что ссылкой
-            распоряжаетесь вы. Когда вы добавляете опубликованный в
-            Библиотеке пак на другое своё устройство (где есть ваш ключ
-            автора), рядом с первым сохраняется значение и этого
-            устройства, и ссылкой можно распоряжаться с любого из них;
-            значения живут столько же, сколько ссылка.
+            значение, вычисленное из секрета вашего устройства (см. 2.1), —
+            им подтверждается, что ссылкой распоряжаетесь вы. Если вы
+            добавили опубликованный в Библиотеке пак на другое своё
+            устройство (где есть ваш ключ автора), сохраняется и значение
+            этого устройства, и ссылкой можно распоряжаться с любого из них.
+            Эти значения хранятся, пока существует ссылка.
           </li>
         </ul>
         <p>
-          В ответ выдаётся код из 8 символов и ссылка вида
+          В ответ выдаётся код и ссылка вида
           <strong>https://crackface.app/p/КОД</strong>.
           <strong>Пак по такой ссылке может скачать любой, у кого она
-          есть</strong> — ни пароля, ни приглашения на ней нет. Ссылку,
-          которую вы не опубликовали в Библиотеке (2.10), мы нигде не
-          показываем, а страница по ней не показывает содержимое пака: на
-          ней только кнопки установки игры. Но всё, что вы отправили
-          ссылкой, дальше расходится так же свободно, как и сама ссылка, —
-          учитывайте это, добавляя в пак изображения людей.
+          есть</strong> — ни пароля, ни приглашения на ней нет. Мы нигде не
+          показываем ссылку, если вы не опубликовали пак в Библиотеке
+          (2.10), а веб-страница по ссылке не показывает содержимое пака.
+          Но всё, что вы отправили ссылкой, дальше расходится так же
+          свободно, как и сама ссылка, — учитывайте это, добавляя в пак
+          изображения людей.
         </p>
         <p>
-          Ссылка действительна в течение 90 дней с наиболее позднего из
-          следующих событий: создание ссылки, последнее обновление пака по
-          ссылке (действие «Обновить» в приложении, заменяющее сохранённую
-          копию под той же ссылкой) или последнее скачивание пака по ссылке.
-          Скачивание продлевает срок только в случае, если до его истечения
-          осталось менее 45 дней. Таким образом, ссылка, которой продолжают
-          пользоваться, не истекает; ссылка, по которой не было скачиваний в
-          течение 90 дней, истекает, перестаёт работать, а сохранённая копия
-          удаляется автоматическим правилом хранилища не позднее 100 дней
-          после её последней записи. Исключение — пак, опубликованный в
-          Библиотеке: пока он опубликован, мы продлеваем его ссылку сами,
-          и она не истекает (2.10).
+          Ссылка действует, пока ею пользуются: она истекает не позднее чем
+          через 90 дней после последнего создания, обновления или
+          скачивания, а её файл удаляется не позднее чем через 100 дней
+          после этой даты. Ссылка на пак, опубликованный в Библиотеке, не
+          истекает, пока пак опубликован (2.10).
         </p>
         <p>
-          По каждой ссылке мы ведём подсчёт количества скачиваний пака по
-          этой ссылке и отображаем его автору в приложении (а для пака,
-          опубликованного в Библиотеке, — публично, см. 2.10). Каждое
-          засчитанное скачивание хранится как отметка, в которой только
-          код, время и случайное значение — ничего о человеке. Чтобы один
-          адрес засчитывался раз в сутки, а не при каждом нажатии
-          «Добавить», сервер также хранит в течение 24 часов суточную
-          метку, вычисленную из сетевого адреса скачивающего: адрес (для
-          IPv6 — его сетевая половина) пропускается через одностороннюю
-          хеш-функцию вместе с фиксированным префиксом, и рядом с кодом
-          пака сохраняются первые 8 байт результата. Сам адрес не
-          сохраняется, восстановить его из метки нельзя, а метка
-          автоматически истекает через 24 часа. Скачивания с устройства, на
-          котором есть ключ автора этого пака (2.10), не засчитываются.
+          По каждой ссылке мы считаем скачивания и показываем их число
+          автору в приложении (а для пака, опубликованного в Библиотеке, —
+          всем, см. 2.10). Каждое засчитанное скачивание записывается с
+          кодом и временем, без каких-либо данных о человеке. Чтобы
+          скачивания из одной сети засчитывались раз в сутки, мы 24 часа
+          храним необратимый хеш сетевого адреса; сам адрес не сохраняется.
+          Скачивания с устройства, на котором есть ключ автора этого пака
+          (2.10), не засчитываются.
         </p>
         <p>
-          Убрать ссылку можно в любой момент — «Отозвать ссылку» в том же окне
-          приложения. Файл при этом удаляется сразу, а код становится
-          недействительным навсегда: чтобы он не достался потом другому
-          паку, мы храним отметку об отзыве — только факт и дату, без
-          содержимого пака — до 180 дней.
+          Убрать ссылку можно в любой момент в приложении. Файл при этом
+          удаляется сразу, а код перестаёт работать навсегда; чтобы он не
+          достался потом другому паку, мы до 180 дней храним отметку об
+          отзыве — только факт и дату, без содержимого пака.
         </p>
         <p>
           Пак, переданный ссылкой, мы не модерируем и заранее не
@@ -1588,16 +1344,14 @@
         <h3>2.10. Публикация пака в Библиотеке</h3>
         <p>
           Пак, для которого вы создали ссылку, можно также опубликовать в
-          Библиотеке — публичном каталоге внутри приложения. Каталога на
-          сайте нет, а страница по ссылке по-прежнему не показывает
-          содержимое пака (2.9). Публикация происходит только по вашему
-          явному действию («Опубликовать в Библиотеке» → «Отправить на
-          проверку») и только с тем паком, который вы для этого выбрали;
-          что означает публикация, описано в п. 5.5
+          Библиотеке — публичном каталоге внутри приложения (на сайте
+          каталога нет). Публикуются только выбранные вами паки и только
+          после того, как вы отправите их на проверку; что означает
+          публикация, описано в п. 5.5
           <a href="../terms-of-use/#ru">Пользовательского соглашения</a>.
         </p>
         <p>
-          При публикации на наш бэкенд, помимо перечисленного в 2.9,
+          При публикации на наши серверы, помимо перечисленного в 2.9,
           отправляются:
         </p>
         <ul>
@@ -1611,15 +1365,12 @@
           </li>
         </ul>
         <p>
-          <strong>Что сервер берёт из пака.</strong> Сервер открывает
-          сохранённую копию пака и извлекает из неё то, что показывает
-          каталог: название, имена персонажей (они же в нижнем регистре
-          хранятся как поисковый индекс, чтобы каталог искал по именам),
-          обложку и уменьшенное изображение каждого персонажа (до 200),
-          которые сохраняются отдельными файлами под кодом пака. В записи
-          каталога также хранятся число персонажей, язык, теги, номер
-          версии, число скачиваний, даты отправки и решения, а также статус
-          с причиной отказа или снятия.
+          <strong>Что мы берём из пака.</strong> Для каталога мы берём из
+          сохранённой копии пака его название, имена персонажей (они же
+          используются для поиска), обложку и уменьшенное изображение
+          каждого персонажа. В записи каталога также хранятся число
+          персонажей, язык, теги, номер версии, число скачиваний, даты
+          отправки и решения, а также статус с причиной отказа или снятия.
         </p>
         <p>
           <strong>Что становится публичным.</strong> Пока пак опубликован,
@@ -1635,108 +1386,77 @@
         </p>
         <p>
           <strong>Ключ автора</strong> — случайное значение, которое наш
-          сервер выдаёт при первой публикации и отправляет на устройство
-          один раз (приложение на этом устройстве может показать его снова;
-          мы — нет). Он не привязан ни к аккаунту, ни к почте, ни к
-          устройству; сервер
-          хранит только его хеш — значение, по которому ключ восстановить
-          нельзя, — вместе с вашим ником, датой выдачи, отметкой о
-          закрытии и списком опубликованных с ним паков. Из того же хеша
-          получается короткий тег рядом с ником. Ключ хранится на вашем
-          устройстве (2.1) и отправляется только на наш API по
-          зашифрованному соединению (напрямую или через relay, 2.2): когда
-          вы публикуете, снимаете, обновляете пак или проверяете его
-          статус; вместе со скачиванием пака — чтобы ваши собственные
-          скачивания не засчитывались; и один раз при запуске приложения —
-          чтобы узнать, принято ли решение по вашим отправкам. Ключ — то,
-          чем вы снимаете пак с публикации, и единственное, что переносит
-          ваш ник и счётчики на другое устройство, — вводом его там:
-          восстановить его за вас мы не можем.
+          сервер выдаёт при первой публикации и отправляет на ваше
+          устройство. Он не привязан ни к аккаунту, ни к почте, ни к
+          устройству. Мы храним только его необратимый хеш, по которому ключ
+          восстановить нельзя, вместе с вашим ником, датой выдачи, отметкой
+          о закрытии и списком опубликованных с ним паков; из того же хеша
+          получается короткий тег рядом с ником. Устройство передаёт ключ на
+          наши серверы по зашифрованному соединению, когда вы публикуете,
+          обновляете или снимаете пак либо проверяете статус отправок, а
+          также при скачивании паков — чтобы ваши собственные скачивания не
+          засчитывались. С помощью ключа вы управляете своими паками, и
+          только он позволяет перенести ваш ник и счётчики на другое
+          устройство — для этого его нужно ввести там. Восстановить ключ за
+          вас мы не можем.
         </p>
         <p>
           <strong>Проверка.</strong> Прежде чем отправленный пак появится в
-          Библиотеке, человек с нашей стороны его просматривает. Для этого
-          бэкенд отправляет в наш закрытый служебный чат в
+          Библиотеке, человек с нашей стороны просматривает его так, как
+          описано в п. 5.5 Пользовательского соглашения; это не проверка
+          прав. Для этого мы отправляем в наш закрытый служебный чат в
           <strong>Telegram</strong> (см. 2.2) карточку с названием пака,
-          вашим ником и тегом, языком, тегами, первыми именами персонажей и
-          ссылками на обложку и на файл пака на нашем API; решение
-          принимается кнопками под этой карточкой. Проверка — та, что
-          описана в п. 5.5 Пользовательского соглашения: запрещённый
-          контент из п. 5.2, можно ли в пак играть, не дубль ли он и
-          подходит ли Библиотеке, — и не проверка прав; записываются
-          решение, его причина и дата. Карточка остаётся в этом чате как история проверки.
+          вашим ником и тегом, его языком и тегами, первыми именами
+          персонажей и ссылками на обложку и на файл пака. Мы записываем
+          решение, его причину и дату; карточка остаётся в этом чате как
+          история проверки.
         </p>
         <p>
           <strong>Счётчики скачиваний</strong> ведутся по каждому паку и, в
-          сумме, по автору и показываются публично. Как засчитывается
-          скачивание — и что такое суточная метка из адреса скачивающего,
-          живущая 24 часа, — описано в 2.9.
+          сумме, по автору и показываются публично. Как засчитываются
+          скачивания и зачем 24 часа хранится хеш сетевого адреса
+          скачивающего — описано в 2.9.
         </p>
         <p>
           <strong>Жалобы.</strong> Пожаловаться на пак из Библиотеки может
-          любой — из приложения: кнопка «Пожаловаться» составляет письмо на
-          адрес из раздела 1 с кодом и названием пака, к которому вы
-          добавляете причину. На наш бэкенд ничего не отправляется, и
-          ничего о вас мы не записываем, кроме письма, которое вы сами
-          решите отправить. Жалобы рассматриваются по п. 5.4
-          Пользовательского соглашения.
+          любой — из приложения: жалоба — это письмо на адрес из раздела 1 с
+          кодом и названием пака, к которому вы добавляете причину. Ничего о
+          вас, кроме письма, которое вы сами решите отправить, мы не
+          записываем. Жалобы рассматриваются по п. 5.4 Пользовательского
+          соглашения.
         </p>
         <p>
-          <strong>Срок хранения.</strong> Опубликованная копия пака — тот же
-          файл, что стоит за ссылкой. Пока пак опубликован, его ссылка не
-          истекает: наш бэкенд продлевает её сам, по тому же правилу, что
-          и скачивание (п. 2.9), и без скачиваний. Когда пак покидает
-          Библиотеку, ссылка снова становится обычной: срок отсчитывается от
-          последнего продления и дальше живёт по правилам п. 2.9. Обложка и
-          изображения персонажей, извлечённые для каталога, удаляются в
-          момент, когда пак покидает Библиотеку, — сняли ли его вы, убрали
-          ли мы, обновили ли вы ссылку или отозвали её. Запись каталога
-          автоматически не удаляется: она остаётся в нашей базе с
-          названием, именами персонажей, языком, тегами, счётчиками,
-          датами, статусом и причиной — чтобы снятый пак не вернулся под
-          тем же кодом и чтобы считать повторные жалобы на права
-          (Пользовательское соглашение, п. 5.5); никому она не
-          показывается. То же относится к записи автора (хеш ключа, ник,
-          даты, отметка о закрытии ключа). И то и другое мы удаляем по
-          вашему запросу — см. раздел 6, — кроме записи о закрытом ключе,
-          которая хранится всё время, пока действует закрытие, и записи
-          пака, на который рассматривается жалоба, — пока она
-          рассматривается.
+          <strong>Срок хранения.</strong> Пока пак опубликован, его ссылка
+          не истекает. После того как пак покинул Библиотеку, мы храним его
+          запись в каталоге и вашу запись автора, никому их не показывая, —
+          чтобы снятый пак не вернулся под тем же кодом и чтобы считать
+          повторные жалобы на права (Пользовательское соглашение, п. 5.5).
+          Сроки хранения каждой части — в разделе 5.
         </p>
 
         <h3>2.11. Сетевой адрес, ограничение запросов, журналы и статистика</h3>
         <p>
-          Каждый запрос приложения к нашему бэкенду несёт ваш сетевой адрес
-          (IP) — от Cloudflare или, когда сессия идёт через relay (2.2), в
-          заголовке, который добавляет relay. Наш собственный код использует
-          его для одного: ограничить число запросов с одного адреса за окно
-          (минута, десять минут или час — в зависимости от маршрута), чтобы
-          сервис нельзя было завалить. Счётчик хранится в хранилище
-          Cloudflare Durable Object под ключом, в который входят адрес и
-          начало окна; ключи, чьё окно старше двух часов, удаляет
-          автоматическая очистка, так что адрес лежит там самое большее
-          несколько часов (не считая точек восстановления у
-          хостинг-провайдера, раздел 5). Адрес не
-          записывается ни в записи паков, ни в Библиотеку, ни в отметки
-          скачиваний (суточная метка из п. 2.9 содержит хеш, а не адрес).
+          Каждый запрос приложения к нашим серверам несёт ваш сетевой адрес
+          (IP). Мы используем его, чтобы ограничить число запросов с одного
+          адреса за короткий промежуток времени и не дать завалить сервис
+          запросами; эти счётчики удаляются в течение нескольких часов. Мы
+          не храним ваш адрес ни вместе с паками, ни в Библиотеке, ни в
+          записях о скачиваниях (для подсчёта скачиваний в п. 2.9 24 часа
+          хранится хеш, а не адрес). Кроме того, адрес попадает в журналы
+          серверов — см. ниже.
         </p>
         <p>
-          Наш бэкенд пишет технические строки журнала (Cloudflare Workers
-          Logs) о том, что он сделал: событие, код пака, публичный
-          идентификатор автора, язык, число персонажей и изображений,
-          действие проверяющего, размеры загрузок и тексты ошибок — никогда
-          не ники, не имена персонажей, не ключи автора, не значения
-          владения и не сетевые адреса. Cloudflare хранит эти строки
-          несколько дней вместе с собственной записью о каждом запросе: URL,
-          метод, статус и время, ваш сетевой адрес (IP) со страной и
-          оператором сети, к которым он относится, и технические заголовки
-          запроса приложения (например, его User-Agent). Эти записи мы
-          смотрим, чтобы разбирать сбои и считать трафик в целом (например,
-          по странам). Отдельно события ссылок (создана, скачана,
-          продлена, отозвана, файл отсутствует, лимит исчерпан) пишутся в
-          набор данных Cloudflare Analytics Engine с кодом пака, событием,
-          его исходом и размером пака в байтах — ничего о человеке; по
-          этому набору мы считаем использование ссылок.
+          Наши серверы ведут технические журналы своих действий (например,
+          событие, код пака, количества и размеры, тексты ошибок); в этих
+          журналах нет ников, имён персонажей, ключей автора, значений
+          владения ссылкой и сетевых адресов. Cloudflare также ведёт
+          собственную запись о каждом запросе: запрошенный URL, время и
+          результат, ваш сетевой адрес (IP) со страной и оператором сети и
+          технические заголовки запроса приложения. Эти записи мы используем,
+          чтобы разбирать сбои и считать трафик в целом (например, по
+          странам). Отдельно мы ведём статистику событий ссылок (например,
+          создание, скачивание, отзыв) с кодом пака и без каких-либо данных
+          о человеке — чтобы считать, как используются ссылки.
         </p>
 
         <h2>3. Цели обработки</h2>
@@ -1748,7 +1468,7 @@
           <li>обработка и восстановление покупок;</li>
           <li>
             работа онлайн-режима — комнат и досок дел с их таблицами
-            («Лидеры») — и обмен пользовательскими паками;
+            результатов — и обмен пользовательскими паками;
           </li>
           <li>
             передача вашего пака тем, кому вы отправили ссылку на него
@@ -1768,23 +1488,38 @@
             новостей о них (см. 2.2);
           </li>
           <li>
-            уведомление участников доски дел о том, что друг уже взялся за
-            дела дня, если они включили напоминания досок (см. 2.3);
+            уведомление участников доски дел, включивших напоминания досок,
+            о том, что другой участник сыграл своё первое дело дня (см. 2.3);
           </li>
           <li>обработка сообщений об ошибках и пожеланий (см. 2.8);</li>
           <li>соблюдение требований магазинов приложений и закона.</li>
         </ul>
+        <p>
+          Если к вам применяется GDPR (ЕС или Великобритании), мы
+          обрабатываем данные на следующих основаниях: ваше согласие — для
+          новостей о паках, уведомлений досок дел от нашего сервера (п. 2.3)
+          и персонализированной рекламы (его можно отозвать в любой момент,
+          см. раздел 6); исполнение соглашения с вами (Пользовательского
+          соглашения) — для онлайн-комнат, досок дел, ссылок на паки,
+          Библиотеки и покупок; наш законный интерес в работоспособности и
+          безопасности приложения — для отчётов о сбоях, аналитики,
+          ограничения запросов и журналов серверов; исполнение требований
+          закона — когда закон обязывает нас хранить или раскрывать данные.
+        </p>
 
         <h2>4. Передача данных</h2>
         <p>
-          Мы не продаём персональные данные пользователей. Передача возможна
-          только:
+          Мы не продаём ваши персональные данные. Мы передаём их только:
         </p>
         <ul>
-          <li>поставщикам рекламы, аналитики и платежной инфраструктуры;</li>
           <li>
-            провайдеру хостинга нашего бэкенда (Cloudflare) — для работы
-            серверной части онлайн-режима, ссылок на паки и Библиотеки;
+            другим поставщикам, перечисленным в п. 2.2, — рекламы, аналитики
+            и отчётов о сбоях, платежей, проверки обновлений и хостинга
+            relay-серверов — для указанных там целей;
+          </li>
+          <li>
+            нашему хостинг-провайдеру (Cloudflare) — для работы наших
+            серверов: онлайн-игры, ссылок на паки и Библиотеки;
           </li>
           <li>
             другим игрокам, находящимся с вами в одной онлайн-комнате или на
@@ -1800,14 +1535,10 @@
             Библиотеке, и ваш ник с тегом (см. 2.10);
           </li>
           <li>
-            сервису Google (Firebase Cloud Messaging), а для iPhone — через
-            него сервису Apple (Apple Push Notification service) — токен
-            доставки вашего устройства и уведомление для доставки: новости о
-            паках, если вы на них согласились, и уведомления досок дел, если
-            вы включили напоминания досок (см. 2.2 и 2.3). Уведомление доски
-            несёт название доски (у доски без названия — её код) и ник
-            участника этой доски, а также код доски, чтобы по нажатию
-            открылась доска;
+            Google (Firebase Cloud Messaging), а для iPhone — Apple (Apple
+            Push Notification service) — токен push-уведомлений вашего
+            устройства и содержание уведомлений, описанных в п. 2.2 и 2.3,
+            для их доставки;
           </li>
           <li>
             сервису Telegram — текст, который вы сами написали в форме
@@ -1817,6 +1548,10 @@
           </li>
           <li>в случаях, предусмотренных применимым законодательством.</li>
         </ul>
+        <p>
+          Поставщики услуг из этого списка защищают передаваемые им данные
+          на уровне не ниже описанного в этой политике.
+        </p>
 
         <h2>5. Срок хранения</h2>
         <ul>
@@ -1826,86 +1561,77 @@
             пользователем.
           </li>
           <li>
-            Состояние онлайн-комнаты и временные копии UGC-паков хранятся на
-            нашем бэкенде до 24 часов с момента последней активности в
-            комнате; копию пака, пережившую удаление комнаты, стирает правило
-            хранилища не позднее 7 дней.
+            Данные онлайн-комнаты, включая копию пользовательского пака,
+            которым играли в комнате, хранятся на наших серверах до 24 часов
+            после последней активности в комнате; копия пака в любом случае
+            удаляется не позднее чем через 7 дней.
           </li>
           <li>
-            Доска дел (2.3) хранится, пока на ней играют: она удаляется со
-            всем содержимым через 14 дней после последней активности на ней
-            или сразу, когда её покидает последний участник. До тех пор
-            подробности каждого дня хранятся 30 дней, таблица за всё время и
-            журнал — всю жизнь доски. Копия пака на доске хранится, пока
-            доска его ещё играет, и перезаписывается примерно раз в месяц;
-            копию, которую не удалось удалить, стирает правило хранилища не
-            позднее чем через 60 дней после её последней записи (2.4).
+            Доска дел (2.3) удаляется со всем содержимым через 14 дней после
+            последней активности на ней или сразу, когда её покидает
+            последний участник. До тех пор подробности каждого дня (его дела,
+            кто каких персонажей называл, результаты и таблица дня) хранятся
+            30 дней, а таблица за всё время и журнал — всю жизнь доски; то,
+            что участник сыграл, остаётся в таблицах и после его ухода
+            (раздел 6). Копия пака на доске хранится, пока пак используется
+            на доске и пока доска хранит дни, в которые он использовался (30
+            дней); затем она удаляется — в любом случае не позднее чем через
+            100 дней после того, как пак убран с доски.
           </li>
           <li>
-            Токен доставки вашего устройства и то, что передаётся вместе с
-            ним для уведомлений досок дел (2.3), хранятся в вашем месте на
-            каждой доске, для которой они переданы. Они удаляются, когда вы
-            выключаете напоминания
-            досок (или уведомления приложения в системных настройках — при
-            следующем открытии приложения), покидаете доску, когда вас
-            исключают или вы выбываете за бездействие, когда доска удалена,
-            или когда Google сообщает, что приложение удалено с устройства.
-            Токен, который не обновлялся 7 дней (приложение отправляет его
-            заново, когда в нём что-то меняется, а иначе не чаще раза в день
-            при открытии приложения и только для 20 досок, которые вы
-            открывали последними), больше не используется и удаляется при
-            следующем уведомлении этой доски. Если мы прекращаем отправку
-            таких уведомлений на своей стороне, сохранённые токены остаются
-            до одного из перечисленных событий.
+            Токен push-уведомлений вашего устройства и данные, хранящиеся
+            вместе с ним для уведомлений досок дел (2.3), удаляются, когда вы
+            выключаете напоминания досок (или уведомления приложения в
+            настройках устройства — при следующем открытии приложения),
+            покидаете доску или вас с неё убирают, когда доска удалена или
+            когда Google сообщает, что токен больше не действует. Токен,
+            который ваше устройство не обновляло 7 дней, больше не
+            используется.
           </li>
           <li>
             Локальные учётные данные онлайн-комнаты (код, токен сессии)
             хранятся на устройстве до 24 часов после последнего использования
             и затем стираются автоматически. Код доски дел и ваше место на
-            ней хранятся в «Моих досках» на устройстве, пока вы не покинете
-            доску или доски не станет.
+            ней хранятся на устройстве, пока вы не покинете доску или она не
+            будет удалена.
           </li>
           <li>
-            Пак, для которого вы создали ссылку, хранится 90 дней с наиболее
-            позднего из событий: создание ссылки, её последнее обновление или
-            последнее скачивание по ней; файл удаляется автоматическим
-            правилом хранилища не позднее 100 дней после его последней
-            записи. Если вы отозвали ссылку
-            сами, файл удаляется сразу, а отметка о недействительности кода
-            (без содержимого пака) хранится до 180 дней.
+            Ссылка на пак истекает не позднее чем через 90 дней после её
+            последнего создания, обновления или скачивания, а файл пака
+            удаляется не позднее чем через 100 дней после этой даты (2.9).
+            Если вы отозвали ссылку сами, файл удаляется сразу, а отметка об
+            отзыве кода (без содержимого пака) хранится до 180 дней.
           </li>
           <li>
-            Пак, опубликованный в Библиотеке: обложка и изображения
-            персонажей, извлечённые для каталога, удаляются сразу, когда
-            пак покидает Библиотеку; файл пака, пока пак опубликован, не
-            истекает — ссылку продлеваем мы, — а после ухода из Библиотеки
-            следует правилу выше, считая от последнего продления; запись
-            каталога (название, имена персонажей, язык, теги, счётчики,
-            даты, статус, причина) и запись автора (хеш ключа, ник, даты)
-            автоматически не удаляются — они хранятся, никому не
-            показываясь, пока вы не попросите их удалить (раздел 6), а для
-            закрытого ключа или пака, на который рассматривается жалоба, —
-            пока это длится (см. 2.10).
+            Пак, опубликованный в Библиотеке: пока он опубликован, его ссылка
+            не истекает; после ухода пака из Библиотеки ссылка истекает не
+            позднее чем через 90 дней после ухода или после последнего
+            обновления или скачивания — что позже, — а файл удаляется не
+            позднее чем через 100 дней после этой даты. Обложка и изображения
+            персонажей, взятые для каталога, удаляются сразу, когда пак
+            покидает Библиотеку. Запись каталога (название, имена персонажей,
+            язык, теги, счётчики, даты, статус и причина) и запись автора
+            (хеш ключа, ник, даты, отметка о закрытии ключа) автоматически не
+            удаляются: они хранятся, никому не показываясь, пока вы не
+            попросите их удалить (раздел 6), — кроме записи о закрытом ключе,
+            которая хранится, пока действует закрытие, и записи пака, на
+            который рассматривается жалоба, — пока она рассматривается.
           </li>
           <li>
-            Суточная метка скачивания (хеш, вычисленный из адреса, рядом с
-            кодом пака) истекает через 24 часа после записи. Счётчики
-            ограничения запросов, ключом которых служит сетевой адрес,
-            очищаются в пределах нескольких часов после закрытия окна (см.
-            2.9 и 2.11).
+            Хеш для подсчёта скачиваний (2.9) удаляется через 24 часа после
+            записи, счётчики ограничения запросов (2.11) — в течение
+            нескольких часов.
           </li>
           <li>
             Наш хостинг-провайдер (Cloudflare) хранит точки восстановления
-            баз данных нашего бэкенда — состояния онлайн-комнат и досок дел,
-            счётчиков ограничения запросов и базы Библиотеки, — по которым
-            каждую из них можно вернуть на момент не далее чем 30 дней назад.
-            Поэтому данные, удалённые из этих баз так, как описано выше, могут
-            оставаться в точках восстановления до 30 дней после удаления.
+            наших баз данных (онлайн-комнаты и доски дел, счётчики
+            ограничения запросов, Библиотека) до 30 дней, поэтому данные,
+            удалённые так, как описано выше, могут оставаться в них до 30
+            дней после удаления.
           </li>
           <li>
-            Строки журнала нашего бэкенда Cloudflare хранит несколько дней;
-            статистика событий ссылок (код, событие, исход, размер — ничего
-            о человеке) хранится у Cloudflare до трёх месяцев.
+            Журналы серверов (2.11) Cloudflare хранит несколько дней,
+            статистику событий ссылок — до трёх месяцев.
           </li>
           <li>
             Строки об ошибках запросов на relay-серверах (п. 2.2) хранятся
@@ -1921,7 +1647,8 @@
           </li>
           <li>
             Данные, обрабатываемые сторонними провайдерами (реклама,
-            аналитика, краши, платежи), хранятся по их собственным правилам.
+            аналитика, отчёты о сбоях, платежи), хранятся по их собственным
+            правилам.
           </li>
         </ul>
 
@@ -1933,66 +1660,46 @@
           UGC-контент обратитесь на
           <strong>artem.podrushnyak@gmail.com</strong>. Для жалоб на UGC
           рекомендуем указывать тему «[Crackface UGC Report]» — это ускоряет
-          обработку.
+          обработку. Если вы находитесь в ЕС, Великобритании или другой
+          стране с похожим законодательством, вы также вправе подать жалобу
+          в местный орган по защите персональных данных.
         </p>
         <p>
-          Для удаления локальных данных можно удалить приложение или очистить
-          данные приложения в настройках ОС. Пошаговая инструкция на все
-          случаи, с перечнем того, что удаляется и что остаётся, — на
-          отдельной странице:
+          Чтобы удалить данные, хранящиеся на устройстве, удалите приложение
+          или очистите его данные в настройках устройства. Удалить ссылку на
+          пак, снять пак с публикации в Библиотеке и покинуть доску дел вы
+          можете сами в приложении. Некоторые данные удаляем только мы, по
+          запросу: ссылку на пак, если не осталось устройства, которое ею
+          управляет, ваши записи в каталоге Библиотеки и запись автора, ваш
+          ник в таблицах доски дел после того, как вы её покинули, и доску
+          целиком — по просьбе её владельца (прежде мы можем попросить
+          подробности, по которым видно, что доска ваша). Напишите на адрес
+          из раздела 1. Пошаговые инструкции, что указать в запросе и что
+          удаляется, а что остаётся, — на отдельной странице:
           <a href="../data-deletion/#ru">Удаление данных</a>.
         </p>
         <p>
-          Пак, которым вы поделились по ссылке, удаляется кнопкой «Отозвать
-          ссылку» на любом устройстве, подключённом к ссылке: где она
-          создана или куда вы добавили свой опубликованный пак с ключом
-          автора. Если такого устройства не осталось (утеряно, приложение
-          переустановлено), напишите нам на адрес из раздела 1 и укажите
-          код пака — мы удалим файл вручную.
+          Согласие на новости о паках можно в любой момент отозвать в
+          настройках приложения, а напоминания досок дел — выключить в
+          приложении; при выключении токен push-уведомлений вашего
+          устройства удаляется с ваших досок. Все уведомления Crackface
+          отключаются в настройках устройства.
         </p>
         <p>
-          Пак, опубликованный в Библиотеке, снимается кнопкой «Снять с
-          витрины» на любом устройстве, где есть ваш ключ автора; вместе с
-          ним сразу удаляются изображения, извлечённые для каталога. Его
-          запись в каталоге, ваш ник и запись автора удаляются только по
-          запросу: напишите на адрес из раздела 1 и укажите тег автора
-          (короткий код рядом с ником) и, если ключа у вас больше нет, коды
-          ваших паков. Удаляем вручную (два исключения — в п. 2.10).
+          Выбор в отношении персонализированной рекламы можно в любой момент
+          изменить в настройках приложения, если в вашем регионе требуется
+          согласие. На iOS разрешить или запретить отслеживание можно в
+          настройках устройства (2.7); на Android рекламный идентификатор
+          можно сбросить или удалить в настройках Google на устройстве.
         </p>
         <p>
-          Доска дел. «Покинуть доску» в настройках доски выводит вас из
-          участников; то, что вы сыграли, остаётся в её таблицах под вашим
-          ником, пока доска не удалена. Чтобы ваш ник заменили прочерком
-          везде на доске — в таблицах дней, таблице за всё время, журнале, —
-          сначала покиньте доску, затем напишите на адрес из раздела 1, указав код
-          доски и ник точно так, как он там показан: пока вы участник, ваше
-          место хранит ваш ник и каждый сыгранный день записывается под ним.
-          Владелец доски так же может попросить удалить доску целиком; её
-          потеряют и другие участники, поэтому прежде мы можем попросить
-          подробности, по которым видно, что доска ваша.
-        </p>
-        <p>
-          Новости о паках выключаются переключателем «Новости и новые паки»
-          в Настройках. Напоминания досок дел и уведомление о том, что друг
-          уже взялся за дела дня, выключаются колокольчиком в «Моих досках»
-          (или в настройках доски); выключение заодно удаляет токен доставки
-          вашего устройства с ваших досок. Все уведомления выключаются в
-          настройках уведомлений операционной системы.
-        </p>
-        <p>
-          Реклама. Выбор по персонализированной рекламе меняется в
-          приложении: <strong>Настройки → Настройки приватности</strong>.
-          На iOS дополнительно действует системный запрос отслеживания
-          (Настройки → Конфиденциальность и безопасность → Отслеживание →
-          Crackface), на Android рекламный идентификатор можно сбросить или
-          удалить в настройках Google.
-        </p>
-        <p>
-          Аналитика и отчёты о сбоях. Отдельного переключателя для Firebase
-          Analytics и Crashlytics в приложении нет. Собираемые ими данные
-          обезличены и перечислены в 2.2; с вашей личностью они не связаны,
-          поэтому удалить их по обращению для одного человека мы не можем.
-          Сбор прекращается, когда вы удаляете приложение.
+          Для Firebase Analytics и Crashlytics в приложении нет отдельного
+          переключателя. Их данные связаны с идентификаторами установки
+          приложения и устройства (например, рекламным идентификатором), а
+          не с вашим именем или контактами. Мы не можем определить, какие
+          данные ваши, поэтому не можем удалить их по запросу; сбор
+          прекращается, когда вы удаляете приложение. Google хранит отчёты о
+          сбоях 90 дней.
         </p>
 
         <h2>7. Дети</h2>
@@ -2006,27 +1713,29 @@
 
         <h2>8. Международная передача данных</h2>
         <p>
-          Сторонние провайдеры могут обрабатывать данные на серверах за
-          пределами вашей страны в соответствии с применимыми правовыми
-          механизмами и своими политиками.
+          Google, Apple, Cloudflare и Telegram обрабатывают данные и в других
+          странах, в том числе в США, и защищают такую передачу собственными
+          механизмами, описанными в их политиках конфиденциальности (раздел
+          11). Наши relay-серверы (п. 2.2) могут находиться за пределами
+          вашей страны.
         </p>
 
         <h2>9. Безопасность</h2>
         <p>
           Мы применяем разумные организационные и технические меры для защиты
-          данных. Однако ни один способ хранения или передачи данных не
-          гарантирует абсолютную безопасность.
+          данных; например, приложение соединяется с нашими серверами только
+          по зашифрованным каналам. Однако ни один способ хранения или
+          передачи данных не гарантирует абсолютную безопасность.
         </p>
 
         <h2>10. Изменения политики</h2>
         <p>
-          Мы можем обновлять эту Политику конфиденциальности. Новая редакция
-          вступает в силу с даты, указанной в начале страницы; там же видно,
-          когда документ обновлялся в последний раз. Актуальная редакция
-          всегда доступна по этому адресу и открывается из приложения:
-          Настройки → Политика конфиденциальности. Продолжая пользоваться
-          приложением после публикации новой редакции, вы соглашаетесь
-          с ней.
+          Мы можем обновлять эту Политику конфиденциальности. Каждую новую
+          редакцию мы публикуем на этой странице и обновляем даты в её
+          начале; актуальная редакция также открывается из настроек
+          приложения. Если изменение существенно затрагивает то, как мы
+          используем ваши данные, мы также сообщим об этом в приложении или
+          в описании обновления приложения, которое его приносит.
         </p>
 
         <h2>11. Политики третьих лиц</h2>
@@ -2040,7 +1749,7 @@
             <a href="https://support.google.com/admob/answer/6128543">https://support.google.com/admob/answer/6128543</a>
           </li>
           <li>
-            Firebase (Analytics + Crashlytics):
+            Firebase (Analytics, Crashlytics, Cloud Messaging):
             <a href="https://firebase.google.com/support/privacy">https://firebase.google.com/support/privacy</a>
           </li>
           <li>
