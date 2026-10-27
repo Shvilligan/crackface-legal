@@ -125,8 +125,8 @@
           <li>
             <strong>Your seat on a Case board.</strong> In the board's
             settings, <strong>"Leave the board"</strong> takes you off its
-            members at once. What you played stays in the board's tables and
-            honor roll under your nickname until the board is deleted — to
+            members at once. What you played stays in the board's tables
+            ("Leaders") under your nickname until the board is deleted — to
             have your nickname taken out too, ask us once you have left
             (&sect;3). If you are
             the owner and the last member, leaving deletes the board with
@@ -171,17 +171,20 @@
             &rarr; Restore purchases</strong>.
           </li>
           <li>
-            <strong>Push notifications.</strong> The system notification
+            <strong>News about packs.</strong> <strong>Settings &rarr; News
+            &amp; new packs</strong> in the app, or the system notification
             settings for Crackface (Android: Settings &rarr; Notifications
             &rarr; Crackface; iOS: Settings &rarr; Notifications &rarr;
             Crackface).
           </li>
           <li>
-            <strong>Case board reminders.</strong> The bell in
-            <strong>"My boards"</strong>, or the system notification settings
-            for Crackface — the reminders use the same permission as push
-            notifications. They are scheduled on your device; nothing about
-            them is on our servers.
+            <strong>Case board reminders and friend notifications.</strong>
+            The bell in <strong>"My boards"</strong>, or the system
+            notification settings for Crackface. The evening reminder is
+            scheduled on your device. For the notification that a friend has
+            started the day's cases, your seat on each board keeps your
+            device's delivery token; turning the bell off removes it from
+            your boards, and so does leaving a board.
           </li>
           <li>
             <strong>The contents of your packs and player roster.</strong>
@@ -245,9 +248,9 @@
             after you have left the board ("Leave the board" in its
             settings; while you are a member, your seat keeps your nickname
             and each day you play is recorded under it) — we replace your
-            nickname with a dash everywhere on that board (the tables, the
-            honor roll, the journal, the results of its days). If you are the
-            board's owner, you can ask us to delete the whole board instead;
+            nickname with a dash everywhere on that board (the day tables,
+            the all-time table, the journal, the results of its days). If you
+            are the board's owner, you can ask us to delete the whole board instead;
             the other members lose it too, so before we do, we may ask for
             details that show the board is yours (its name, roughly when it
             was made, who plays on it).
@@ -362,16 +365,26 @@
             </tr>
             <tr>
               <td>A Case board: members' nicknames and results, the day
-                tables, the honor roll and the journal; for a member dropped
-                for inactivity or excluded, the nickname and a hash of their
-                token</td>
+                tables, the all-time table ("Leaders") and the journal; for a
+                member dropped for inactivity or excluded, the nickname and a
+                hash of their token</td>
               <td>The board's state on our backend</td>
               <td>With the board — 14 days after the last activity on it, or
                 at once when its last member leaves. Before that, a day's
                 details (its cases, the characters named, the results, the
-                day's table) go after 30 days and the weekly honor tables
-                after five weeks. Your nickname is replaced with a dash on
-                request once you have left the board (&sect;3)</td>
+                day's table) go after 30 days. Your nickname is replaced with
+                a dash on request once you have left the board (&sect;3)</td>
+            </tr>
+            <tr>
+              <td>Your device's push delivery token, Android or iOS, your
+                phone's UTC offset and the wording of the board notification
+                in your app's language — if board reminders are on</td>
+              <td>Your seat on each Case board, on our backend</td>
+              <td>When you turn board reminders off, leave the board, are
+                excluded or dropped, when the board is deleted, or when Google
+                reports the app removed; not used after 7 days without opening
+                the app. Cloudflare's restore points of the board's storage
+                expire after 30 days</td>
             </tr>
             <tr>
               <td>The copy of a pack added to a Case board</td>
@@ -460,8 +473,8 @@
           <li>
             <strong>Ваше место на доске дел.</strong> В настройках доски
             <strong>«Покинуть доску»</strong> сразу выводит вас из
-            участников. То, что вы сыграли, остаётся в таблицах и «Доске
-            почёта» под вашим ником, пока доска не удалена, — чтобы убрать и
+            участников. То, что вы сыграли, остаётся в таблицах доски
+            («Лидеры») под вашим ником, пока доска не удалена, — чтобы убрать и
             ник, напишите нам, уже покинув доску (&sect;3). Если вы владелец
             и последний
             участник, уход удаляет доску со всем содержимым.
@@ -507,17 +520,20 @@
             через <strong>«Настройки &rarr; Восстановить покупки»</strong>.
           </li>
           <li>
-            <strong>Push-уведомления.</strong> Системные настройки
-            уведомлений для Crackface (Android: Настройки &rarr; Уведомления
-            &rarr; Crackface; iOS: Настройки &rarr; Уведомления &rarr;
-            Crackface).
+            <strong>Новости о паках.</strong> <strong>«Настройки &rarr;
+            Новости и новые паки»</strong> в приложении или системные
+            настройки уведомлений для Crackface (Android: Настройки &rarr;
+            Уведомления &rarr; Crackface; iOS: Настройки &rarr; Уведомления
+            &rarr; Crackface).
           </li>
           <li>
-            <strong>Напоминания досок дел.</strong> Колокольчик в
-            <strong>«Моих досках»</strong> или системные настройки
-            уведомлений для Crackface — напоминания пользуются тем же
-            разрешением, что и push-уведомления. Они планируются на вашем
-            устройстве; на наших серверах о них ничего нет.
+            <strong>Напоминания и уведомления досок дел.</strong> Колокольчик
+            в <strong>«Моих досках»</strong> или системные настройки
+            уведомлений для Crackface. Вечернее напоминание планируется на
+            вашем устройстве. Для уведомления о том, что друг уже взялся за
+            дела дня, ваше место на каждой доске хранит токен доставки вашего
+            устройства; выключение колокольчика удаляет его с ваших досок,
+            уход с доски — тоже.
           </li>
           <li>
             <strong>Содержимое паков и картотеки игроков.</strong> Имена и
@@ -583,9 +599,9 @@
             покинули доску («Покинуть доску» в её настройках; пока вы
             участник, ваше место хранит ваш ник и каждый сыгранный день
             записывается под ним): мы заменим ник прочерком везде на этой
-            доске (в таблицах, «Доске почёта», журнале, результатах её
-            дней). Если вы владелец доски, можно вместо этого попросить
-            удалить доску целиком; её потеряют и другие участники, поэтому
+            доске (в таблицах дней, таблице за всё время, журнале,
+            результатах её дней). Если вы владелец доски, можно вместо этого
+            попросить удалить доску целиком; её потеряют и другие участники, поэтому
             прежде мы можем попросить подробности, по которым видно, что доска
             ваша (её название, когда примерно она создана, кто на ней играет).
           </li>
@@ -702,16 +718,28 @@
             </tr>
             <tr>
               <td>Доска дел: ники и результаты участников, таблицы дней,
-                «Доска почёта» и журнал; для участника, выбывшего за
-                бездействие или исключённого, — ник и хеш его токена</td>
+                таблица за всё время («Лидеры») и журнал; для участника,
+                выбывшего за бездействие или исключённого, — ник и хеш его
+                токена</td>
               <td>Состояние доски на нашем бэкенде</td>
               <td>Вместе с доской — через 14 дней после последней
                 активности на ней или сразу, когда её покидает последний
                 участник. До того подробности дня (его дела, названные
-                персонажи, результаты, таблица дня) удаляются через 30 дней,
-                недельные таблицы почёта — через пять недель. Ник заменяется
-                прочерком по обращению, когда вы уже покинули доску
-                (&sect;3)</td>
+                персонажи, результаты, таблица дня) удаляются через 30 дней.
+                Ник заменяется прочерком по обращению, когда вы уже покинули
+                доску (&sect;3)</td>
+            </tr>
+            <tr>
+              <td>Токен доставки push-уведомлений вашего устройства, Android
+                или iOS, смещение часов телефона от UTC и текст уведомления
+                доски на языке приложения — если напоминания досок
+                включены</td>
+              <td>Ваше место на каждой доске дел, на нашем бэкенде</td>
+              <td>Когда вы выключаете напоминания досок, покидаете доску, вас
+                исключают или вы выбываете, когда доска удалена или Google
+                сообщает, что приложение удалено; не используется после 7
+                дней без открытия приложения. Точки восстановления хранилища
+                доски у Cloudflare истекают через 30 дней</td>
             </tr>
             <tr>
               <td>Копия пака, добавленного на доску дел</td>
