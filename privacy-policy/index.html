@@ -128,7 +128,7 @@
           </li>
           <li>
             local counters used for ad pacing, tutorial hints, and the
-            review- and notification-prompt logic;
+            review-, notification- and update-prompt logic;
           </li>
           <li>
             a random device secret that proves your right to manage the pack
@@ -188,7 +188,7 @@
             the notification permission request, whether Case board
             reminders were turned on or off, whether news about packs was
             turned on or off and where (the end-of-game prompt or Settings),
-            and Library
+            whether an update was offered and what you answered, and Library
             actions — the catalogue opened, a pack published, imported,
             updated, unpublished or reported, a decision shown — with the
             pack's language, the outcome or the error code as parameters;
@@ -205,15 +205,17 @@
             board reminders on. They arrive only where the operating system
             permits notifications: on iOS and on Android 13+ the app asks
             for that permission first (the prompt comes after a few finished
-            games — or when you first open a Case board and agree to its
-            reminders — never at launch), while older Android versions
+            games, when you first open a Case board and agree to its
+            reminders, or when you turn news or board reminders on in the
+            app — never at launch), while older Android versions
             permit them by default. The device receives a technical delivery
             token from Google. News about packs is a choice of its own,
             separate from the permission and from board reminders: the app
             asks about it after a few finished games, and the "News &amp;
             new packs" switch in Settings turns it on and off. We send such
-            campaigns by hand, only to devices that agreed, one list per
-            interface language — never to an individual player. Case board
+            campaigns by hand, only to devices that agreed, in three lists —
+            one for Russian, one for Ukrainian and one in English for every
+            other interface language — never to an individual player. Case board
             notifications are another kind: the evening reminder is
             scheduled on the device itself and goes through neither Google
             nor our servers, while the notification that a friend on your
@@ -226,6 +228,14 @@
           <li>
             <strong>Google Play Billing</strong> and
             <strong>Apple In-App Purchase</strong> — for in-app purchases;
+          </li>
+          <li>
+            <strong>App Store</strong> and <strong>Google Play</strong> — to
+            offer you a newer version of the app: on iOS the app asks the App
+            Store's public lookup service whether one exists, sending the
+            app's identifier and your device's region (a country code); on
+            Android it uses Google Play's in-app updates, where Play itself
+            shows the offer and downloads the update;
           </li>
           <li>
             <strong>Cloudflare</strong> (Workers, Durable Objects, KV, R2,
@@ -368,10 +378,13 @@
           of your board finishes their first case of the board's day, while
           you have not finished one there yet that day and still have cases
           open, our server sends your device a push notification: the
-          board's name and that member's nickname ("Anna is on the case").
+          board's name (or, for a board without one, its code) and that
+          member's nickname ("Anna is on the case"); the notification also
+          carries the board's code, so that tapping it opens the board.
           At most one a day per board, only between 9:00 and 22:00 by your
           phone's clock, and not while you have the board open. For that,
-          the app gives our backend, for each board you are on: your
+          the app gives our backend, for each of the (up to 20) boards you
+          opened most recently: your
           device's delivery token (from Google, see 2.2), whether it is an
           Android or an iOS device, your phone's UTC offset (a number of
           minutes, not a location — for the 9:00–22:00 window) and the
@@ -706,7 +719,8 @@
           stored in Cloudflare Durable Object storage under a key that
           contains the address and the start of the window; keys whose
           window is more than two hours old are removed by an automatic
-          sweep, so an address stays there for a few hours at most. The address is
+          sweep, so an address stays there for a few hours at most (apart
+          from our hosting provider's restore points, section 5). The address is
           not written into pack records, the Library or the download
           markers (the day-mark in 2.9 holds a hash, not the address).
         </p>
@@ -793,8 +807,9 @@
             device's delivery token and the notification to deliver: news
             about packs, if you agreed to it, and Case board notifications,
             if you turned board reminders on (see 2.2 and 2.3). A board
-            notification carries the board's name and the nickname of a
-            member of that board;
+            notification carries the board's name (or, for a board without
+            one, its code) and the nickname of a member of that board, and
+            also the board's code, so that tapping it opens the board;
           </li>
           <li>
             with Telegram — the text you wrote in the feedback form and the
@@ -828,19 +843,20 @@
           </li>
           <li>
             Your device's delivery token and what is sent with it for Case
-            board notifications (2.3) are kept in your seat on each board.
-            They are removed when you turn board reminders off (or turn
+            board notifications (2.3) are kept in your seat on each board
+            they were sent for. They are removed when you turn board
+            reminders off (or turn
             notifications off for the app in the system settings — at the
             next opening of the app), leave the board, are excluded from it
             or dropped for inactivity, when the board is deleted, or when
             Google reports that the app was removed from your device. A
-            token that has not been refreshed for 7 days — the app refreshes
-            it whenever you open it — is no longer used, and is removed at
+            token that has not been refreshed for 7 days — the app sends it
+            again when something in it changes and otherwise at most once a
+            day, when you open the app, and only for the 20 boards you
+            opened most recently — is no longer used, and is removed at
             that board's next notification. If we stop sending these
             notifications on our side, the stored tokens stay until one of
-            the above. Our hosting provider (Cloudflare) can restore a
-            board's storage to a point within the last 30 days; such restore
-            points expire after 30 days.
+            the above.
           </li>
           <li>
             Local online-room credentials (code, session token) are retained
@@ -878,6 +894,15 @@
             next to a pack code) expires 24 hours after it was written.
             Request-limit counters keyed by network address are swept within a
             few hours after their window closes (see 2.9 and 2.11).
+          </li>
+          <li>
+            Our hosting provider (Cloudflare) keeps restore points of our
+            backend databases — the state of online rooms and Case boards,
+            the request-limit counters and the Library database — from which
+            each can be restored to a moment within the last 30 days at most.
+            Data deleted from these databases as described above can
+            therefore remain in the restore points for up to 30 days after
+            its deletion.
           </li>
           <li>
             Our backend log lines are kept by Cloudflare for a few days;
@@ -1088,7 +1113,8 @@
           </li>
           <li>
             локальные служебные счётчики для логики показа рекламы, подсказок,
-            запроса оценки приложения и предложения включить уведомления;
+            запроса оценки приложения, предложения включить уведомления и
+            предложения обновиться;
           </li>
           <li>
             случайный секрет устройства, которым подтверждается право
@@ -1148,7 +1174,8 @@
             уведомлений, ответ на запрос разрешения на уведомления,
             включение и выключение напоминаний досок дел, включение и
             выключение новостей о паках и где это сделано (вопрос после
-            партий или Настройки), а также действия в Библиотеке — открытие
+            партий или Настройки), предложение обновиться и ответ на него, а
+            также действия в Библиотеке — открытие
             каталога, публикация, добавление, обновление, снятие пака или
             жалоба на него, показ решения — с параметрами: язык пака,
             результат или код ошибки; никогда не ваш ник, не ключ автора и
@@ -1165,16 +1192,18 @@
             напоминания досок. Они приходят только там, где уведомления
             разрешены операционной системой: на iOS и на Android 13+
             приложение сначала спрашивает разрешение (запрос показывается не
-            при запуске, а после нескольких сыгранных партий — или при первом
-            открытии доски дел, если вы согласились на её напоминания), на
+            при запуске, а после нескольких сыгранных партий, при первом
+            открытии доски дел, если вы согласились на её напоминания, или
+            когда вы включаете новости или напоминания досок в приложении), на
             более старых версиях Android они разрешены по умолчанию.
             Устройство получает от Google технический токен доставки.
             Новости о паках — отдельный выбор, независимый от разрешения и от
             напоминаний досок: приложение спрашивает о них после нескольких
             сыгранных партий, а переключатель «Новости и новые паки» в
             Настройках включает и выключает их. Такие рассылки мы
-            отправляем вручную, только согласившимся устройствам, отдельным
-            списком на каждый язык интерфейса, — и никогда не адресуем
+            отправляем вручную, только согласившимся устройствам, тремя
+            списками — русским, украинским и английским для остальных языков
+            интерфейса, — и никогда не адресуем
             конкретному игроку. Уведомления досок дел — другое: вечернее
             напоминание планируется на самом устройстве и не проходит ни
             через Google, ни через наши серверы, а уведомление о том, что
@@ -1188,6 +1217,14 @@
             <strong>Google Play Billing</strong> и
             <strong>Apple In-App Purchase</strong> — для обработки покупок
             в приложении;
+          </li>
+          <li>
+            <strong>App Store</strong> и <strong>Google Play</strong> — чтобы
+            предложить вам новую версию приложения: на iOS приложение
+            спрашивает у открытого сервиса поиска App Store, есть ли она,
+            передавая идентификатор приложения и регион устройства (код
+            страны); на Android используется встроенное обновление Google
+            Play — предложение показывает и обновление скачивает сам Play;
           </li>
           <li>
             <strong>Cloudflare</strong> (Workers, Durable Objects, KV, R2,
@@ -1332,11 +1369,13 @@
           передаётся. А когда другой участник вашей доски заканчивает своё
           первое дело за день доски, пока вы там в этот день ещё ничего не
           закончили и у вас остались открытые дела, наш сервер присылает на
-          ваше устройство push-уведомление: название доски и ник этого
-          участника («Аня уже в деле»). Не чаще одного в день на доску,
-          только с 9:00 до 22:00 по часам вашего телефона и не тогда, когда
-          доска у вас открыта. Для этого приложение передаёт нашему бэкенду
-          для каждой доски, на которой вы состоите: токен доставки вашего
+          ваше устройство push-уведомление: название доски (у доски без
+          названия — её код) и ник этого участника («Аня уже в деле»);
+          уведомление несёт и код доски, чтобы по нажатию открылась доска.
+          Не чаще одного в день на доску, только с 9:00 до 22:00 по часам
+          вашего телефона и не тогда, когда доска у вас открыта. Для этого
+          приложение передаёт нашему бэкенду для каждой из (не более 20)
+          досок, которые вы открывали последними: токен доставки вашего
           устройства (от Google, см. 2.2), Android это или iOS, смещение
           часов телефона от UTC (число минут, не местоположение, — для окна
           9:00–22:00) и текст этого уведомления на языке приложения. Они
@@ -1676,7 +1715,8 @@
           Cloudflare Durable Object под ключом, в который входят адрес и
           начало окна; ключи, чьё окно старше двух часов, удаляет
           автоматическая очистка, так что адрес лежит там самое большее
-          несколько часов. Адрес не
+          несколько часов (не считая точек восстановления у
+          хостинг-провайдера, раздел 5). Адрес не
           записывается ни в записи паков, ни в Библиотеку, ни в отметки
           скачиваний (суточная метка из п. 2.9 содержит хеш, а не адрес).
         </p>
@@ -1765,7 +1805,9 @@
             доставки вашего устройства и уведомление для доставки: новости о
             паках, если вы на них согласились, и уведомления досок дел, если
             вы включили напоминания досок (см. 2.2 и 2.3). Уведомление доски
-            несёт название доски и ник участника этой доски;
+            несёт название доски (у доски без названия — её код) и ник
+            участника этой доски, а также код доски, чтобы по нажатию
+            открылась доска;
           </li>
           <li>
             сервису Telegram — текст, который вы сами написали в форме
@@ -1802,19 +1844,19 @@
           <li>
             Токен доставки вашего устройства и то, что передаётся вместе с
             ним для уведомлений досок дел (2.3), хранятся в вашем месте на
-            каждой доске. Они удаляются, когда вы выключаете напоминания
+            каждой доске, для которой они переданы. Они удаляются, когда вы
+            выключаете напоминания
             досок (или уведомления приложения в системных настройках — при
             следующем открытии приложения), покидаете доску, когда вас
             исключают или вы выбываете за бездействие, когда доска удалена,
             или когда Google сообщает, что приложение удалено с устройства.
-            Токен, который не обновлялся 7 дней (приложение обновляет его при
-            каждом открытии), больше не используется и удаляется при
+            Токен, который не обновлялся 7 дней (приложение отправляет его
+            заново, когда в нём что-то меняется, а иначе не чаще раза в день
+            при открытии приложения и только для 20 досок, которые вы
+            открывали последними), больше не используется и удаляется при
             следующем уведомлении этой доски. Если мы прекращаем отправку
             таких уведомлений на своей стороне, сохранённые токены остаются
-            до одного из перечисленных событий. Наш хостинг-провайдер
-            (Cloudflare) может восстановить хранилище доски на момент в
-            пределах последних 30 дней; такие точки восстановления истекают
-            через 30 дней.
+            до одного из перечисленных событий.
           </li>
           <li>
             Локальные учётные данные онлайн-комнаты (код, токен сессии)
@@ -1851,6 +1893,14 @@
             ограничения запросов, ключом которых служит сетевой адрес,
             очищаются в пределах нескольких часов после закрытия окна (см.
             2.9 и 2.11).
+          </li>
+          <li>
+            Наш хостинг-провайдер (Cloudflare) хранит точки восстановления
+            баз данных нашего бэкенда — состояния онлайн-комнат и досок дел,
+            счётчиков ограничения запросов и базы Библиотеки, — по которым
+            каждую из них можно вернуть на момент не далее чем 30 дней назад.
+            Поэтому данные, удалённые из этих баз так, как описано выше, могут
+            оставаться в точках восстановления до 30 дней после удаления.
           </li>
           <li>
             Строки журнала нашего бэкенда Cloudflare хранит несколько дней;

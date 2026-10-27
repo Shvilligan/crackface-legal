@@ -379,12 +379,12 @@
               <td>Your device's push delivery token, Android or iOS, your
                 phone's UTC offset and the wording of the board notification
                 in your app's language — if board reminders are on</td>
-              <td>Your seat on each Case board, on our backend</td>
+              <td>Your seat on each Case board it was sent for (up to the 20
+                you opened most recently), on our backend</td>
               <td>When you turn board reminders off, leave the board, are
                 excluded or dropped, when the board is deleted, or when Google
-                reports the app removed; not used after 7 days without opening
-                the app. Cloudflare's restore points of the board's storage
-                expire after 30 days</td>
+                reports the app removed; not used once it has not been
+                refreshed for 7 days</td>
             </tr>
             <tr>
               <td>The copy of a pack added to a Case board</td>
@@ -399,18 +399,29 @@
             </tr>
             <tr>
               <td>A Case board's code and name, your seat on it (a random id
-                and token), the board's packs you downloaded, the reminder
-                setting</td>
+                and token), what the app last saw there, the board's packs you
+                downloaded, the reminder setting; and, once for the whole
+                phone, a record of when our server last accepted your device
+                for board notifications (a time and a checksum)</td>
               <td>Your device ("My boards")</td>
               <td>When you leave the board or it is gone; downloaded packs
-                about 30 days after you last opened the board; all of it
-                when you delete the app</td>
+                about 30 days after you last opened the board; the
+                board-notification record, and all of the rest, when you
+                delete the app</td>
             </tr>
             <tr>
               <td>The text of a message sent from the feedback form</td>
               <td>Our internal Telegram chat</td>
               <td>Manually — on your request, or when we clear the thread;
                 nothing is stored on our backend</td>
+            </tr>
+            <tr>
+              <td>Restore points of our backend databases (online rooms, Case
+                boards, request-limit counters, the Library database)</td>
+              <td>Cloudflare, our hosting provider</td>
+              <td>Data deleted from these databases can remain in the restore
+                points for up to 30 days after its deletion, then it is gone on
+                its own</td>
             </tr>
             <tr>
               <td>Analytics events and crash reports (Firebase)</td>
@@ -734,12 +745,12 @@
                 или iOS, смещение часов телефона от UTC и текст уведомления
                 доски на языке приложения — если напоминания досок
                 включены</td>
-              <td>Ваше место на каждой доске дел, на нашем бэкенде</td>
+              <td>Ваше место на каждой доске дел, для которой он передан (не
+                более 20 досок, открытых последними), на нашем бэкенде</td>
               <td>Когда вы выключаете напоминания досок, покидаете доску, вас
                 исключают или вы выбываете, когда доска удалена или Google
-                сообщает, что приложение удалено; не используется после 7
-                дней без открытия приложения. Точки восстановления хранилища
-                доски у Cloudflare истекают через 30 дней</td>
+                сообщает, что приложение удалено; не используется, если 7 дней
+                не обновлялся</td>
             </tr>
             <tr>
               <td>Копия пака, добавленного на доску дел</td>
@@ -754,18 +765,31 @@
             </tr>
             <tr>
               <td>Код и название доски дел, ваше место на ней (случайный
-                идентификатор и токен), скачанные паки доски, настройка
-                напоминаний</td>
+                идентификатор и токен), что приложение видело там в последний
+                раз, скачанные паки доски, настройка напоминаний; и одна на
+                весь телефон запись о том, когда наш сервер в последний раз
+                принял ваше устройство для уведомлений досок (время и
+                контрольная сумма)</td>
               <td>Ваше устройство («Мои доски»)</td>
               <td>Когда вы покидаете доску или доски не стало; скачанные паки
-                — примерно через 30 дней после последнего открытия доски; всё
-                — при удалении приложения</td>
+                — примерно через 30 дней после последнего открытия доски;
+                запись об уведомлениях досок и всё остальное — при удалении
+                приложения</td>
             </tr>
             <tr>
               <td>Текст сообщения из формы обратной связи</td>
               <td>Наш служебный чат в Telegram</td>
               <td>Вручную — по вашему обращению или когда мы разбираем
                 чат; на бэкенде сообщение не сохраняется</td>
+            </tr>
+            <tr>
+              <td>Точки восстановления баз данных нашего бэкенда
+                (онлайн-комнаты, доски дел, счётчики ограничения запросов, база
+                Библиотеки)</td>
+              <td>Cloudflare, наш хостинг-провайдер</td>
+              <td>Данные, удалённые из этих баз, могут оставаться в точках
+                восстановления до 30 дней после удаления, затем исчезают
+                сами</td>
             </tr>
             <tr>
               <td>События аналитики и отчёты о сбоях (Firebase)</td>
