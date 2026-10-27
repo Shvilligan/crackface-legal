@@ -79,7 +79,7 @@
         <p class="meta">
           App: <strong>Crackface</strong><br />
           Effective date: <strong>May 25, 2026</strong><br />
-          Last updated: <strong>September 27, 2026</strong>
+          Last updated: <strong>September 30, 2026</strong>
         </p>
         <p>
           This Privacy Policy explains how
@@ -150,7 +150,15 @@
             or marked as favourites, the language and size filters you
             chose, what the app last knew about the status of each pack you
             submitted (so it can tell you about a decision), and, for each
-            pack that came by link, the code it came from.
+            pack that came by link, the code it came from;
+          </li>
+          <li>
+            the Case boards you are on ("My boards", see 2.3): each board's
+            code and name, your seat on it (a random identifier and token),
+            what the app last saw there (the day and how many cases were
+            waiting), the copies of the board's packs you downloaded (kept
+            while you stay on the board and have opened it in the last 30
+            days), and whether you asked for board reminders.
           </li>
         </ul>
         <p>
@@ -170,7 +178,9 @@
             <strong>Google Firebase Analytics</strong> — for aggregated,
             de-identified app-usage analytics (matches started and finished,
             mode distribution, pack popularity, packs installed from the
-            catalogue or from a link, notifications opened, and Library
+            catalogue or from a link, notifications opened, the answer to
+            the notification permission request, whether Case board
+            reminders were turned on or off, and Library
             actions — the catalogue opened, a pack published, imported,
             updated, unpublished or reported, a decision shown — with the
             pack's language, the outcome or the error code as parameters;
@@ -185,12 +195,18 @@
             push notifications about new character packs. They arrive only
             where the operating system permits notifications: on iOS and on
             Android 13+ the app asks for that permission first (the prompt
-            comes after a few finished games, never at launch), while older
+            comes after a few finished games — or when you first open a Case
+            board and agree to its reminders — never at launch), while older
             Android versions permit them by default. The device receives a
             technical delivery token from Google. We send such campaigns by
             hand and never address them to an individual player — only by
-            interface language. You can turn notifications off in your
-            operating system's settings.
+            interface language. Case board reminders (2.3) are not push
+            campaigns: the app schedules them on the device itself, the
+            reminders themselves go through neither Google nor our servers
+            (Firebase Analytics above only counts, without identifying you,
+            whether they were turned on and whether one was opened), and
+            they use the same notification permission. You can turn
+            notifications off in your operating system's settings.
           </li>
           <li>
             <strong>Google Play Billing</strong> and
@@ -276,11 +292,64 @@
         </ul>
         <p>
           Server-side room state is automatically deleted 24 hours after the
-          last activity in the room. Data does not carry over between
-          different rooms or matches. The online mode does not include any
-          chat or messaging between players: in "Find the Mole", where a
-          table can seat up to 20, players describe their character out
-          loud — no voice or text is carried by the app.
+          last activity in the room — except on a Case board, below. Data
+          does not carry over between different rooms or matches. The online
+          mode does not include any chat or messaging between players: in
+          "Find the Mole", where a table can seat up to 20, players describe
+          their character out loud — no voice or text is carried by the app.
+        </p>
+        <p>
+          <strong>Case board.</strong> A Case board is a Crackdle room that
+          lasts: up to 50 members solve the same few cases each day, whenever
+          it suits them, and the board keeps the score. For that, our backend
+          keeps, for as long as the board exists:
+        </p>
+        <ul>
+          <li>
+            each member's nickname, the day they joined and when they last
+            played, the cases they opened, the characters they named in them
+            and their results;
+          </li>
+          <li>
+            each day's table, and the honor roll — by week and for all time —
+            including the lines of members who have since left the board;
+          </li>
+          <li>
+            the board's journal (its latest 50 entries): who added or removed
+            a pack, changed a setting, handed the board over or excluded
+            someone, with their nicknames;
+          </li>
+          <li>
+            for a member who was dropped for inactivity or excluded: the
+            nickname and a one-way hash of their token — so that the first
+            can come back on the same phone, and the second cannot;
+          </li>
+          <li>
+            the UTC offset of the owner's phone (a number of minutes, not a
+            location), so that the board's day ends at the owner's midnight;
+            members see when the day ends.
+          </li>
+        </ul>
+        <p>
+          Nicknames and results are shown only to the board's members;
+          anyone with the board's code sees only its game, the number of
+          members and whether entry is closed. The details of a day — its
+          cases, who named which character, the results and the day's table
+          — are deleted after 30 days, the weekly honor tables after five
+          weeks; the all-time honor roll and the journal stay for the life of
+          the board. The board is deleted with everything on it 14 days
+          after the last activity on it, or right away when its last member
+          leaves. Leaving a board removes you from its members; what you
+          played stays in its tables under your nickname until the board is
+          deleted, or until, once you have left, you ask us to replace your
+          nickname (section 6).
+        </p>
+        <p>
+          Board reminders are optional. The app asks once, when you first
+          open a board, without naming a time, and then schedules local
+          notifications on your device for when cases are waiting on your
+          boards — nothing about them is sent to our servers. The bell in
+          "My boards" turns them on and off.
         </p>
 
         <h3>2.4. User-created packs (UGC) in online mode</h3>
@@ -292,6 +361,18 @@
           together with the room — 24 hours after the last activity in it;
           a copy that outlives the room is removed by a storage rule no
           later than 7 days.
+        </p>
+        <p>
+          On a Case board (2.3), a pack a member added to the board is
+          uploaded by that member's app (or the owner's) and kept for as long
+          as the board still plays it: our server rewrites the copy about
+          once a month, so that the storage rule does not take it from under
+          the board. Only the board's members can download it. The copy is
+          deleted when the pack leaves the board and the days that used it
+          are past, together with the board, or at once when we remove it on
+          a complaint — after which it cannot be added to that board again.
+          A copy whose deletion failed is removed by a storage rule no later
+          than 60 days after it was last written.
         </p>
         <p>
           Outside an online room, a user-created pack is stored on our
@@ -590,8 +671,8 @@
           address (IP) — from Cloudflare, or, when your session goes
           through the relay (2.2), in a header the relay adds. Our own code
           uses it for one purpose: limiting how many requests one address
-          may make in a window (a minute or an hour, depending on the
-          route), so that the service cannot be flooded. The counter is
+          may make in a window (a minute, ten minutes or an hour, depending
+          on the route), so that the service cannot be flooded. The counter is
           stored in Cloudflare Durable Object storage under a key that
           contains the address and the start of the window; keys whose
           window is more than two hours old are removed by an automatic
@@ -626,7 +707,10 @@
           <li>to show ads in the free version;</li>
           <li>to analyze app usage and improve stability;</li>
           <li>to process and restore purchases;</li>
-          <li>to run online mode and share UGC packs between players;</li>
+          <li>
+            to run online mode — rooms and Case boards with their tables and
+            honor roll — and share UGC packs between players;
+          </li>
           <li>
             to deliver your pack to the people you sent its link to
             (see 2.9);
@@ -657,8 +741,9 @@
             server side of online mode, pack links and the Library;
           </li>
           <li>
-            with other players in the same online room — in the scope
-            necessary for the game (see sections 2.3 and 2.4);
+            with other players in the same online room or on the same Case
+            board — in the scope necessary for the game (see sections 2.3
+            and 2.4);
           </li>
           <li>
             with anyone you sent a pack link or code to yourself — in the
@@ -693,9 +778,22 @@
             rule no later than 7 days.
           </li>
           <li>
+            A Case board (2.3) is kept for as long as it is played: it is
+            deleted with everything on it 14 days after the last activity on
+            it, or right away when its last member leaves. Until then the
+            details of each day are kept for 30 days, the weekly honor tables
+            for five weeks, the all-time honor roll and the journal for the
+            life of the board. A pack copy on a board is kept while the board
+            still plays it and rewritten about once a month; a copy whose
+            deletion failed is removed by a storage rule no later than 60
+            days after it was last written (2.4).
+          </li>
+          <li>
             Local online-room credentials (code, session token) are retained
             on the device for up to 24 hours after last use and then erased
-            automatically.
+            automatically. A Case board's code and your seat on it stay in
+            "My boards" on the device until you leave the board or the board
+            is gone.
           </li>
           <li>
             A pack you published a link for is stored for 90 days from the
@@ -784,8 +882,21 @@
           hand (see 2.10 for the two exceptions).
         </p>
         <p>
-          Push notifications are turned off in your operating system's
-          notification settings.
+          Case board. "Leave the board" in the board's settings removes you
+          from its members; what you played stays in its tables under your
+          nickname until the board is deleted. To have your nickname replaced
+          with a dash everywhere on a board — tables, honor roll, journal —
+          leave the board first, then write to the address in section 1 with
+          the board's code and your nickname exactly as it appears there:
+          while you are a member, your seat keeps your nickname and each day
+          you play is recorded under it. A board's owner can ask us the same
+          way to delete the whole board; since its other members lose it too,
+          we may first ask for details that show the board is yours.
+        </p>
+        <p>
+          Push notifications and Case board reminders are turned off in your
+          operating system's notification settings; board reminders also
+          with the bell in "My boards".
         </p>
         <p>
           Advertising. Your choice about personalised ads is changed in the
@@ -869,7 +980,7 @@
         <p class="meta">
           Приложение: <strong>Crackface</strong><br />
           Дата вступления в силу: <strong>25 мая 2026</strong><br />
-          Последнее обновление: <strong>27 сентября 2026</strong>
+          Последнее обновление: <strong>30 сентября 2026</strong>
         </p>
         <p>
           Настоящая Политика конфиденциальности описывает, как
@@ -940,7 +1051,15 @@
             языка и размера, последнее известное приложению состояние
             каждого отправленного вами пака (чтобы сообщить о решении) и,
             для каждого пришедшего по ссылке пака, код, по которому он
-            пришёл.
+            пришёл;
+          </li>
+          <li>
+            доски дел, на которых вы состоите («Мои доски», см. 2.3): код и
+            название каждой доски, ваше место на ней (случайный
+            идентификатор и токен), что приложение видело там в последний
+            раз (день и сколько дел ждало), скачанные копии паков доски
+            (хранятся, пока вы на доске и открывали её за последние 30
+            дней) и включены ли напоминания о досках.
           </li>
         </ul>
         <p>
@@ -961,7 +1080,9 @@
             обезличенной аналитики использования приложения (запуски и
             завершения партий, распределение игровых режимов, популярность
             паков, установки паков из каталога и по ссылке, открытия
-            уведомлений, а также действия в Библиотеке — открытие
+            уведомлений, ответ на запрос разрешения на уведомления,
+            включение и выключение напоминаний досок дел, а также действия
+            в Библиотеке — открытие
             каталога, публикация, добавление, обновление, снятие пака или
             жалоба на него, показ решения — с параметрами: язык пака,
             результат или код ошибки; никогда не ваш ник, не ключ автора и
@@ -977,11 +1098,17 @@
             только там, где уведомления разрешены операционной системой: на
             iOS и на Android 13+ приложение сначала спрашивает разрешение
             (запрос показывается не при запуске, а после нескольких
-            сыгранных партий), на более старых версиях Android они разрешены
-            по умолчанию. Устройство получает от Google технический токен
-            доставки. Рассылки мы отправляем вручную и не адресуем их
-            конкретному игроку — только по языку интерфейса. Отключить
-            уведомления можно в настройках операционной системы.
+            сыгранных партий — или при первом открытии доски дел, если вы
+            согласились на её напоминания), на более старых версиях Android
+            они разрешены по умолчанию. Устройство получает от Google
+            технический токен доставки. Рассылки мы отправляем вручную и не
+            адресуем их конкретному игроку — только по языку интерфейса.
+            Напоминания доски дел (2.3) — не рассылки: приложение
+            планирует их на самом устройстве, сами напоминания через Google
+            и наши серверы не проходят (Firebase Analytics выше лишь
+            обезличенно считает, включены ли они и открыто ли
+            напоминание) и пользуются тем же разрешением на уведомления.
+            Отключить уведомления можно в настройках операционной системы.
           </li>
           <li>
             <strong>Google Play Billing</strong> и
@@ -1070,11 +1197,65 @@
         </ul>
         <p>
           Серверное состояние комнаты автоматически удаляется через 24 часа
-          после последней активности в ней. Между разными комнатами и
-          партиями данные не пересекаются. Чат / переписка между игроками в
-          онлайн-режиме не предусмотрены: в режиме «Найди крота», где за
-          столом бывает до 20 человек, игроки описывают персонажа вслух —
-          голос и текст через приложение не передаются.
+          после последней активности в ней — кроме доски дел, о ней ниже.
+          Между разными комнатами и партиями данные не пересекаются. Чат /
+          переписка между игроками в онлайн-режиме не предусмотрены: в
+          режиме «Найди крота», где за столом бывает до 20 человек, игроки
+          описывают персонажа вслух — голос и текст через приложение не
+          передаются.
+        </p>
+        <p>
+          <strong>Доска дел.</strong> Доска дел — комната Crackdle, которая
+          живёт долго: до 50 участников каждый день раскрывают одни и те же
+          несколько дел, когда им удобно, а доска ведёт счёт. Для этого наш
+          бэкенд хранит, пока доска существует:
+        </p>
+        <ul>
+          <li>
+            ник каждого участника, день, когда он пришёл, и когда играл в
+            последний раз, открытые им дела, названных в них персонажей и
+            его результаты;
+          </li>
+          <li>
+            таблицу каждого дня и «Доску почёта» — по неделям и за всё
+            время, — в том числе строки участников, которые уже покинули
+            доску;
+          </li>
+          <li>
+            журнал доски (последние 50 записей): кто добавил или убрал пак,
+            изменил настройку, передал руководство или исключил участника, —
+            с никами;
+          </li>
+          <li>
+            для участника, выбывшего за бездействие или исключённого, — ник
+            и необратимый хеш его токена: первый сможет вернуться с того же
+            телефона, второй — нет;
+          </li>
+          <li>
+            смещение часового пояса телефона владельца (число минут от UTC,
+            не местоположение), чтобы день доски заканчивался в полночь
+            владельца; участники видят, когда кончается день.
+          </li>
+        </ul>
+        <p>
+          Ники и результаты видят только участники доски; тот, у кого есть
+          только код, видит лишь игру доски, число участников и закрыт ли
+          вход. Подробности дня — его дела, кто каких персонажей называл,
+          результаты и таблица дня — удаляются через 30 дней, недельные
+          таблицы почёта — через пять недель; «Доска почёта» за всё время и
+          журнал живут, пока жива доска. Доска удаляется со всем содержимым
+          через 14 дней после последней активности на ней или сразу, когда
+          её покидает последний участник. Если вы покинули доску, вы больше
+          не участник; то, что вы сыграли, остаётся в её таблицах под вашим
+          ником, пока доска не удалена или пока вы, уже покинув доску, не
+          попросите нас заменить ник (раздел 6).
+        </p>
+        <p>
+          Напоминания доски — по желанию. Приложение спрашивает один раз,
+          при первом открытии доски, не называя времени, и затем планирует
+          на вашем устройстве локальные уведомления на случай, когда на
+          ваших досках ждут дела, — на наши серверы о них ничего не
+          передаётся. Колокольчик в «Моих досках» включает и выключает их.
         </p>
 
         <h3>2.4. Пользовательские паки (UGC) в онлайн-режиме</h3>
@@ -1086,6 +1267,18 @@
           удаляется вместе с комнатой — через 24 часа после последней
           активности в ней; копию, пережившую удаление комнаты, стирает
           правило хранилища не позднее чем через 7 дней.
+        </p>
+        <p>
+          На доске дел (2.3) пак, который участник добавил на доску,
+          загружает приложение этого участника (или владельца доски); копия
+          хранится, пока доска его ещё играет: наш сервер перезаписывает её
+          примерно раз в месяц, чтобы правило хранилища не стёрло её из-под
+          доски. Скачать её могут только участники доски. Копия удаляется,
+          когда пак ушёл с доски и дни, которые его играли, прошли, вместе с
+          доской или сразу, когда мы убираем пак по жалобе, — после этого
+          его нельзя снова добавить на эту доску. Копию, которую не удалось
+          удалить, стирает правило хранилища не позднее чем через 60 дней
+          после её последней записи.
         </p>
         <p>
           За пределами онлайн-комнаты пользовательский пак хранится на наших
@@ -1389,11 +1582,12 @@
           (IP) — от Cloudflare или, когда сессия идёт через relay (2.2), в
           заголовке, который добавляет relay. Наш собственный код использует
           его для одного: ограничить число запросов с одного адреса за окно
-          (минута или час — в зависимости от маршрута), чтобы сервис нельзя
-          было завалить. Счётчик хранится в хранилище Cloudflare Durable
-          Object под ключом, в который входят адрес и начало окна; ключи,
-          чьё окно старше двух часов, удаляет автоматическая очистка, так
-          что адрес лежит там самое большее несколько часов. Адрес не
+          (минута, десять минут или час — в зависимости от маршрута), чтобы
+          сервис нельзя было завалить. Счётчик хранится в хранилище
+          Cloudflare Durable Object под ключом, в который входят адрес и
+          начало окна; ключи, чьё окно старше двух часов, удаляет
+          автоматическая очистка, так что адрес лежит там самое большее
+          несколько часов. Адрес не
           записывается ни в записи паков, ни в Библиотеку, ни в отметки
           скачиваний (суточная метка из п. 2.9 содержит хеш, а не адрес).
         </p>
@@ -1423,7 +1617,10 @@
           <li>показ рекламы в бесплатной версии;</li>
           <li>аналитика использования и улучшение стабильности приложения;</li>
           <li>обработка и восстановление покупок;</li>
-          <li>работа онлайн-режима и обмен пользовательскими паками;</li>
+          <li>
+            работа онлайн-режима — комнат и досок дел с их таблицами и
+            «Доской почёта» — и обмен пользовательскими паками;
+          </li>
           <li>
             передача вашего пака тем, кому вы отправили ссылку на него
             (см. 2.9);
@@ -1456,8 +1653,9 @@
             серверной части онлайн-режима, ссылок на паки и Библиотеки;
           </li>
           <li>
-            другим игрокам, находящимся с вами в одной онлайн-комнате — в
-            объёме, необходимом для игрового процесса (см. п. 2.3 и 2.4);
+            другим игрокам, находящимся с вами в одной онлайн-комнате или на
+            одной доске дел, — в объёме, необходимом для игрового процесса
+            (см. п. 2.3 и 2.4);
           </li>
           <li>
             любому, кому вы сами отправили ссылку или код пака, — в объёме
@@ -1494,9 +1692,22 @@
             хранилища не позднее 7 дней.
           </li>
           <li>
+            Доска дел (2.3) хранится, пока на ней играют: она удаляется со
+            всем содержимым через 14 дней после последней активности на ней
+            или сразу, когда её покидает последний участник. До тех пор
+            подробности каждого дня хранятся 30 дней, недельные таблицы
+            почёта — пять недель, «Доска почёта» за всё время и журнал — всю
+            жизнь доски. Копия пака на доске хранится, пока доска его ещё
+            играет, и перезаписывается примерно раз в месяц; копию, которую не
+            удалось удалить, стирает правило хранилища не позднее чем через
+            60 дней после её последней записи (2.4).
+          </li>
+          <li>
             Локальные учётные данные онлайн-комнаты (код, токен сессии)
             хранятся на устройстве до 24 часов после последнего использования
-            и затем стираются автоматически.
+            и затем стираются автоматически. Код доски дел и ваше место на
+            ней хранятся в «Моих досках» на устройстве, пока вы не покинете
+            доску или доски не станет.
           </li>
           <li>
             Пак, для которого вы создали ссылку, хранится 90 дней с наиболее
@@ -1585,8 +1796,21 @@
           ваших паков. Удаляем вручную (два исключения — в п. 2.10).
         </p>
         <p>
-          Push-уведомления отключаются в настройках уведомлений вашей
-          операционной системы.
+          Доска дел. «Покинуть доску» в настройках доски выводит вас из
+          участников; то, что вы сыграли, остаётся в её таблицах под вашим
+          ником, пока доска не удалена. Чтобы ваш ник заменили прочерком
+          везде на доске — в таблицах, «Доске почёта», журнале, — сначала
+          покиньте доску, затем напишите на адрес из раздела 1, указав код
+          доски и ник точно так, как он там показан: пока вы участник, ваше
+          место хранит ваш ник и каждый сыгранный день записывается под ним.
+          Владелец доски так же может попросить удалить доску целиком; её
+          потеряют и другие участники, поэтому прежде мы можем попросить
+          подробности, по которым видно, что доска ваша.
+        </p>
+        <p>
+          Push-уведомления и напоминания досок дел отключаются в настройках
+          уведомлений вашей операционной системы; напоминания досок — ещё и
+          колокольчиком в «Моих досках».
         </p>
         <p>
           Реклама. Выбор по персонализированной рекламе меняется в
